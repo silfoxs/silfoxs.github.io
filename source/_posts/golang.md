@@ -2,15 +2,19 @@
 title: github + drone自动化部署
 date: 2020-04-18 12:38:22
 tags:
+  - golang
+  - drone
+categories:
+  - 技术文章
 ---
 ## 前言
 很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务
 ## 申请oauth
 因为我们需要依赖github的oauth服务,先申请一个Client Id和Client Secret:
 申请页面位于github->setting->Developer settings->OAuth Apps
-![image.png](https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![申请oauth页面](https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 提交完毕,我们就可以得到Client Id和Client Secret:
-![image](https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![申请结果页](https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 编写docker-compose
 接下来创建一个docker-compose.yml文件内容如下:
 ```yaml
@@ -49,10 +53,10 @@ services:
     restart: always
 ```
 当前目录下执行docker-compose up -d就可以启动了.
-![image](https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![启动docker-compose](https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 访问我们的主页你的ip:10081,效果如图
-![image](https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image](https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![项目列表](https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![设置信息](https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 编写.drone.yml
 上图可以看到需要开启自动集成的项目还需要编写.drone.yml文件
 ```yaml
@@ -86,6 +90,6 @@ steps:
       - docker run -d --rm --name api-ui -p 80:80 api-ui:v1
 ```
 上面的from_secret后面的值可以在我们的setting页面添加
-![image](https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![加密内容](https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 设置完毕,我们后续提交代码的时候就会自动同步到我们的服务器了,是不是很方便呢
-![image](https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![运行结果](https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: siver fox
+title: silver fox
 subtitle: '刀斩肉身，心斩灵魂，剑是不会迟疑的'
 description: ''
 keywords:
@@ -110,3 +110,26 @@ search:
     field: post
     format: html
     limit: 10000
+
+#emoj
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
+
+#将中文链接翻译成拼音
+permalink_pinyin:
+  enable: true
+  separator: '-' # default: '-'
+#rss
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date

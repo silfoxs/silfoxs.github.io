@@ -49,9 +49,9 @@ future: true
 #themes:coy,dark,funky,okaidia,solarizedlight,tomorrow,twilight,a11y-dark,atom-dark,base16-ateliersulphurpool.light,cb,darcula,dracula,duotone-dark,duotone-earth,duotone-forest,duotone-light,duotone-sea,duotone-space,ghcolors,hopscotch,material-dark,material-light,material-oceanic,nord,pojoaque,shades-of-purple,synthwave84,vs,vsc-dark-plus,xonokai,default
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'material-dark'
+  theme: 'okaidia'
   line_number: true    # default false
-  custom_css: #'path/to/your/custom.css'
+  custom_css: #'/css/code.css'
 
 highlight:
   enable: false

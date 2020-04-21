@@ -1,6 +1,7 @@
 ---
 title: github + drone自动化部署
 date: 2020-04-18 12:38:22
+summary: 介绍怎么用github+drone搭建自己的持续集成服务
 tags:
   - golang
   - drone

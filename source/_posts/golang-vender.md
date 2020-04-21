@@ -1,7 +1,10 @@
 ---
 title: golang vender的使用
 date: 2020-04-18 21:03:30
-tags: [golang,vender]
+summary: go自带的vendor使用教程
+tags:
+  - golang
+  - vender
 categories:
   - 技术文章
 ---

@@ -1,6 +1,7 @@
 ---
 title: 老项目加入golang mod模式
 date: 2020-04-18 22:44:45
+summary: golang module介绍
 tags:
   - golang
 categories:

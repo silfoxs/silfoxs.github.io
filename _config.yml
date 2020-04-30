@@ -114,7 +114,7 @@ search:
 
 #emoj
 githubEmojis:
-  enable: true
+  enable: false
   className: github-emoji
   inject: true
   styles:

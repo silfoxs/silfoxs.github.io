@@ -125,13 +125,13 @@ indexbtn:
   enable: true
   name: Github
   icon: fab fa-github-alt
-  url: https://github.com/BrouceSong
+  url: https://github.com/silfoxs
 
 # The configurations of the second line of home banner
 # icon/button will not show up if you leave the corresponding socialLink empty
 # 首页 banner 中的第二行个人信息配置，留空即不启用
 socialLink:
-  github:  https://github.com/BrouceSong
+  github:  https://github.com/silfoxs
   email: songwenwen@outlook.com
   facebook: # https://www.facebook.com/xxx
   twitter: # https://twitter.com/xxx
@@ -277,19 +277,19 @@ postCalendar: false
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
   enable: true
-  owner: 'BrouceSong'
-  repo: broucesong.github.io
+  owner: 'silfoxs'
+  repo: silfoxs.github.io
   oauth:
     clientId: 16fa32f27fad6b74a327
     clientSecret: 676594153ac04feb4cba4ce4f6166f5d271d9d8f
-  admin: BrouceSong
+  admin: silfoxs
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
 gitment:
   enable: false
-  owner: 'BrouceSong'
-  repo: broucesong.github.io
+  owner: 'silfoxs'
+  repo: silfoxs.github.io
   oauth:
     clientId: 16fa32f27fad6b74a327
     clientSecret: 676594153ac04feb4cba4ce4f6166f5d271d9d8f
@@ -342,7 +342,7 @@ minivaline:
 # 配置是否在 header 中显示 fork me on github 的图标，默认为true，你可以修改为你的仓库地址.
 githubLink:
   enable: true
-  url: https://github.com/BrouceSong
+  url: https://github.com/silfoxs
   title: 关注我
 
 # The password verification feature of read post. To use this feature,
@@ -551,7 +551,7 @@ icp:
 # 注：配置了此项，就代表着本地调试的时候，网站依然会去GitHub请求资源（原来的资源），本地调试的时候记得将 此项配置 注释或者删除掉
 # 更多关于访问速度优化，请查看：https://blog.sky03.cn/posts/42790.html
 jsDelivr:
-  url: https://cdn.jsdelivr.net/gh/broucesong/broucesong.github.io
+  url: https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io
 
 # Local search
 # Dependencies: https://github.com/flashlab/hexo-generator-search

@@ -7,18 +7,13 @@ tags:
 categories:
   - 技术文章
 ---
-
-<center>pre-commit</center>
--
-
-[TOC]
-
-# php篇[^1]
+# php篇
 
 ### 配置
 |文件名|.pre-commit-config.yaml|
 |-|-|
 |路径|cd $HOME|
+
 ### 内容
 ``` yaml
 repos:
@@ -55,6 +50,3 @@ git commit --amend
 
 <!-- 标记 -->
 [1]:https://pre-commit.com/
-
-<!-- 脚注 -->
-[^1]:环境为mac os

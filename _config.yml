@@ -46,14 +46,22 @@ relative_link: false
 future: true
 
 #代码高亮
+#代码高亮
+#代码高亮
+syntax_highlighter: prismjs
 highlight:
   enable: false
-#themes:coy,dark,funky,okaidia,solarizedlight,tomorrow,twilight,a11y-dark,atom-dark,base16-ateliersulphurpool.light,cb,darcula,dracula,duotone-dark,duotone-earth,duotone-forest,duotone-light,duotone-sea,duotone-space,ghcolors,hopscotch,material-dark,material-light,material-oceanic,nord,pojoaque,shades-of-purple,synthwave84,vs,vsc-dark-plus,xonokai,default
-prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'okaidia'
-  line_number: true    # default false
-  custom_css: #'/css/code.css'
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: true
+  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

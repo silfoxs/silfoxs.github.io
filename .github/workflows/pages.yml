@@ -24,13 +24,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-npm-cache
           restore-keys: |
-            ${{ runner.OS }}-npm-cache-
+            ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
+        run: npm install
+      - name: Install Hexo CLI
+        run: npm install -g hexo-cli
+      - name: Generate static pages
+        run: hexo generate
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

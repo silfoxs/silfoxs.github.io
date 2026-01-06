@@ -1,0 +1,458 @@
+/* Here is your custom css styles. */
+
+/* ==================== Liquid Glass Header ==================== */
+/* 头部导航栏容器 - 悬浮居中 */
+header.navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 997;
+    display: flex;
+    justify-content: center;
+    padding: 15px 20px;
+    pointer-events: none;
+}
+
+/* 导航栏液态玻璃效果 */
+header.navbar-fixed nav#headNav {
+    pointer-events: auto;
+    max-width: 1140px;
+    width: calc(100% - 40px);
+    min-width: 600px;
+    padding: 0 30px;
+    margin: 0 auto;
+    border-radius: 50px;
+    /* 毛玻璃/液态玻璃效果 */
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    /* 玻璃边框光泽 */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    /* 平滑过渡动画 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 滚动后的深色玻璃效果 */
+header.navbar-fixed nav#headNav.bg-color:not(.nav-transparent) {
+    background: rgba(30, 30, 30, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* 导航容器调整 - logo和菜单垂直居中 */
+header.navbar-fixed nav#headNav .nav-wrapper {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 导航项样式 */
+header.navbar-fixed nav#headNav .nav-menu li a {
+    position: relative;
+    border-radius: 20px;
+    margin: 0 2px;
+    padding: 6px 14px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    z-index: 2;
+}
+
+header.navbar-fixed nav#headNav .nav-menu li a:hover {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 液态玻璃滑块指示器 - 由 JS 控制 */
+.nav-slider-indicator {
+    position: absolute;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.nav-slider-indicator.active {
+    opacity: 1;
+}
+
+/* Logo样式调整 */
+header.navbar-fixed nav#headNav .brand-logo {
+    padding-left: 10px;
+}
+
+header.navbar-fixed nav#headNav .brand-logo .logo-span {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 小屏幕适配 */
+@media only screen and (max-width: 992px) {
+    header.navbar-fixed nav#headNav {
+        min-width: auto;
+        width: calc(100% - 40px);
+        max-width: none;
+        padding: 0 15px;
+        border-radius: 30px;
+    }
+}
+
+@media only screen and (max-width: 601px) {
+    header.navbar-fixed {
+        padding: 10px 15px;
+    }
+
+    header.navbar-fixed nav#headNav {
+        width: calc(100% - 30px);
+        border-radius: 25px;
+    }
+
+    header.navbar-fixed nav#headNav .brand-logo .logo-span {
+        font-size: 1.3rem;
+    }
+
+    /* 手机端 header 布局 - logo 居中 */
+    header.navbar-fixed nav#headNav .nav-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    /* 汉堡菜单按钮定位到左侧 */
+    header.navbar-fixed nav#headNav .sidenav-trigger {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+    }
+
+    /* Logo 居中 */
+    header.navbar-fixed nav#headNav .brand-logo {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        text-align: center;
+    }
+
+    /* 隐藏搜索图标在手机端 */
+    header.navbar-fixed nav#headNav .nav-menu {
+        display: none;
+    }
+}
+
+/* 隐藏左侧汉堡菜单按钮（仅桌面端） */
+@media only screen and (min-width: 993px) {
+    header.navbar-fixed .sidenav-trigger {
+        display: none !important;
+    }
+}
+
+/* 修复 logo 与导航项重叠问题 */
+header.navbar-fixed nav#headNav .brand-logo {
+    position: relative;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+/* 导航菜单位置调整，避免与 logo 重叠 */
+header.navbar-fixed nav#headNav .nav-menu {
+    margin-left: auto;
+}
+
+/* 始终隐藏 GitHub 角标 */
+header.navbar-fixed .github-corner,
+nav#headNav .github-corner {
+    display: none !important;
+}
+
+/* ==================== 移动端液态玻璃下拉菜单 ==================== */
+/* 隐藏默认的侧边栏遮罩层 */
+.sidenav-overlay {
+    display: none !important;
+}
+
+/* 移动端导航 - 从顶部滑入的液态玻璃菜单 */
+#mobile-nav.sidenav {
+    /* 重置默认侧边栏样式 */
+    position: fixed;
+    top: 70px;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) translateY(-120%);
+    width: calc(100% - 40px) !important;
+    max-width: 400px;
+    height: auto !important;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    z-index: 996;
+
+    /* 液态玻璃效果 - 与 header 一致 */
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 25px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+
+    /* 过渡动画 */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* 菜单打开状态 - 从顶部滑入 */
+#mobile-nav.sidenav.sidenav-open,
+#mobile-nav.sidenav[style*="transform: translateX(0"] {
+    transform: translateX(-50%) translateY(0) !important;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 隐藏移动端头部区域 */
+#mobile-nav .mobile-head {
+    display: none;
+}
+
+/* 菜单列表样式 - 垂直居中排列 */
+#mobile-nav .menu-list {
+    padding: 20px 0;
+    margin: 0;
+    text-align: center;
+}
+
+#mobile-nav .menu-list li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#mobile-nav .menu-list li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 20px;
+    width: calc(100% - 40px);
+    color: #fff !important;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 15px;
+    margin: 4px 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* 移动端滑块指示器 - 由 JS 控制 */
+.mobile-slider-indicator {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.mobile-slider-indicator.active {
+    opacity: 1;
+}
+
+#mobile-nav .menu-list li a i {
+    margin: 0;
+    color: #fff !important;
+    font-size: 1.15rem;
+}
+
+/* 隐藏分隔线 */
+#mobile-nav .divider {
+    display: none;
+}
+
+/* 子菜单样式 */
+#mobile-nav .menu-list ul {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin: 5px 15px;
+    padding: 10px 0;
+}
+
+#mobile-nav .menu-list ul li a {
+    padding: 12px 25px;
+    font-size: 1rem;
+    margin: 3px 10px;
+}
+
+/* 自定义遮罩层 */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 995;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* hexo-filter-github-emojis */
+.github-emoji {
+    height: 2em;
+    width: 2em;
+    display: inline-block !important;
+    position: relative;
+    margin: 0 3px !important;
+    padding: 0;
+}
+
+.github-emoji:hover {
+    animation: emoji-face 5s infinite ease-in-out;
+}
+
+@keyframes emoji-face {
+    2% {
+        transform: translate(0, 1.5px) rotate(1.5deg);
+    }
+
+    4% {
+        transform: translate(0, -1.5px) rotate(-0.5deg);
+    }
+
+    6% {
+        transform: translate(0, 1.5px) rotate(-1.5deg);
+    }
+
+    8% {
+        transform: translate(0, -1.5px) rotate(-1.5deg);
+    }
+
+    10% {
+        transform: translate(0, 2.5px) rotate(1.5deg);
+    }
+
+    12% {
+        transform: translate(0, -0.5px) rotate(1.5deg);
+    }
+
+    14% {
+        transform: translate(0, -1.5px) rotate(1.5deg);
+    }
+
+    16% {
+        transform: translate(0, -0.5px) rotate(-1.5deg);
+    }
+
+    18% {
+        transform: translate(0, 0.5px) rotate(-1.5deg);
+    }
+
+    20% {
+        transform: translate(0, -1.5px) rotate(2.5deg);
+    }
+
+    22% {
+        transform: translate(0, 0.5px) rotate(-1.5deg);
+    }
+
+    24% {
+        transform: translate(0, 1.5px) rotate(1.5deg);
+    }
+
+    26% {
+        transform: translate(0, 0.5px) rotate(0.5deg);
+    }
+
+    28% {
+        transform: translate(0, 0.5px) rotate(1.5deg);
+    }
+}
+
+/* Mobile hamburger menu hover effect removal */
+header .side-nav .menu-list a:hover {
+    background-color: transparent !important;
+}
+
+/* Remove nav-show label on hover */
+.nav-show {
+    display: none !important;
+}
+
+/* Search popup liquid glass effect and rounded corners */
+#searchModal {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 50px !important;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Fix mobile menu clicks (pointer-events) */
+#mobile-nav,
+.side-nav {
+    pointer-events: auto !important;
+}
+
+/* Fix desktop menu twitching - Strict Lock */
+header.navbar-fixed nav#headNav .nav-menu li a {
+    font-weight: 500;
+    /* Set fixed font-weight */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Ensure box model consistency */
+    border: none;
+    margin: 0 2px;
+    padding: 6px 14px;
+}
+
+header.navbar-fixed nav#headNav .nav-menu li a:hover {
+    font-weight: 500 !important;
+    /* Prevent bolding on hover */
+    background-color: transparent;
+    /* Clean hover state */
+    /* Lock layout properties */
+    border: none !important;
+    margin: 0 2px !important;
+    padding: 6px 14px !important;
+}

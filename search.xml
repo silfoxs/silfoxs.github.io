@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>golang实现一个冒泡算法</title>
+    <url>/2020/04/20/golang-bubbling/</url>
+    <content><![CDATA[<blockquote>
+<p>序言<br>闲来无聊手撸一个冒泡玩玩</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">var</span> arr  <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">&#123;</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">78</span><span class="token punctuation">,</span><span class="token number">56</span><span class="token punctuation">,</span><span class="token number">98</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">&#125;</span>
+
+<span class="token comment">//冒泡</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
+				tmp <span class="token operator">:=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+				arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+				arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>golang实现一个简单的webserver</title>
     <url>/2020/04/21/golang-web-server/</url>
     <content><![CDATA[<h2 id="官网DEMO"><a href="#官网DEMO" class="headerlink" title="官网DEMO"></a>官网DEMO</h2><blockquote>
@@ -152,133 +186,6 @@
       </tags>
   </entry>
   <entry>
-    <title>github + drone自动化部署</title>
-    <url>/2020/04/18/golang/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
-<h2 id="申请oauth"><a href="#申请oauth" class="headerlink" title="申请oauth"></a>申请oauth</h2><p>因为我们需要依赖github的oauth服务,先申请一个Client Id和Client Secret:<br>申请页面位于github-&gt;setting-&gt;Developer settings-&gt;OAuth Apps<br><img src="https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请oauth页面"><br>提交完毕,我们就可以得到Client Id和Client Secret:<br><img src="https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请结果页"></p>
-<h2 id="编写docker-compose"><a href="#编写docker-compose" class="headerlink" title="编写docker-compose"></a>编写docker-compose</h2><p>接下来创建一个docker-compose.yml文件内容如下:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  drone<span class="token punctuation">-</span><span class="token key atrule">server</span><span class="token punctuation">:</span>
-    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">:</span><span class="token number">1</span>
-    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>server
-    ports<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> '10081<span class="token punctuation">:</span>80'      <span class="token comment"># Web管理面板的入口 PROTO=http  时使用该端口</span>
-    volumes<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock   <span class="token comment"># docker.sock [1]</span>
-      <span class="token punctuation">-</span> /var/data/drone/<span class="token punctuation">:</span>/var/lib/drone             <span class="token comment"># drone数据存放路径</span>
-    environment<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_ID=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_ID<span class="token punctuation">&#125;</span>  <span class="token comment">#上面申请的github CLIENT_ID</span>
-      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_SECRET=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_SECRET<span class="token punctuation">&#125;</span><span class="token comment">#上面申请的github CLIENT_SECRET</span>
-      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span>   <span class="token comment">#你的密钥MD5值即可</span>
-      <span class="token punctuation">-</span> DRONE_SERVER_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
-      <span class="token punctuation">-</span> DRONE_SERVER_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https  </span>
-      <span class="token punctuation">-</span> TZ=Asia/Shanghai
-    restart<span class="token punctuation">:</span> always
-  drone<span class="token punctuation">-</span><span class="token key atrule">agent</span><span class="token punctuation">:</span>
-    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">-</span>runner<span class="token punctuation">-</span>docker<span class="token punctuation">:</span><span class="token number">1</span>
-    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>runner
-    depends_on<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> drone<span class="token punctuation">-</span>server
-    volumes<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock <span class="token comment"># docker.sock [1]</span>
-    environment<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> DRONE_RPC_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https</span>
-      <span class="token punctuation">-</span> DRONE_RPC_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
-      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span> <span class="token comment">#你的密钥MD5值即可,跟上面的保持一致</span>
-      <span class="token punctuation">-</span> DRONE_RUNNER_CAPACITY=2 <span class="token comment">#最多同时运行几个</span>
-      <span class="token punctuation">-</span> DRONE_RUNNER_NAME=你的IP
-      <span class="token punctuation">-</span> TZ=Asia/Shanghai
-    restart<span class="token punctuation">:</span> always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>当前目录下执行docker-compose up -d就可以启动了.<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动docker-compose"><br>访问我们的主页你的ip:10081,效果如图<br><img src="https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目列表"><br><img src="https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置信息"></p>
-<h2 id="编写-drone-yml"><a href="#编写-drone-yml" class="headerlink" title="编写.drone.yml"></a>编写.drone.yml</h2><p>上图可以看到需要开启自动集成的项目还需要编写.drone.yml文件</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> pipeline
-<span class="token key atrule">type</span><span class="token punctuation">:</span> docker
-<span class="token key atrule">name</span><span class="token punctuation">:</span> api<span class="token punctuation">-</span>ui
-<span class="token key atrule">workspace</span><span class="token punctuation">:</span>
-  base<span class="token punctuation">:</span> /data/service
-  path<span class="token punctuation">:</span> .
-<span class="token key atrule">steps</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> name<span class="token punctuation">:</span> 部署api<span class="token punctuation">-</span>ui项目
-  image<span class="token punctuation">:</span> appleboy/drone<span class="token punctuation">-</span>ssh
-  settings<span class="token punctuation">:</span>
-    host<span class="token punctuation">:</span>
-      from_secret<span class="token punctuation">:</span> host
-    port<span class="token punctuation">:</span> <span class="token number">22</span>
-    username<span class="token punctuation">:</span>
-      from_secret<span class="token punctuation">:</span> ssh_name
-    password<span class="token punctuation">:</span>
-      from_secret<span class="token punctuation">:</span> ssh_passwd
-    script<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> cd /home/xxxxxx/www/api<span class="token punctuation">-</span>ui/
-      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
-      <span class="token punctuation">-</span> git pull origin master
-      <span class="token punctuation">-</span> rm <span class="token punctuation">-</span>rf dist/*
-      <span class="token punctuation">-</span> cnpm run build
-      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
-      <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span>t api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1 .
-      <span class="token punctuation">-</span> docker rm <span class="token punctuation">-</span>f api<span class="token punctuation">-</span>ui <span class="token punctuation">|</span><span class="token punctuation">|</span> true
-      <span class="token punctuation">-</span> docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>rm <span class="token punctuation">-</span><span class="token punctuation">-</span>name api<span class="token punctuation">-</span>ui <span class="token punctuation">-</span>p 80<span class="token punctuation">:</span>80 api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上面的from_secret后面的值可以在我们的setting页面添加<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加密内容"><br>设置完毕,我们后续提交代码的时候就会自动同步到我们的服务器了,是不是很方便呢<br><img src="https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>drone</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>golang实现一个冒泡算法</title>
-    <url>/2020/04/20/golang-bubbling/</url>
-    <content><![CDATA[<blockquote>
-<p>序言<br>闲来无聊手撸一个冒泡玩玩</p>
-</blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token string">"fmt"</span>
-
-<span class="token keyword">var</span> arr  <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">&#123;</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">78</span><span class="token punctuation">,</span><span class="token number">56</span><span class="token punctuation">,</span><span class="token number">98</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">&#125;</span>
-
-<span class="token comment">//冒泡</span>
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">&#123;</span>
-	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">&#123;</span>
-		<span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">&#123;</span>
-			<span class="token keyword">if</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
-				tmp <span class="token operator">:=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-				arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-				arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
-			<span class="token punctuation">&#125;</span>
-		<span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>老项目加入golang mod模式</title>
-    <url>/2020/04/18/old-add-golang-mod/</url>
-    <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
-<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>php项目中使用composer</title>
     <url>/2020/04/30/php-use-composer/</url>
     <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
@@ -399,6 +306,99 @@ pre
       </categories>
       <tags>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>github + drone自动化部署</title>
+    <url>/2020/04/18/golang/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
+<h2 id="申请oauth"><a href="#申请oauth" class="headerlink" title="申请oauth"></a>申请oauth</h2><p>因为我们需要依赖github的oauth服务,先申请一个Client Id和Client Secret:<br>申请页面位于github-&gt;setting-&gt;Developer settings-&gt;OAuth Apps<br><img src="https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请oauth页面"><br>提交完毕,我们就可以得到Client Id和Client Secret:<br><img src="https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请结果页"></p>
+<h2 id="编写docker-compose"><a href="#编写docker-compose" class="headerlink" title="编写docker-compose"></a>编写docker-compose</h2><p>接下来创建一个docker-compose.yml文件内容如下:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  drone<span class="token punctuation">-</span><span class="token key atrule">server</span><span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">:</span><span class="token number">1</span>
+    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>server
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> '10081<span class="token punctuation">:</span>80'      <span class="token comment"># Web管理面板的入口 PROTO=http  时使用该端口</span>
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock   <span class="token comment"># docker.sock [1]</span>
+      <span class="token punctuation">-</span> /var/data/drone/<span class="token punctuation">:</span>/var/lib/drone             <span class="token comment"># drone数据存放路径</span>
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_ID=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_ID<span class="token punctuation">&#125;</span>  <span class="token comment">#上面申请的github CLIENT_ID</span>
+      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_SECRET=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_SECRET<span class="token punctuation">&#125;</span><span class="token comment">#上面申请的github CLIENT_SECRET</span>
+      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span>   <span class="token comment">#你的密钥MD5值即可</span>
+      <span class="token punctuation">-</span> DRONE_SERVER_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
+      <span class="token punctuation">-</span> DRONE_SERVER_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https  </span>
+      <span class="token punctuation">-</span> TZ=Asia/Shanghai
+    restart<span class="token punctuation">:</span> always
+  drone<span class="token punctuation">-</span><span class="token key atrule">agent</span><span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">-</span>runner<span class="token punctuation">-</span>docker<span class="token punctuation">:</span><span class="token number">1</span>
+    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>runner
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> drone<span class="token punctuation">-</span>server
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock <span class="token comment"># docker.sock [1]</span>
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DRONE_RPC_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https</span>
+      <span class="token punctuation">-</span> DRONE_RPC_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
+      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span> <span class="token comment">#你的密钥MD5值即可,跟上面的保持一致</span>
+      <span class="token punctuation">-</span> DRONE_RUNNER_CAPACITY=2 <span class="token comment">#最多同时运行几个</span>
+      <span class="token punctuation">-</span> DRONE_RUNNER_NAME=你的IP
+      <span class="token punctuation">-</span> TZ=Asia/Shanghai
+    restart<span class="token punctuation">:</span> always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当前目录下执行docker-compose up -d就可以启动了.<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动docker-compose"><br>访问我们的主页你的ip:10081,效果如图<br><img src="https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目列表"><br><img src="https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置信息"></p>
+<h2 id="编写-drone-yml"><a href="#编写-drone-yml" class="headerlink" title="编写.drone.yml"></a>编写.drone.yml</h2><p>上图可以看到需要开启自动集成的项目还需要编写.drone.yml文件</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> pipeline
+<span class="token key atrule">type</span><span class="token punctuation">:</span> docker
+<span class="token key atrule">name</span><span class="token punctuation">:</span> api<span class="token punctuation">-</span>ui
+<span class="token key atrule">workspace</span><span class="token punctuation">:</span>
+  base<span class="token punctuation">:</span> /data/service
+  path<span class="token punctuation">:</span> .
+<span class="token key atrule">steps</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> name<span class="token punctuation">:</span> 部署api<span class="token punctuation">-</span>ui项目
+  image<span class="token punctuation">:</span> appleboy/drone<span class="token punctuation">-</span>ssh
+  settings<span class="token punctuation">:</span>
+    host<span class="token punctuation">:</span>
+      from_secret<span class="token punctuation">:</span> host
+    port<span class="token punctuation">:</span> <span class="token number">22</span>
+    username<span class="token punctuation">:</span>
+      from_secret<span class="token punctuation">:</span> ssh_name
+    password<span class="token punctuation">:</span>
+      from_secret<span class="token punctuation">:</span> ssh_passwd
+    script<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> cd /home/xxxxxx/www/api<span class="token punctuation">-</span>ui/
+      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
+      <span class="token punctuation">-</span> git pull origin master
+      <span class="token punctuation">-</span> rm <span class="token punctuation">-</span>rf dist/*
+      <span class="token punctuation">-</span> cnpm run build
+      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
+      <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span>t api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1 .
+      <span class="token punctuation">-</span> docker rm <span class="token punctuation">-</span>f api<span class="token punctuation">-</span>ui <span class="token punctuation">|</span><span class="token punctuation">|</span> true
+      <span class="token punctuation">-</span> docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>rm <span class="token punctuation">-</span><span class="token punctuation">-</span>name api<span class="token punctuation">-</span>ui <span class="token punctuation">-</span>p 80<span class="token punctuation">:</span>80 api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的from_secret后面的值可以在我们的setting页面添加<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加密内容"><br>设置完毕,我们后续提交代码的时候就会自动同步到我们的服务器了,是不是很方便呢<br><img src="https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>drone</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>老项目加入golang mod模式</title>
+    <url>/2020/04/18/old-add-golang-mod/</url>
+    <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
+<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
       </tags>
   </entry>
 </search>

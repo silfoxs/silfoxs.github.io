@@ -186,6 +186,20 @@
       </tags>
   </entry>
   <entry>
+    <title>老项目加入golang mod模式</title>
+    <url>/2020/04/18/old-add-golang-mod/</url>
+    <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
+<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>github + drone自动化部署</title>
     <url>/2020/04/18/golang/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
@@ -262,20 +276,6 @@
       <tags>
         <tag>golang</tag>
         <tag>drone</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>老项目加入golang mod模式</title>
-    <url>/2020/04/18/old-add-golang-mod/</url>
-    <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
-<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
       </tags>
   </entry>
   <entry>

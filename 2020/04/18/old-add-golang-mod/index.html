@@ -404,7 +404,7 @@
     }
 </style>
 <div class="row">
-    <div id="main-content" class="col s12 m12 l9">
+    <div id="main-content" class="col s12 m12 l12">
         <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
@@ -737,7 +737,7 @@
 
 
     </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+    <div id="toc-aside" class="col l3 hide-on-med-and-down" style="display: none;">
         <div class="toc-widget">
             <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
             <div id="toc-content"></div>
@@ -817,13 +817,19 @@
                     const expandedClass = 'expanded';
                     let $tocAside = $('#toc-aside');
                     let $mainContent = $('#main-content');
+                    
+                    // TOC默认隐藏
+                    let tocVisible = false;
+                    
                     $('#floating-toc-btn .btn-floating').click(function () {
-                        if ($tocAside.hasClass(expandedClass)) {
+                        if (tocVisible) {
                             $tocAside.removeClass(expandedClass).hide();
-                            $mainContent.removeClass('l9');
+                            $mainContent.removeClass('l9').addClass('l12');
+                            tocVisible = false;
                         } else {
                             $tocAside.addClass(expandedClass).show();
-                            $mainContent.addClass('l9');
+                            $mainContent.removeClass('l12').addClass('l9');
+                            tocVisible = true;
                         }
                         fixPostCardWidth('artDetail', 'prenext-posts');
                     });

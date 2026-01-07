@@ -627,3 +627,283 @@ header.navbar-fixed nav#headNav .nav-menu li a:hover {
     font-size: 1.5rem;
     color: #fff;
 }
+
+/* ==================== 桌面端文章列表水平布局 ==================== */
+/* 桌面端样式 - 每行一个文章，左图右内容 */
+@media only screen and (min-width: 993px) {
+    /* 每行一个文章 */
+    .articles .article.col.s12 {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* 水平卡片容器 */
+    .article-horizontal-card {
+        overflow: hidden;
+    }
+
+    /* flexbox 水平布局 */
+    .article-row-layout {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 200px;
+    }
+
+    /* 左侧图片区域 */
+    .article-row-layout .article-image-link {
+        flex: 0 0 320px;
+        display: block;
+    }
+
+    .article-row-layout .article-image {
+        width: 320px;
+        height: 100%;
+        min-height: 200px;
+        background-color: #222;
+        overflow: hidden;
+        border-radius: 8px 0 0 8px;
+    }
+
+    .article-row-layout .article-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.85;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .article-row-layout .article-image-link:hover img {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    /* 右侧内容区域 */
+    .article-row-layout .article-info-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 20px 25px;
+        position: relative;
+        min-width: 0;
+    }
+
+    /* 右上角分类 */
+    .article-row-layout .article-category-top {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .article-row-layout .category-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        background: linear-gradient(135deg, #42b983 0%, #3aa876 100%);
+        color: #fff !important;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border-radius: 15px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .article-row-layout .category-badge:hover {
+        background: linear-gradient(135deg, #3aa876 0%, #2e9c6a 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(66, 185, 131, 0.3);
+    }
+
+    .article-row-layout .category-badge i {
+        font-size: 0.75rem;
+    }
+
+    /* 标题 */
+    .article-row-layout .article-title-link {
+        text-decoration: none;
+        margin-right: 120px;
+    }
+
+    .article-row-layout .article-title {
+        margin: 0 0 12px 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #34495e;
+        line-height: 1.4;
+        transition: color 0.3s ease;
+    }
+
+    .article-row-layout .article-title-link:hover .article-title {
+        color: #42b983;
+    }
+
+    /* 简介 */
+    .article-row-layout .article-summary {
+        flex: 1;
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    /* 时间 */
+    .article-row-layout .article-meta {
+        margin-bottom: 12px;
+    }
+
+    .article-row-layout .article-date {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        color: #888;
+    }
+
+    .article-row-layout .article-date i {
+        color: #aaa;
+    }
+
+    /* 标签 */
+    .article-row-layout .article-tags-inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+    }
+
+    .article-row-layout .article-tags-inline .chip {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 400;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 12px;
+        color: #fff;
+        border-radius: 12px;
+        transition: transform 0.2s ease;
+    }
+
+    .article-row-layout .article-tags-inline a:hover .chip {
+        transform: translateY(-2px);
+    }
+}
+
+/* 平板和手机端保持原有的纵向卡片布局 */
+@media only screen and (max-width: 992px) {
+    /* 平板端 - 两列布局 */
+    .articles .article.col.s12 {
+        width: 50%;
+        max-width: 50%;
+    }
+
+    .article-row-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .article-row-layout .article-image-link {
+        display: block;
+    }
+
+    .article-row-layout .article-image {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .article-row-layout .article-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .article-row-layout .article-info-wrapper {
+        padding: 15px;
+        position: relative;
+    }
+
+    .article-row-layout .article-category-top {
+        position: absolute;
+        top: -30px;
+        right: 10px;
+    }
+
+    .article-row-layout .category-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        background: rgba(66, 185, 131, 0.9);
+        color: #fff !important;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border-radius: 12px;
+        text-decoration: none;
+    }
+
+    .article-row-layout .article-title {
+        margin: 0 0 10px 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #34495e;
+        line-height: 1.3;
+    }
+
+    .article-row-layout .article-summary {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .article-row-layout .article-meta {
+        margin-bottom: 10px;
+    }
+
+    .article-row-layout .article-date {
+        font-size: 0.8rem;
+        color: #888;
+    }
+
+    .article-row-layout .article-tags-inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .article-row-layout .article-tags-inline .chip {
+        font-size: 0.75rem;
+        height: 22px;
+        line-height: 22px;
+        padding: 0 10px;
+    }
+}
+
+/* 手机端 - 单列布局 */
+@media only screen and (max-width: 600px) {
+    .articles .article.col.s12 {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .article-row-layout .article-image {
+        height: 180px;
+    }
+
+    .article-row-layout .article-title {
+        font-size: 1.1rem;
+    }
+}

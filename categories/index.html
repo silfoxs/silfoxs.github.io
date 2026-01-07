@@ -37,8 +37,8 @@
 </head>
 
 
-<body>
-    <header class="navbar-fixed">
+    <body>
+        <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -275,7 +275,7 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
+            <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
@@ -368,57 +368,58 @@
     </div>
 </div>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/echarts/echarts.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/echarts/echarts.min.js?v=v0.0.1"></script>
 <script type="text/javascript">
     let radarChart = echarts.init(document.getElementById('category-radar'));
 
     
 
-    let option = {
-        title: {
-            left: 'center',
-            text: '文章分类雷达图',
-            textStyle: {
-                fontWeight: 500,
-                fontSize: 22
-            }
-        },
-        tooltip: {},
-        radar: {
-            name: {
+        let option = {
+            title: {
+                left: 'center',
+                text: '文章分类雷达图',
                 textStyle: {
-                    color: '#3C4858'
+                    fontWeight: 500,
+                    fontSize: 22
                 }
             },
-            indicator: [{"name":"技术文章","max":8},{"name":"开发工具","max":8}],
-            nameGap: 5,
-            center: ['50%','55%'],
-            radius: '66%'
-        },
-        series: [{
-            type: 'radar',
-            color: ['#3ecf8e'],
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data : [
-                {
-                    value : [7,1],
-                    name : '文章分类数量'
-                }
-            ]
-        }]
-    };
+            tooltip: {},
+            radar: {
+                name: {
+                    textStyle: {
+                        color: '#3C4858'
+                    }
+                },
+                indicator: ,
+                nameGap: 5,
+                center: ['50%', '55%'],
+                radius: '66%'
+            },
+            series: [{
+                type: 'radar',
+                color: ['#3ecf8e'],
+                itemStyle: { normal: { areaStyle: { type: 'default' } } },
+                data: [
+                    {
+                        value: ,
+                        name: '文章分类数量'
+                    }
+                ]
+            }]
+        };
 
     radarChart.setOption(option);
 </script>
-
     
 
 </main>
 
 
-    <footer class="page-footer bg-color">
+                <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.css">
+        <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.css?v=v0.0.1">
 <style>
     .aplayer .aplayer-lrc p {
         font-size: 12px;
@@ -440,24 +441,21 @@
         }
 
         
-
 </style>
 <div class="" style="color: #b11345e0;">
     
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12" server="tencent"
-            type="playlist" id="2165579605"
-            fixed='true' autoplay='true'
-            theme='#42b983' loop='all' order='random'
-            preload='none' volume='0.7'
-            list-folded='true'>
-        </meting-js>
-    </div>
+            <div class="row">
+                <meting-js class="col l8 offset-l2 m10 offset-m1 s12" server="tencent"
+                    type="playlist" id="2165579605" fixed=' true' autoplay='true'
+                        theme='#42b983' loop='all' order='random'
+                                    preload='none' volume='0.7'
+                                            list-folded='true'>
+                </meting-js>
+            </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.js?v=v0.0.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
     
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -519,7 +517,7 @@
 <div class="progress-bar"></div>
 
 
-    <!-- 搜索遮罩框 -->
+                    <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
@@ -538,7 +536,7 @@ $(function () {
 });
 </script>
 
-    <!-- 回到顶部按钮 -->
+                        <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
         <i class="fas fa-arrow-up"></i>
@@ -546,16 +544,22 @@ $(function () {
 </div>
 
 
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/materialize/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aos/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/js/matery.js"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/materialize/materialize.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/masonry/masonry.pkgd.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aos/aos.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/scrollprogress/scrollProgress.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/lightGallery/js/lightgallery-all.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/js/matery.js?v=v0.0.1"></script>
 
-    <!-- Baidu Analytics -->
+                            <!-- Baidu Analytics -->
 
-    <!-- Baidu Push -->
+                                <!-- Baidu Push -->
 
 <script>
     (function () {
@@ -571,27 +575,32 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/busuanzi.pure.mini.js"></script>
-    
+                                    
+                                        <script
+                                            src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/clicklove.js?v=v0.0.1"
+                                            async="async"></script>
+                                        
+                                            
+                                                <script async
+                                                    src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/busuanzi.pure.mini.js?v=v0.0.1"></script>
+                                                
 
-    
+                                                    
 
-    
+                                                            
 
-    
+                                                                    
 
-    
+                                                                            
 
-    
+                                                                                        
 
-    
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/instantpage/instantpage.js" type="module"></script>
-    
+                                                                                                
+                                                                                                    <script
+                                                                                                        src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/instantpage/instantpage.js?v=v0.0.1"
+                                                                                                        type="module"></script>
+                                                                                                    
 
-</body>
+    </body>
 
 </html>

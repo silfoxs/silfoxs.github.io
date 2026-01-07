@@ -37,8 +37,8 @@
 </head>
 
 
-<body>
-    <header class="navbar-fixed">
+    <body>
+        <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -275,29 +275,31 @@
 
 </header>
 
-    
+            
 
+        
 
-
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/medias/featureimages/18.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">vscode必备扩展介绍</h1>
+    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/medias/featureimages/18.jpg?v=v0.0.1')">
+        <div class="container" style="right: 0px;left: 0px;">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="brand">
+                        <h1 class="description center-align post-title">
+                            vscode必备扩展介绍
+                        </h1>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+            
 
+                <main class="post-container content">
 
-
-<main class="post-container content">
-
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/tocbot/tocbot.css">
+                    
+                        <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/tocbot/tocbot.css?v=v0.0.1">
 <style>
     #articleContent h1::before,
     #articleContent h2::before,
@@ -743,99 +745,99 @@
 
 <!-- TOC 悬浮按钮. -->
 
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fas fa-list-ul"></i>
-    </a>
-</div>
+    <div id="floating-toc-btn" class="hide-on-med-and-down">
+        <a class="btn-floating btn-large bg-color">
+            <i class="fas fa-list-ul"></i>
+        </a>
+    </div>
+    
 
+        <script
+            src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/tocbot/tocbot.min.js?v=v0.0.1"></script>
+        <script>
+            $(function () {
+                tocbot.init({
+                    tocSelector: '#toc-content',
+                    contentSelector: '#articleContent',
+                    headingsOffset: -($(window).height() * 0.4 - 45),
+                    collapseDepth: Number('0'),
+                    headingSelector: 'h2, h3, h4'
+                });
 
-<script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
-        });
+                // modify the toc link href to support Chinese.
+                let i = 0;
+                let tocHeading = 'toc-heading-';
+                $('#toc-content a').each(function () {
+                    $(this).attr('href', '#' + tocHeading + (++i));
+                });
 
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
+                // modify the heading title id to support Chinese.
+                i = 0;
+                $('#articleContent').children('h2, h3, h4').each(function () {
+                    $(this).attr('id', tocHeading + (++i));
+                });
 
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
+                // Set scroll toc fixed.
+                let tocHeight = parseInt($(window).height() * 0.4 - 64);
+                let $tocWidget = $('.toc-widget');
+                $(window).scroll(function () {
+                    let scroll = $(window).scrollTop();
+                    /* add post toc fixed. */
+                    if (scroll > tocHeight) {
+                        $tocWidget.addClass('toc-fixed');
+                    } else {
+                        $tocWidget.removeClass('toc-fixed');
+                    }
+                });
 
         
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
+                    /* 修复文章卡片 div 的宽度. */
+                    let fixPostCardWidth = function (srcId, targetId) {
+                        let srcDiv = $('#' + srcId);
+                        if (srcDiv.length === 0) {
+                            return;
+                        }
 
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
+                        let w = srcDiv.width();
+                        if (w >= 450) {
+                            w = w + 21;
+                        } else if (w >= 350 && w < 450) {
+                            w = w + 18;
+                        } else if (w >= 300 && w < 350) {
+                            w = w + 16;
+                        } else {
+                            w = w + 14;
+                        }
+                        $('#' + targetId).width(w);
+                    };
 
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).hide();
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).show();
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
+                    // 切换TOC目录展开收缩的相关操作.
+                    const expandedClass = 'expanded';
+                    let $tocAside = $('#toc-aside');
+                    let $mainContent = $('#main-content');
+                    $('#floating-toc-btn .btn-floating').click(function () {
+                        if ($tocAside.hasClass(expandedClass)) {
+                            $tocAside.removeClass(expandedClass).hide();
+                            $mainContent.removeClass('l9');
+                        } else {
+                            $tocAside.addClass(expandedClass).show();
+                            $mainContent.addClass('l9');
+                        }
+                        fixPostCardWidth('artDetail', 'prenext-posts');
+                    });
         
     });
-</script>
+        </script>
+                            
 
+                </main>
+
+                
+
+                <footer class="page-footer bg-color">
     
-
-</main>
-
-
-
-
-    <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.css">
+        <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.css?v=v0.0.1">
 <style>
     .aplayer .aplayer-lrc p {
         font-size: 12px;
@@ -857,24 +859,21 @@
         }
 
         
-
 </style>
 <div class="" style="color: #b11345e0;">
     
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12" server="tencent"
-            type="playlist" id="2165579605"
-            fixed='true' autoplay='true'
-            theme='#42b983' loop='all' order='random'
-            preload='none' volume='0.7'
-            list-folded='true'>
-        </meting-js>
-    </div>
+            <div class="row">
+                <meting-js class="col l8 offset-l2 m10 offset-m1 s12" server="tencent"
+                    type="playlist" id="2165579605" fixed=' true' autoplay='true'
+                        theme='#42b983' loop='all' order='random'
+                                    preload='none' volume='0.7'
+                                            list-folded='true'>
+                </meting-js>
+            </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aplayer/APlayer.min.js?v=v0.0.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
     
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -936,7 +935,7 @@
 <div class="progress-bar"></div>
 
 
-    <!-- 搜索遮罩框 -->
+                    <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
@@ -955,7 +954,7 @@ $(function () {
 });
 </script>
 
-    <!-- 回到顶部按钮 -->
+                        <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
         <i class="fas fa-arrow-up"></i>
@@ -963,16 +962,22 @@ $(function () {
 </div>
 
 
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/materialize/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aos/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/js/matery.js"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/materialize/materialize.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/masonry/masonry.pkgd.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/aos/aos.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/scrollprogress/scrollProgress.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/lightGallery/js/lightgallery-all.min.js?v=v0.0.1"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/js/matery.js?v=v0.0.1"></script>
 
-    <!-- Baidu Analytics -->
+                            <!-- Baidu Analytics -->
 
-    <!-- Baidu Push -->
+                                <!-- Baidu Push -->
 
 <script>
     (function () {
@@ -988,27 +993,32 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/busuanzi.pure.mini.js"></script>
-    
+                                    
+                                        <script
+                                            src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/clicklove.js?v=v0.0.1"
+                                            async="async"></script>
+                                        
+                                            
+                                                <script async
+                                                    src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/others/busuanzi.pure.mini.js?v=v0.0.1"></script>
+                                                
 
-    
+                                                    
 
-    
+                                                            
 
-    
+                                                                    
 
-    
+                                                                            
 
-    
+                                                                                        
 
-    
-    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/instantpage/instantpage.js" type="module"></script>
-    
+                                                                                                
+                                                                                                    <script
+                                                                                                        src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io/libs/instantpage/instantpage.js?v=v0.0.1"
+                                                                                                        type="module"></script>
+                                                                                                    
 
-</body>
+    </body>
 
 </html>

@@ -108,6 +108,66 @@ header.navbar-fixed nav#headNav .brand-logo .logo-span {
         padding: 0 15px;
         border-radius: 30px;
     }
+
+    /* 中小屏幕 header 布局 */
+    header.navbar-fixed nav#headNav .nav-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 56px;
+    }
+
+    /* 汉堡菜单按钮定位到左侧 */
+    header.navbar-fixed nav#headNav .sidenav-trigger {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+    }
+
+    /* 移动端搜索按钮 - 定位到右侧垂直居中 */
+    .mobile-search-trigger {
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
+        color: #fff;
+        font-size: 1.1rem;
+        padding: 0 !important;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 36px !important;
+        height: 36px !important;
+        line-height: 36px !important;
+    }
+
+    .mobile-search-trigger i {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        line-height: inherit !important;
+        margin: 0 !important;
+    }
+
+    .mobile-search-trigger:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Logo 居中 */
+    header.navbar-fixed nav#headNav .brand-logo {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        text-align: center;
+    }
 }
 
 @media only screen and (max-width: 601px) {
@@ -141,6 +201,29 @@ header.navbar-fixed nav#headNav .brand-logo .logo-span {
         margin: 0;
     }
 
+    /* 移动端搜索按钮 - 定位到右侧 */
+    header.navbar-fixed nav#headNav .mobile-search-trigger {
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
+        color: #fff;
+        font-size: 1.1rem;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        line-height: 1;
+    }
+
+    header.navbar-fixed nav#headNav .mobile-search-trigger:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
     /* Logo 居中 */
     header.navbar-fixed nav#headNav .brand-logo {
         position: static !important;
@@ -149,7 +232,7 @@ header.navbar-fixed nav#headNav .brand-logo .logo-span {
         text-align: center;
     }
 
-    /* 隐藏搜索图标在手机端 */
+    /* 隐藏桌面端导航菜单在手机端 */
     header.navbar-fixed nav#headNav .nav-menu {
         display: none;
     }
@@ -416,14 +499,72 @@ header .side-nav .menu-list a:hover {
 
 /* Search popup liquid glass effect and rounded corners */
 #searchModal {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(30, 30, 30, 0.75) !important;
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-radius: 50px !important;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 25px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#searchModal .modal-content {
+    background: transparent !important;
+    padding: 30px;
+}
+
+#searchModal .search-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+#searchModal .search-header .title {
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#searchModal .search-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 15px !important;
+    padding: 12px 20px !important;
+    color: #fff !important;
+    font-size: 1.1rem !important;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#searchModal .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#searchModal .search-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+#searchResult {
+    color: #fff !important;
+}
+
+#searchResult a {
+    color: #42b983 !important;
+}
+
+#searchResult .search-result-list li {
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Fix mobile menu clicks (pointer-events) */
@@ -455,4 +596,34 @@ header.navbar-fixed nav#headNav .nav-menu li a:hover {
     border: none !important;
     margin: 0 2px !important;
     padding: 6px 14px !important;
+}
+
+/* ==================== 回到顶部按钮液态玻璃效果 ==================== */
+.top-scroll .btn-floating {
+    background: rgba(30, 30, 30, 0.65) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-scroll .btn-floating:hover {
+    background: rgba(50, 50, 50, 0.75) !important;
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.top-scroll .btn-floating i {
+    line-height: 50px;
+    font-size: 1.5rem;
+    color: #fff;
 }

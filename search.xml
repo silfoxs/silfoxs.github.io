@@ -51,6 +51,141 @@
       </tags>
   </entry>
   <entry>
+    <title>golang实现一个简单的webserver</title>
+    <url>/2020/04/21/golang-web-server/</url>
+    <content><![CDATA[<h2 id="官网DEMO"><a href="#官网DEMO" class="headerlink" title="官网DEMO"></a>官网DEMO</h2><blockquote>
+<p>先上一个官网的示例<br>简单几行代码即可实现一个webserver</p>
+</blockquote>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"io"</span>
+	<span class="token string">"log"</span>
+	<span class="token string">"net/http"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// Hello world, the web server</span>
+
+	helloHandler <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> req <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		io<span class="token punctuation">.</span><span class="token function">WriteString</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> <span class="token string">"Hello, world!\n"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	http<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> helloHandler<span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="进阶版"><a href="#进阶版" class="headerlink" title="进阶版"></a>进阶版</h2><blockquote>
+<p>进阶版我们封装了以下功能</p>
+<ul>
+<li>用一个gin框架</li>
+<li>实现一个route</li>
+<li>实现controller</li>
+<li>实现一个中间件</li>
+<li>加一个单测<br>代码如下</li>
+</ul>
+</blockquote>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">//main.go</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	routes <span class="token string">"api/routes"</span>
+
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	r <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	route <span class="token operator">:=</span> routes<span class="token punctuation">.</span><span class="token function">Router</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+	route<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//单测示例,其实并没用</span>
+<span class="token keyword">func</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token string">"hello"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// routes/route.go</span>
+<span class="token keyword">package</span> routes
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	c <span class="token string">"api/controller"</span>
+	m <span class="token string">"api/middleware"</span>
+
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">Router</span><span class="token punctuation">(</span>r <span class="token operator">*</span>gin<span class="token punctuation">.</span>Engine<span class="token punctuation">)</span> <span class="token operator">*</span>gin<span class="token punctuation">.</span>Engine <span class="token punctuation">&#123;</span>
+    r<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">SetHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">//路由组,很方便</span>
+	v1 <span class="token operator">:=</span> r<span class="token punctuation">.</span><span class="token function">Group</span><span class="token punctuation">(</span><span class="token string">"/v1"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+        <span class="token comment">//访问地址 http://hostname/v1/hello</span>
+		v1<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>Hello<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> r
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// controller/hello.go</span>
+<span class="token keyword">package</span> controller
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> Hello <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Text  <span class="token builtin">string</span> <span class="token string">`json:"text"`</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//golang 的方法首字母大写表示public修饰符</span>
+<span class="token keyword">func</span> <span class="token function">Hello</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	data <span class="token operator">:=</span> Hello<span class="token punctuation">&#123;</span>
+        text<span class="token punctuation">:</span> <span class="token string">"hello word"</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//返回json信息</span>
+	c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span>
+		<span class="token string">"data"</span><span class="token punctuation">:</span> data<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// middleware/header.go</span>
+<span class="token keyword">package</span> middleware
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">//简单的跨域中间件</span>
+<span class="token keyword">func</span> <span class="token function">SetHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> gin<span class="token punctuation">.</span>HandlerFunc <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token comment">// gin设置响应头，设置跨域</span>
+		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin"</span><span class="token punctuation">,</span> <span class="token string">"*"</span><span class="token punctuation">)</span>
+		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Methods"</span><span class="token punctuation">,</span> <span class="token string">"POST, GET, OPTIONS, PUT, DELETE"</span><span class="token punctuation">)</span>
+		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Headers"</span><span class="token punctuation">,</span> <span class="token string">"Action, Module, X-PINGOTHER, Content-Type, Content-Disposition"</span><span class="token punctuation">)</span>
+		c<span class="token punctuation">.</span><span class="token function">Set</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"application/json"</span><span class="token punctuation">)</span>
+		c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// main_test.go 单测示例</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"testing"</span>
+
+<span class="token keyword">func</span> <span class="token function">TestHello</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">"hello"</span> <span class="token punctuation">&#123;</span>
+		t<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token string">"Testing error"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>好了,一个简单的webserver就搞定了<br>所有示例都是go module模式下的,不会的同学可以看我其他文章有介绍</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>github + drone自动化部署</title>
     <url>/2020/04/18/golang/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
@@ -264,141 +399,6 @@ pre
       </categories>
       <tags>
         <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>golang实现一个简单的webserver</title>
-    <url>/2020/04/21/golang-web-server/</url>
-    <content><![CDATA[<h2 id="官网DEMO"><a href="#官网DEMO" class="headerlink" title="官网DEMO"></a>官网DEMO</h2><blockquote>
-<p>先上一个官网的示例<br>简单几行代码即可实现一个webserver</p>
-</blockquote>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-	<span class="token string">"io"</span>
-	<span class="token string">"log"</span>
-	<span class="token string">"net/http"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	<span class="token comment">// Hello world, the web server</span>
-
-	helloHandler <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> req <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		io<span class="token punctuation">.</span><span class="token function">WriteString</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> <span class="token string">"Hello, world!\n"</span><span class="token punctuation">)</span>
-	<span class="token punctuation">&#125;</span>
-
-	http<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> helloHandler<span class="token punctuation">)</span>
-	log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="进阶版"><a href="#进阶版" class="headerlink" title="进阶版"></a>进阶版</h2><blockquote>
-<p>进阶版我们封装了以下功能</p>
-<ul>
-<li>用一个gin框架</li>
-<li>实现一个route</li>
-<li>实现controller</li>
-<li>实现一个中间件</li>
-<li>加一个单测<br>代码如下</li>
-</ul>
-</blockquote>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">//main.go</span>
-<span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-	routes <span class="token string">"api/routes"</span>
-
-	<span class="token string">"github.com/gin-gonic/gin"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	r <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	route <span class="token operator">:=</span> routes<span class="token punctuation">.</span><span class="token function">Router</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
-	route<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">//单测示例,其实并没用</span>
-<span class="token keyword">func</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">return</span> <span class="token string">"hello"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// routes/route.go</span>
-<span class="token keyword">package</span> routes
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-	c <span class="token string">"api/controller"</span>
-	m <span class="token string">"api/middleware"</span>
-
-	<span class="token string">"github.com/gin-gonic/gin"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">Router</span><span class="token punctuation">(</span>r <span class="token operator">*</span>gin<span class="token punctuation">.</span>Engine<span class="token punctuation">)</span> <span class="token operator">*</span>gin<span class="token punctuation">.</span>Engine <span class="token punctuation">&#123;</span>
-    r<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">SetHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment">//路由组,很方便</span>
-	v1 <span class="token operator">:=</span> r<span class="token punctuation">.</span><span class="token function">Group</span><span class="token punctuation">(</span><span class="token string">"/v1"</span><span class="token punctuation">)</span>
-	<span class="token punctuation">&#123;</span>
-        <span class="token comment">//访问地址 http://hostname/v1/hello</span>
-		v1<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>Hello<span class="token punctuation">)</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">return</span> r
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// controller/hello.go</span>
-<span class="token keyword">package</span> controller
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-	<span class="token string">"github.com/gin-gonic/gin"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">type</span> Hello <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
-	Text  <span class="token builtin">string</span> <span class="token string">`json:"text"`</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">//golang 的方法首字母大写表示public修饰符</span>
-<span class="token keyword">func</span> <span class="token function">Hello</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	data <span class="token operator">:=</span> Hello<span class="token punctuation">&#123;</span>
-        text<span class="token punctuation">:</span> <span class="token string">"hello word"</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">//返回json信息</span>
-	c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span>
-		<span class="token string">"data"</span><span class="token punctuation">:</span> data<span class="token punctuation">,</span>
-	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// middleware/header.go</span>
-<span class="token keyword">package</span> middleware
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-	<span class="token string">"github.com/gin-gonic/gin"</span>
-<span class="token punctuation">)</span>
-
-<span class="token comment">//简单的跨域中间件</span>
-<span class="token keyword">func</span> <span class="token function">SetHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> gin<span class="token punctuation">.</span>HandlerFunc <span class="token punctuation">&#123;</span>
-	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token comment">// gin设置响应头，设置跨域</span>
-		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin"</span><span class="token punctuation">,</span> <span class="token string">"*"</span><span class="token punctuation">)</span>
-		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Methods"</span><span class="token punctuation">,</span> <span class="token string">"POST, GET, OPTIONS, PUT, DELETE"</span><span class="token punctuation">)</span>
-		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Headers"</span><span class="token punctuation">,</span> <span class="token string">"Action, Module, X-PINGOTHER, Content-Type, Content-Disposition"</span><span class="token punctuation">)</span>
-		c<span class="token punctuation">.</span><span class="token function">Set</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"application/json"</span><span class="token punctuation">)</span>
-		c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// main_test.go 单测示例</span>
-<span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token string">"testing"</span>
-
-<span class="token keyword">func</span> <span class="token function">TestHello</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">if</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">"hello"</span> <span class="token punctuation">&#123;</span>
-		t<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token string">"Testing error"</span><span class="token punctuation">)</span>
-	<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>好了,一个简单的webserver就搞定了<br>所有示例都是go module模式下的,不会的同学可以看我其他文章有介绍</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
       </tags>
   </entry>
 </search>

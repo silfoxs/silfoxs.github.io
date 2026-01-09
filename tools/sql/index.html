@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <!-- <meta name="referrer" content="no-referrer"> -->
-        <meta name="keywords" content="标签: drone, silver fox">
+        <meta name="keywords" content="SQL 美化, silver fox">
         <meta name="description" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                标签: drone | silver fox
+                SQL 美化 | silver fox
             </title>
             <link rel="icon" type="image/png"
                 href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/favicon.png?v=v0.0.2">
@@ -286,205 +286,88 @@
 
 </header>
 
-            <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                刀斩肉身，心斩灵魂，剑是不会迟疑的
-                
+            <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL 美化工具</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/favicon.png?v=v0.0.2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/libs/awesome/css/all.css?v=v0.0.2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/css/sql-tool.css?v=v0.0.2">
+</head>
+<body>
+    <div class="sql-tool-container">
+        <!-- 顶部菜单栏 -->
+        <header class="toolbar">
+            <div class="toolbar-left">
+                <a href="/tools/" class="back-btn" title="返回工具列表">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <span class="tool-title">SQL 美化</span>
             </div>
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['从来没有真正的绝境, 只有心灵的迷途','Never really desperate, only the lost of the soul'],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+            <div class="toolbar-center">
+                <!-- 格式化/压缩 -->
+                <div class="btn-group">
+                    <button class="toolbar-btn" id="formatBtn" title="格式化 SQL">
+                        <i class="fas fa-indent"></i>
+                        <span>格式化</span>
+                    </button>
+                    <button class="toolbar-btn" id="compressBtn" title="压缩 SQL">
+                        <i class="fas fa-compress"></i>
+                        <span>压缩</span>
+                    </button>
+                </div>
             </div>
+            <div class="toolbar-right">
+                <button class="toolbar-btn" id="copyBtn" title="复制">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <button class="toolbar-btn" id="clearBtn" title="清空">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 内容区域 -->
+        <main class="editor-container">
+            <div class="editor-view text-view active" id="textView">
+                <div class="line-numbers" id="lineNumbers"></div>
+                <!-- Highlight overlay -->
+                <pre class="syntax-highlight" id="syntaxHighlight"><code></code></pre>
+                <textarea id="sqlInput" spellcheck="false" placeholder="在此输入 SQL 语句..."></textarea>
+            </div>
+        </main>
+
+        <!-- 错误信息栏 -->
+        <div class="error-bar" id="errorBar">
+            <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i>
+            <span id="errorMessage"></span>
         </div>
-    </div>
-</div>
 
-
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/medias/banner/5.jpg)');
-</script>
-
-
-    </div>
-</div>
-
-    <main class="content">
-
-        
-
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
+        <!-- 底部状态栏 -->
+        <footer class="status-bar">
+            <div class="status-left">
+                <span class="cursor-position">
+                    <span>行 <span id="cursorLine">1</span></span>
+                    <span>列 <span id="cursorCol">1</span></span>
+                </span>
             </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/golang/" title="golang: 5">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="golang" style="background-color: #F9EBEA;">golang
-                        <span class="tag-length">5</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="算法" style="background-color: #F5EEF8;">算法
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vender/" title="vender: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="vender" style="background-color: #D5F5E3;">vender
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/drone/" title="drone: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="drone" style="background-color: #E8F8F5;">drone
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/pre-commit/" title="pre-commit: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="pre-commit" style="background-color: #FEF9E7;">pre-commit
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vscode/" title="vscode: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="vscode" style="background-color: #F8F9F9;">vscode
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/php/" title="php: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="php" style="background-color: #82E0AA;">php
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
+            <div class="status-right">
+                <span class="sql-status" id="sqlStatus">
+                    <!-- Status info can go here -->
+                </span>
             </div>
-        </div>
+        </footer>
     </div>
-</div>
 
-            
+    <!-- SQL Formatter Library -->
+    <script src="https://unpkg.com/sql-formatter@4.0.2/dist/sql-formatter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/js/sql-tool.js?v=v0.0.2"></script>
+</body>
+</html>
 
-                <article id="articles" class="container articles">
-                    <div class="row tags-posts">
-                        
-                            
-                                <div class="article col s12" data-tags="golang, drone" data-aos="fade-up">
-                                    <div class="card article-horizontal-card">
-                                        <div class="article-row-layout">
-                                            <!-- 左侧图片 -->
-                                            <a href="/2020/04/18/golang/" class="article-image-link">
-                                                <div class="card-image article-image">
-                                                    
-                                                        
-                                                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/medias/featureimages/12.jpg?v=v0.0.2"
-                                                            class="responsive-img" alt="github + drone自动化部署">
-                                                    
-                                                </div>
-                                            </a>
-
-                                            <!-- 右侧内容区 -->
-                                            <div class="article-info-wrapper">
-                                                <!-- 右上角分类 -->
-                                                
-                                                    <div class="article-category-top">
-                                                        
-                                                            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
-                                                                <i class="fas fa-bookmark fa-fw"></i>
-                                                                技术文章
-                                                            </a>
-                                                        
-                                                    </div>
-                                                
-
-                                                <!-- 标题 -->
-                                                <a href="/2020/04/18/golang/" class="article-title-link">
-                                                    <h2 class="article-title">github + drone自动化部署</h2>
-                                                </a>
-
-                                                <!-- 简介 -->
-                                                <div class="article-summary">
-                                                    
-                                                        介绍怎么用github+drone搭建自己的持续集成服务
-                                                    
-                                                </div>
-
-                                                <!-- 时间 -->
-                                                <div class="article-meta">
-                                                    <span class="article-date">
-                                                        <i class="far fa-clock fa-fw"></i>
-                                                        2020-04-18
-                                                    </span>
-                                                </div>
-
-                                                <!-- 标签 -->
-                                                
-                                                    <div class="article-tags-inline">
-                                                        
-                                                            <a href="/tags/golang/">
-                                                                <span class="chip bg-color">golang</span>
-                                                            </a>
-                                                        
-                                                            <a href="/tags/drone/">
-                                                                <span class="chip bg-color">drone</span>
-                                                            </a>
-                                                        
-                                                    </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                    </div>
-                </article>
-    </main>
-
-    
 
                 
     <link rel="stylesheet"

@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <!-- <meta name="referrer" content="no-referrer"> -->
-        <meta name="keywords" content="标签: drone, silver fox">
+        <meta name="keywords" content="二维码生成, silver fox">
         <meta name="description" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                标签: drone | silver fox
+                二维码生成 | silver fox
             </title>
             <link rel="icon" type="image/png"
                 href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/favicon.png?v=v0.0.2">
@@ -286,205 +286,121 @@
 
 </header>
 
-            <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                刀斩肉身，心斩灵魂，剑是不会迟疑的
-                
+            <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维码生成工具</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/favicon.png?v=v0.0.2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/libs/awesome/css/all.css?v=v0.0.2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/css/qr-tool.css?v=v0.0.2">
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+    <div class="qr-tool-container">
+        <!-- Return Button -->
+        <a href="/tools/" class="back-btn" title="返回工具列表">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <div class="qr-workspace">
+            <!-- Left: QR Display Area -->
+            <div class="qr-preview-panel">
+                <div class="qr-card">
+                    <div id="qr-canvas"></div>
+                </div>
             </div>
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['从来没有真正的绝境, 只有心灵的迷途','Never really desperate, only the lost of the soul'],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
-            </div>
-        </div>
-    </div>
-</div>
+            <!-- Right: Configuration Panel -->
+            <div class="qr-config-panel">
+                <div class="config-header">
+                    <h1>二维码生成器</h1>
+                    <p>快速生成自定义二维码</p>
+                </div>
 
-
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/medias/banner/5.jpg)');
-</script>
-
-
-    </div>
-</div>
-
-    <main class="content">
-
-        
-
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
-            </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/golang/" title="golang: 5">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="golang" style="background-color: #F9EBEA;">golang
-                        <span class="tag-length">5</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="算法" style="background-color: #F5EEF8;">算法
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vender/" title="vender: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="vender" style="background-color: #D5F5E3;">vender
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/drone/" title="drone: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="drone" style="background-color: #E8F8F5;">drone
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/pre-commit/" title="pre-commit: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="pre-commit" style="background-color: #FEF9E7;">pre-commit
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vscode/" title="vscode: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="vscode" style="background-color: #F8F9F9;">vscode
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/php/" title="php: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="php" style="background-color: #82E0AA;">php
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-
-                <article id="articles" class="container articles">
-                    <div class="row tags-posts">
-                        
-                            
-                                <div class="article col s12" data-tags="golang, drone" data-aos="fade-up">
-                                    <div class="card article-horizontal-card">
-                                        <div class="article-row-layout">
-                                            <!-- 左侧图片 -->
-                                            <a href="/2020/04/18/golang/" class="article-image-link">
-                                                <div class="card-image article-image">
-                                                    
-                                                        
-                                                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/medias/featureimages/12.jpg?v=v0.0.2"
-                                                            class="responsive-img" alt="github + drone自动化部署">
-                                                    
-                                                </div>
-                                            </a>
-
-                                            <!-- 右侧内容区 -->
-                                            <div class="article-info-wrapper">
-                                                <!-- 右上角分类 -->
-                                                
-                                                    <div class="article-category-top">
-                                                        
-                                                            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
-                                                                <i class="fas fa-bookmark fa-fw"></i>
-                                                                技术文章
-                                                            </a>
-                                                        
-                                                    </div>
-                                                
-
-                                                <!-- 标题 -->
-                                                <a href="/2020/04/18/golang/" class="article-title-link">
-                                                    <h2 class="article-title">github + drone自动化部署</h2>
-                                                </a>
-
-                                                <!-- 简介 -->
-                                                <div class="article-summary">
-                                                    
-                                                        介绍怎么用github+drone搭建自己的持续集成服务
-                                                    
-                                                </div>
-
-                                                <!-- 时间 -->
-                                                <div class="article-meta">
-                                                    <span class="article-date">
-                                                        <i class="far fa-clock fa-fw"></i>
-                                                        2020-04-18
-                                                    </span>
-                                                </div>
-
-                                                <!-- 标签 -->
-                                                
-                                                    <div class="article-tags-inline">
-                                                        
-                                                            <a href="/tags/golang/">
-                                                                <span class="chip bg-color">golang</span>
-                                                            </a>
-                                                        
-                                                            <a href="/tags/drone/">
-                                                                <span class="chip bg-color">drone</span>
-                                                            </a>
-                                                        
-                                                    </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
+                <div class="config-section">
+                    <label class="section-label">内容</label>
+                    <div class="input-group">
+                        <textarea id="qr-content" placeholder="输入文字或网址...">https://example.com</textarea>
                     </div>
-                </article>
-    </main>
+                </div>
 
-    
+                <div class="config-section">
+                     <label class="section-label">外观</label>
+                     <div class="options-grid">
+                        <div class="option-item">
+                            <label>码点颜色</label>
+                            <div class="color-picker-wrapper">
+                                <input type="color" id="qr-color" value="#000000">
+                                <span class="color-value">#000000</span>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <label>背景色</label>
+                            <div class="color-picker-wrapper">
+                                <input type="color" id="bg-color" value="#ffffff">
+                                <span class="color-value">#ffffff</span>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <div class="config-section">
+                    <label class="section-label">样式选项</label>
+                    <div class="options-grid">
+                         <div class="option-item option-item-full">
+                            <label>容错率</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="qr-correction" value="L">
+                                    <span class="radio-label">L <small>(7%)</small></span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="qr-correction" value="M" checked>
+                                    <span class="radio-label">M <small>(15%)</small></span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="qr-correction" value="Q">
+                                    <span class="radio-label">Q <small>(25%)</small></span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="qr-correction" value="H">
+                                    <span class="radio-label">H <small>(30%)</small></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                             <label>Logo</label>
+                             <div class="file-input-wrapper">
+                                 <input type="file" id="logo-upload" accept="image/*">
+                                 <label for="logo-upload" class="file-label">
+                                     <i class="fas fa-upload"></i> 上传
+                                 </label>
+                                 <button id="remove-logo" class="icon-btn" title="移除 Logo" style="display: none;">
+                                     <i class="fas fa-times"></i>
+                                 </button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-footer">
+                    <button id="generate-btn" class="primary-btn">
+                        <i class="fas fa-sync-alt"></i> 生成
+                    </button>
+                    <button id="download-btn" class="secondary-btn">
+                        <i class="fas fa-download"></i> 下载
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.3/js/qr-tool.js?v=v0.0.2"></script>
+</body>
+</html>
+
 
                 
     <link rel="stylesheet"

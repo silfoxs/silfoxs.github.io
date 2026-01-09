@@ -1,0 +1,391 @@
+/* URL Tool Variables */
+:root {
+    /* Monokai Theme Colors */
+    --monokai-bg: #272822;
+    --monokai-fg: #f8f8f2;
+    --monokai-comment: #75715e;
+    --monokai-yellow: #e6db74;
+    --monokai-purple: #ae81ff;
+    --monokai-red: #f92672;
+    --monokai-blue: #66d9ef;
+    --monokai-green: #a6e22e;
+    --monokai-orange: #fd971f;
+
+    /* Liquid Glass Variables */
+    --glass-bg: linear-gradient(135deg, rgba(45, 45, 45, 0.5) 0%, rgba(30, 30, 30, 0.4) 50%, rgba(45, 45, 45, 0.5) 100%);
+    --glass-bg-solid: rgba(30, 30, 30, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-border-top: rgba(255, 255, 255, 0.25);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(20px) saturate(200%);
+    --glass-glow: 0 0 40px rgba(253, 151, 31, 0.08);
+}
+
+/* Hide Global Navigation for this tool */
+header.navbar-fixed,
+#headNav,
+#aplayer,
+.aplayer {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #1a1a1a;
+    color: var(--monokai-fg);
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background image layer with blur */
+.bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(12px);
+    transform: scale(1.05);
+}
+
+/* Dark overlay for better contrast */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.url-tool-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Liquid Glass Panel */
+.glass-panel {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-border-top);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--glass-shadow), var(--glass-glow);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Liquid glass shine effect */
+.glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 30%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        rgba(255, 255, 255, 0.3) 70%, 
+        transparent 100%);
+    pointer-events: none;
+}
+
+/* Inner glow effect */
+.glass-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+    border-radius: 20px;
+    z-index: 0;
+}
+
+/* Ensure content is above pseudo-elements */
+.glass-panel > * {
+    position: relative;
+    z-index: 1;
+}
+
+.tool-title {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--monokai-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Section Label */
+.section-label {
+    font-size: 0.9rem;
+    color: var(--monokai-green);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Input/Output sections */
+.input-section,
+.output-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--monokai-fg);
+    padding: 16px;
+    padding-right: 50px;
+    border-radius: 12px;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    border-color: var(--monokai-orange);
+    box-shadow: 0 0 0 3px rgba(253, 151, 31, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+textarea::placeholder {
+    color: var(--monokai-comment);
+}
+
+textarea#outputText {
+    color: var(--monokai-yellow);
+}
+
+/* Clear & Copy Buttons */
+.clear-btn,
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--monokai-fg);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.clear-btn:hover {
+    background: rgba(249, 38, 114, 0.2);
+    color: var(--monokai-red);
+    border-color: rgba(249, 38, 114, 0.3);
+}
+
+.copy-btn:hover {
+    background: rgba(166, 226, 46, 0.2);
+    color: var(--monokai-green);
+    border-color: rgba(166, 226, 46, 0.3);
+}
+
+.clear-btn:active,
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.action-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+}
+
+.encode-btn {
+    background: linear-gradient(135deg, var(--monokai-orange), #e87e00);
+    color: white;
+    box-shadow: 0 4px 15px rgba(253, 151, 31, 0.4);
+}
+
+.encode-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(253, 151, 31, 0.5);
+}
+
+.decode-btn {
+    background: linear-gradient(135deg, var(--monokai-blue), #4ab3d2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 217, 239, 0.4);
+}
+
+.decode-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 217, 239, 0.5);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+/* Swap Section */
+.swap-section {
+    display: flex;
+    justify-content: center;
+}
+
+.swap-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--monokai-fg);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.swap-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.swap-btn:active {
+    transform: scale(0.98);
+}
+
+.swap-btn i {
+    transition: transform 0.3s ease;
+}
+
+.swap-btn:hover i {
+    transform: rotate(180deg);
+}
+
+/* Toast - Top positioned, smaller */
+.toast {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60px);
+    background: rgba(35, 35, 35, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--monokai-fg);
+    padding: 6px 16px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    font-weight: 400;
+    font-size: 0.75rem;
+    pointer-events: none;
+    max-width: 280px;
+    text-align: center;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast.error {
+    border-color: rgba(249, 38, 114, 0.4);
+    color: var(--monokai-red);
+}
+
+.toast.success {
+    border-color: rgba(166, 226, 46, 0.4);
+    color: var(--monokai-green);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .url-tool-container {
+        padding: 20px 15px;
+    }
+    
+    .glass-panel {
+        padding: 20px;
+    }
+    
+    .tool-title {
+        font-size: 1.4rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .action-btn {
+        max-width: 100%;
+    }
+    
+    textarea {
+        min-height: 100px;
+        font-size: 0.9rem;
+    }
+}

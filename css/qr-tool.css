@@ -33,8 +33,8 @@ body {
     background-image: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
     color: var(--monokai-fg);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    overflow: hidden;
-    height: 100vh;
+    overflow-y: auto; /* Allow global scroll */
+    height: auto;
 }
 
 .qr-tool-container {
@@ -135,11 +135,18 @@ body {
 #qr-canvas {
     border-radius: 12px;
     overflow: hidden;
-    width: 400px;
-    height: 400px;
+    /* Remove fixed width/height here, rely on init options, but constrain with max-width */
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#qr-canvas svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
 }
 
 /* Right Panel: Config */
@@ -162,6 +169,7 @@ body {
     font-size: 1.8rem;
     margin: 0 0 5px 0;
     background: linear-gradient(45deg, var(--monokai-blue), var(--monokai-green));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -235,6 +243,7 @@ body {
 }
 
 input[type="color"] {
+    appearance: none;
     -webkit-appearance: none;
     border: none;
     width: 24px;
@@ -264,6 +273,7 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Select */
 select {
+    display: block !important;
     width: 100%;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -271,8 +281,12 @@ select {
     color: var(--monokai-fg);
     padding: 8px 12px;
     outline: none;
-    -webkit-appearance: none;
     cursor: pointer;
+    -webkit-appearance: menulist !important;
+    -moz-appearance: menulist !important;
+    appearance: menulist !important;
+    height: auto !important;
+    min-height: 38px;
 }
 
 select:focus {
@@ -280,65 +294,8 @@ select:focus {
 }
 
 /* Radio Button Group for Error Correction */
-.option-item-full {
-    grid-column: 1 / -1;
-}
-
-.radio-group {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.radio-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex: 1;
-    min-width: 60px;
-    justify-content: center;
-}
-
-.radio-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.radio-item:has(input:checked) {
-    background: rgba(102, 217, 239, 0.15);
-    border-color: var(--monokai-blue);
-}
-
-.radio-item input[type="radio"] {
-    display: none;
-}
-
-.radio-label {
-    font-size: 0.9rem;
-    color: var(--monokai-fg);
-    font-weight: 500;
-}
-
-.radio-label small {
-    font-size: 0.75rem;
-    color: var(--monokai-comment);
-    font-weight: 400;
-}
-
-.radio-item:has(input:checked) .radio-label {
-    color: var(--monokai-blue);
-}
-
-.radio-item:has(input:checked) .radio-label small {
-    color: var(--monokai-blue);
-    opacity: 0.8;
-}
+/* Radio Button Group (Deprecated, replaced by Select) */
+/* CSS Removed */
 
 /* File Input */
 .file-input-wrapper {
@@ -448,14 +405,140 @@ button {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .qr-workspace {
-        flex-direction: column;
+    body {
+        overflow-y: auto;
+        height: auto;
     }
 
+    .qr-tool-container {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    .qr-workspace {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+        width: 100%;
+    }
+
+    /* Adjust Preview Panel for Mobile */
+    .qr-preview-panel {
+        flex: none;
+        width: 100%;
+        height: auto;
+        padding: 60px 20px 40px 20px;
+        min-height: auto;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Resize QR Code for Mobile */
+    .qr-card {
+        padding: 15px;
+        width: auto;
+        max-width: calc(100vw - 30px);
+        box-sizing: border-box;
+        overflow: visible;
+        margin: 0 auto;
+    }
+
+    #qr-canvas {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+    
+    /* Keep SVG at native size but ensure it fits within rounded container */
+    #qr-canvas svg, #qr-canvas canvas {
+        width: 300px !important;
+        height: 300px !important;
+        border-radius: 16px;
+    }
+
+    /* Adjust Config Panel for Mobile */
     .qr-config-panel {
         width: 100%;
+        max-width: 100vw;
         height: auto;
         border-left: none;
         border-top: 1px solid var(--glass-border);
+        overflow: visible;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+    
+    .config-section {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .options-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .option-item {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
+        width: 100% !important;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Fix select dropdown for mobile */
+    .option-item select {
+        width: 100% !important;
+        min-height: 40px;
+        padding: 10px 12px;
+        font-size: 16px;
+        -webkit-appearance: menulist;
+        appearance: menulist;
+    }
+    
+    /* Fix color picker wrapper for mobile */
+    .color-picker-wrapper {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Fix file input wrapper for mobile */
+    .file-input-wrapper {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Reset any grid-column spans that might interfere */
+    .option-item-full {
+        grid-column: auto;
+    }
+    
+    /* Move back button to be visible on top of the gradient */
+    .back-btn {
+        top: 15px;
+        left: 15px;
+    }
+    
+    /* Fix action footer for mobile */
+    .action-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .action-footer button {
+        width: 100%;
     }
 }

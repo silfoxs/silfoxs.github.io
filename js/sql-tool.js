@@ -429,13 +429,48 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSyntaxHighlight();
     }
 
+    // Custom Modal Logic
+    function showConfirmModal(onConfirm) {
+        const modal = document.getElementById('confirmModal');
+        const cancelBtn = document.getElementById('modalCancel');
+        const confirmBtn = document.getElementById('modalConfirm');
+
+        function closeModal() {
+            modal.classList.remove('active');
+            cleanup();
+        }
+
+        function handleConfirm() {
+            onConfirm();
+            closeModal();
+        }
+
+        function cleanup() {
+            cancelBtn.removeEventListener('click', closeModal);
+            confirmBtn.removeEventListener('click', handleConfirm);
+            modal.removeEventListener('click', handleOutsideClick);
+        }
+
+        function handleOutsideClick(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        cancelBtn.addEventListener('click', closeModal);
+        confirmBtn.addEventListener('click', handleConfirm);
+        modal.addEventListener('click', handleOutsideClick);
+        
+        modal.classList.add('active');
+    }
+
     function clearContent() {
-        if (confirm('确定要清空所有内容吗？')) {
+        showConfirmModal(() => {
             elements.sqlInput.value = '';
             updateLineNumbers();
             updateSyntaxHighlight();
             elements.sqlInput.focus();
-        }
+        });
     }
 
     function copyToClipboard() {

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorValue = colorPicker.nextElementSibling;
     const bgColorPicker = document.getElementById('bg-color');
     const bgColorValue = bgColorPicker.nextElementSibling;
-    const correctionRadios = document.getElementsByName('qr-correction');
+    const correctionSelect = document.getElementById('qr-correction');
     const logoUpload = document.getElementById('logo-upload');
     const removeLogoBtn = document.getElementById('remove-logo');
     const downloadBtn = document.getElementById('download-btn');
@@ -53,17 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Get selected correction level
     function getSelectedCorrection() {
-        for (const radio of correctionRadios) {
-            if (radio.checked) return radio.value;
-        }
-        return 'M'; // Default
+        return correctionSelect.value;
     }
 
     // Initialize QR Code
     function initQRCode() {
         qrCode = new QRCodeStyling({
-            width: 400,
-            height: 400,
+            width: 300, /* Reduce base size to ensure it fits better on small screens before scaling up */
+            height: 300,
             type: "svg",
             data: qrContent.value,
             margin: 10, // Add white padding around QR code
@@ -148,10 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateQRCode();
     });
 
-    // Error Correction Radio buttons
-    correctionRadios.forEach(radio => {
-        radio.addEventListener('change', updateQRCode);
-    });
+    // Error Correction Select
+    correctionSelect.addEventListener('change', updateQRCode);
 
     // Logo Upload - process into rounded square
     logoUpload.addEventListener('change', async (e) => {

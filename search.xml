@@ -279,56 +279,6 @@
       </tags>
   </entry>
   <entry>
-    <title>pre-commit 使用备忘</title>
-    <url>/2021/01/08/pre-commit-mark/</url>
-    <content><![CDATA[<h1 id="php篇"><a href="#php篇" class="headerlink" title="php篇"></a>php篇</h1><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><table>
-<thead>
-<tr>
-<th>文件名</th>
-<th>.pre-commit-config.yaml</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>路径</td>
-<td>cd $HOME</td>
-</tr>
-</tbody></table>
-<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">repos</span><span class="token punctuation">:</span>
- <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/pre<span class="token punctuation">-</span>commit/pre<span class="token punctuation">-</span>commit<span class="token punctuation">-</span>hooks
-   <span class="token key atrule">rev</span><span class="token punctuation">:</span> v3.4.0
-   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
-   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> check<span class="token punctuation">-</span>yaml
-   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> check<span class="token punctuation">-</span>json
- <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/digitalpulp/pre<span class="token punctuation">-</span>commit<span class="token punctuation">-</span>php.git
-   <span class="token key atrule">rev</span><span class="token punctuation">:</span> 1.4.0
-   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
-   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> php<span class="token punctuation">-</span>lint<span class="token punctuation">-</span>all
-     <span class="token key atrule">files</span><span class="token punctuation">:</span> \.(php)$
- <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//gitlab.com/PyCQA/flake8
-   <span class="token key atrule">rev</span><span class="token punctuation">:</span> 3.8.4
-   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
-   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> flake8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="配置alias"><a href="#配置alias" class="headerlink" title="配置alias"></a>配置alias</h3><blockquote>
-<p>alias pre&#x3D;”pre-commit run –config ${HOME}&#x2F;.pre-commit-config.yaml”</p>
-</blockquote>
-<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#将修改添加到暂存区</span>
-<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
-<span class="token comment">#执行校验该步骤将会执行hook</span>
-pre
-<span class="token comment">#校验通过再进行commit</span>
-<span class="token function">git</span> commit <span class="token parameter variable">--amend</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="更多信息"><a href="#更多信息" class="headerlink" title="更多信息"></a>更多信息</h3><p>参考文档：<a href="https://pre-commit.com/">pre-commit</a></p>
-<!-- 标记 -->
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>pre-commit</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>php项目中使用composer</title>
     <url>/2020/04/30/php-use-composer/</url>
     <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
@@ -376,6 +326,56 @@ Package operations: 1 install, 0 updates, 0 removals
       </categories>
       <tags>
         <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pre-commit 使用备忘</title>
+    <url>/2021/01/08/pre-commit-mark/</url>
+    <content><![CDATA[<h1 id="php篇"><a href="#php篇" class="headerlink" title="php篇"></a>php篇</h1><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>.pre-commit-config.yaml</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>路径</td>
+<td>cd $HOME</td>
+</tr>
+</tbody></table>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">repos</span><span class="token punctuation">:</span>
+ <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/pre<span class="token punctuation">-</span>commit/pre<span class="token punctuation">-</span>commit<span class="token punctuation">-</span>hooks
+   <span class="token key atrule">rev</span><span class="token punctuation">:</span> v3.4.0
+   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> check<span class="token punctuation">-</span>yaml
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> check<span class="token punctuation">-</span>json
+ <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/digitalpulp/pre<span class="token punctuation">-</span>commit<span class="token punctuation">-</span>php.git
+   <span class="token key atrule">rev</span><span class="token punctuation">:</span> 1.4.0
+   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> php<span class="token punctuation">-</span>lint<span class="token punctuation">-</span>all
+     <span class="token key atrule">files</span><span class="token punctuation">:</span> \.(php)$
+ <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//gitlab.com/PyCQA/flake8
+   <span class="token key atrule">rev</span><span class="token punctuation">:</span> 3.8.4
+   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> flake8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="配置alias"><a href="#配置alias" class="headerlink" title="配置alias"></a>配置alias</h3><blockquote>
+<p>alias pre&#x3D;”pre-commit run –config ${HOME}&#x2F;.pre-commit-config.yaml”</p>
+</blockquote>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#将修改添加到暂存区</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token comment">#执行校验该步骤将会执行hook</span>
+pre
+<span class="token comment">#校验通过再进行commit</span>
+<span class="token function">git</span> commit <span class="token parameter variable">--amend</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="更多信息"><a href="#更多信息" class="headerlink" title="更多信息"></a>更多信息</h3><p>参考文档：<a href="https://pre-commit.com/">pre-commit</a></p>
+<!-- 标记 -->
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>pre-commit</tag>
       </tags>
   </entry>
   <entry>

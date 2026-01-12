@@ -897,8 +897,13 @@ article a:hover {
 }
 
 article .card {
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 article .card-image {
@@ -918,6 +923,7 @@ article .tag-image img {
 
 article .card .card-content {
     padding: 15px 15px 12px 18px;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 article .article-content .summary {
@@ -1283,11 +1289,42 @@ thead {
     margin-top: -60px;
 }
 
+/* Liquid Glass Card for Categories/Tags */
+.chip-container .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
 .chip-container .tag-title {
     margin-bottom: 10px;
-    color: #3C4858;
+    color: #2c3e50;
     font-size: 1.75rem;
-    font-weight: 400;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+.chip-container .tag-title i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-right: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
 }
 
 .chip-container .tag-chips {
@@ -1301,13 +1338,18 @@ thead {
 }
 
 .chip-container .chip-default {
-    color: #34495e;
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 .chip-container .chip-active {
-    color: #FFF !important;
-    background: linear-gradient(to bottom right, #FF5E3A 0%, #FF2A68 100%) !important;
-    box-shadow: 2px 5px 10px #aaa !important;
+    color: #34495e;
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .chip-container .chip {
@@ -1317,15 +1359,18 @@ thead {
     line-height: 0;
     font-size: 1rem;
     font-weight: 500;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, .12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     z-index: 0;
+    transition: all 0.3s ease;
 }
 
 .chip-container .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important;
+    background: linear-gradient(135deg, #42b983 0%, #35a06e 100%) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(66, 185, 131, 0.3) !important;
 }
 
 .chip .tag-length {
@@ -1335,12 +1380,13 @@ thead {
 }
 
 .chip-default .tag-length {
-    color: #e91e63;
-    margin-top: 1px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .chip-active .tag-length {
-    color: #fff;
+    color: #42b983;
+    margin-top: 1px;
+    font-weight: 600;
 }
 
 /* archive page. */
@@ -1591,6 +1637,22 @@ thead {
     margin-top: -60px;
 }
 
+/* Liquid Glass Card for About Page */
+.about-container .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.about-container .card .card-content {
+    color: rgba(255, 255, 255, 0.95);
+}
+
 @media only screen and (max-width: 601px) {
     .about-container {
         width: 95%;
@@ -1612,16 +1674,17 @@ thead {
     display: block;
     font-size: 1.3rem;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .post-statis .statis .count a {
-    color: #42b983;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .post-statis .statis .name {
     font-size: 0.9rem;
-    color: #777;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 #aboutme .social-link {
@@ -1637,11 +1700,20 @@ thead {
     margin: 0 0.5rem;
     padding: 0;
     color: #fff;
-    border: 1px solid #ee6e73;
-    background: radial-gradient(#4cbf30, #0f9d58);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     font-size: 0.9rem;
     border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 2px 3px rgba(0, 0, 0, .1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#aboutme .social-link a:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .profile .avatar-img {
@@ -1662,15 +1734,16 @@ thead {
 .profile .author .title {
     margin-bottom: 0.1rem;
     font-size: 1.8rem;
-    font-weight: 500;
-    color: #3C4858;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile .author .career {
     margin: 8px 0;
     font-size: 0.9rem;
-    font-weight: 400;
-    color: #777;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 #aboutme .profile .social-link {
@@ -1680,7 +1753,10 @@ thead {
 #aboutme .introduction {
     margin: 1.5rem auto 3rem;
     max-width: 600px;
-    color: #999;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1.8;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .post-charts,

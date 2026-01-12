@@ -772,7 +772,7 @@ header.navbar-fixed nav#headNav .nav-menu li a:hover {
         color: #aaa;
     }
 
-    /* 标签 */
+    /* 标签 - 液态玻璃效果 */
     .article-row-layout .article-tags-inline {
         display: flex;
         flex-wrap: wrap;
@@ -783,17 +783,25 @@ header.navbar-fixed nav#headNav .nav-menu li a:hover {
     .article-row-layout .article-tags-inline .chip {
         margin: 0;
         font-size: 0.8rem;
-        font-weight: 400;
-        height: 24px;
-        line-height: 24px;
-        padding: 0 12px;
-        color: #fff;
-        border-radius: 12px;
-        transition: transform 0.2s ease;
+        font-weight: 500;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 14px;
+        color: #2c3e50;
+        background: rgba(255, 255, 255, 0.7) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
     }
 
     .article-row-layout .article-tags-inline a:hover .chip {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.25) !important;
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -886,9 +894,16 @@ header.navbar-fixed nav#headNav .nav-menu li a:hover {
 
     .article-row-layout .article-tags-inline .chip {
         font-size: 0.75rem;
-        height: 22px;
-        line-height: 22px;
+        height: 24px;
+        line-height: 24px;
         padding: 0 10px;
+        color: #2c3e50;
+        background: rgba(255, 255, 255, 0.7) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 }
 
@@ -906,4 +921,74 @@ header.navbar-fixed nav#headNav .nav-menu li a:hover {
     .article-row-layout .article-title {
         font-size: 1.1rem;
     }
+}
+
+/* ==================== 文章卡片默认使用深色文字 ==================== */
+/* 文章水平卡片 - 深色文字 */
+.article-horizontal-card .article-title {
+    color: #34495e !important;
+}
+
+.article-horizontal-card .article-summary {
+    color: #666 !important;
+}
+
+.article-horizontal-card .article-date {
+    color: #888 !important;
+}
+
+.article-horizontal-card .article-date i {
+    color: #aaa !important;
+}
+
+.article-horizontal-card .article-info-wrapper {
+    color: #34495e;
+}
+
+/* Article card background image effect - Liquid Glass Style */
+.article-horizontal-card {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.article-row-layout .article-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    filter: blur(180px) saturate(180%);
+    z-index: 0;
+    transition: all 0.5s ease;
+}
+
+.article-horizontal-card:hover .article-bg {
+    opacity: 1;
+    filter: blur(150px) saturate(200%);
+    transform: scale(1.05);
+}
+
+/* Add glass border and shine to the wrapper */
+.article-row-layout .article-info-wrapper {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: none; /* Connect seamlessly with image */
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 0 8px 8px 0; /* Maintain card radius */
+}
+
+/* Ensure content stays above the background */
+.article-row-layout .article-info-wrapper > *:not(.article-bg):not(.article-category-top) {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure category badge stays above everything */
+.article-row-layout .article-category-top {
+    z-index: 2;
 }

@@ -43,9 +43,9 @@
             <script
                 src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/libs/jquery/jquery.min.js"></script>
 
-    <meta name="generator" content="Hexo 8.1.1">
+    <meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="silver fox" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="silver fox" type="application/atom+xml">
 </head>
 
     <body>
@@ -475,7 +475,57 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>序言<br>UI UX Pro Max 是一个面向AI编程助手（如 Claude Code、Cursor、Windsurf 等）的设计智能数据库与技能，它将这些助手转变为具备专业UI&#x2F;UX设计能力的“设计搭档”，帮助开发者快速生成美观、统一且符合行业最佳实践的用户界面。<br>🎯 核心定位：AI的“设计系统”<br>它本质上是一个可搜索的“设计智库”，将系统化的设计知识（如风格、配色、字体、UX准则）封装起来，供AI助手在生成代码时调用。这意味着你无需手动查阅设计规范，只需用自然语言描述需求，AI就能基于这套知识库输出专业的设计方案和对应代码。<br>📦 核心功能与数据<br>UI UX Pro Max 内置了丰富的设计资源，确保输出的界面具有专业水准：<br>57种UI风格：包括 Glassmorphism（毛玻璃）、Claymorphism（粘土风）、Minimalism（极简主义）、Brutalism（粗野主义）、Neumorphism（新拟态）、Bento Grid（便当网格）等，一句话即可切换。<br>95套行业配色方案：针对SaaS、电商、金融、医疗、美妆等不同行业，提供成体系的主色、辅色、强调色组合。<br>56组字体搭配：基于 Google Fonts 等资源，为不同气质的项目推荐标题与正文字体组合。<br>24种图表类型建议：为仪表盘和数据可视化场景提供图表选型指导。<br>98条UX指南：涵盖表单设计、按钮状态、错误提示、可访问性等最佳实践与反模式，确保界面不仅好看而且好用。<br>⚙️ 支持的技术栈<br>它支持将同一套设计策略转化为多种主流前端与移动端框架的代码，包括：<br>Web端：HTML + Tailwind、React、Next.js、Vue、Nuxt UI、Svelte。<br>移动端：SwiftUI、React Native、Flutter。<br>🚀 安装与集成（以Cursor&#x2F;Claude Code为例）<br>安装过程非常简单，主要通过官方CLI工具完成：<br>安装CLI：确保已安装Node.js，在终端运行  npm install -g uipro-cli 。<br>在项目中初始化：进入你的项目根目录，执行对应命令。例如，为Cursor初始化： uipro init –ai cursor ；为Claude Code初始化： uipro init –ai claude 。<br>确认安装：命令执行后，会在你的项目中生成对应的配置文件（如  .cursor&#x2F;commands&#x2F;ui-ux-pro-max.md ），之后即可在AI助手中调用该技能。<br>💡 如何使用：从需求到代码<br>使用方式符合直觉，与你平时使用AI编程助手无异：<br>在AI助手中触发技能：在Cursor或Windsurf的命令面板中输入  &#x2F;ui-ux-pro-max ，或在Claude Code中直接描述需求。<br>提供清晰的需求描述：最好的实践是给AI一份简明的“设计需求文档”。例如：<br>“帮我设计一个B2B SaaS产品的官网首页，要求风格现代简洁，强调转化率，技术栈用React + Tailwind。请先推荐配色和字体，再输出包含Hero、Features、Testimonials模块的完整代码。”<br>获得并应用设计方案：AI会基于UI UX Pro Max的规则，输出包括风格说明、配色方案（含Tailwind颜色类名）、字体层级、布局草图以及最终可运行的组件代码在内的完整方案。你可以直接将代码复制到项目中，并在此基础上进行迭代优化。<br>✨ 核心价值与适用人群<br>对开发者而言：它极大地降低了UI设计的门槛，让不擅长设计的工程师也能产出专业、统一的界面，将精力更专注于业务逻辑。<br>对团队而言：通过锁定UI UX Pro Max的版本（ uipro init –ai all –version v1.2.0 ），可以确保团队成员生成的UI风格一致，维护设计统一性。<br>特别适合：独立开发者、缺少专职设计师的小团队、前端初学者以及希望提升界面审美和效率的所有程序员。<br>项目地址：<a target="_blank" rel="noopener" href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill">https://github.com/nextlevelbuilder/ui-ux-pro-max-skill</a></p>
+<p><strong>序言</strong><br>UI UX Pro Max 是一个面向 AI 编程助手（如 Claude Code、Cursor、Windsurf 等）的设计智能数据库与技能，它将这些助手转变为具备专业 UI&#x2F;UX 设计能力的”设计搭档”，帮助开发者快速生成美观、统一且符合行业最佳实践的用户界面。</p>
+</blockquote>
+<h2 id="🎯-核心定位：AI-的”设计系统”"><a href="#🎯-核心定位：AI-的”设计系统”" class="headerlink" title="🎯 核心定位：AI 的”设计系统”"></a>🎯 核心定位：AI 的”设计系统”</h2><p>它本质上是一个可搜索的”设计智库”，将系统化的设计知识（如风格、配色、字体、UX 准则）封装起来，供 AI 助手在生成代码时调用。这意味着你无需手动查阅设计规范，只需用自然语言描述需求，AI 就能基于这套知识库输出专业的设计方案和对应代码。</p>
+<h2 id="📦-核心功能与数据"><a href="#📦-核心功能与数据" class="headerlink" title="📦 核心功能与数据"></a>📦 核心功能与数据</h2><p>UI UX Pro Max 内置了丰富的设计资源，确保输出的界面具有专业水准：</p>
+<ul>
+<li><strong>57 种 UI 风格</strong>：包括 Glassmorphism（毛玻璃）、Claymorphism（粘土风）、Minimalism（极简主义）、Brutalism（粗野主义）、Neumorphism（新拟态）、Bento Grid（便当网格）等，一句话即可切换。</li>
+<li><strong>95 套行业配色方案</strong>：针对 SaaS、电商、金融、医疗、美妆等不同行业，提供成体系的主色、辅色、强调色组合。</li>
+<li><strong>56 组字体搭配</strong>：基于 Google Fonts 等资源，为不同气质的项目推荐标题与正文字体组合。</li>
+<li><strong>24 种图表类型建议</strong>：为仪表盘和数据可视化场景提供图表选型指导。</li>
+<li><strong>98 条 UX 指南</strong>：涵盖表单设计、按钮状态、错误提示、可访问性等最佳实践与反模式，确保界面不仅好看而且好用。</li>
+</ul>
+<h2 id="⚙️-支持的技术栈"><a href="#⚙️-支持的技术栈" class="headerlink" title="⚙️ 支持的技术栈"></a>⚙️ 支持的技术栈</h2><p>它支持将同一套设计策略转化为多种主流前端与移动端框架的代码，包括：</p>
+<ul>
+<li><strong>Web 端</strong>：HTML + Tailwind、React、Next.js、Vue、Nuxt UI、Svelte</li>
+<li><strong>移动端</strong>：SwiftUI、React Native、Flutter</li>
+</ul>
+<h2 id="🚀-安装与集成"><a href="#🚀-安装与集成" class="headerlink" title="🚀 安装与集成"></a>🚀 安装与集成</h2><p>安装过程非常简单，主要通过官方 CLI 工具完成：</p>
+<ol>
+<li><p><strong>安装 CLI</strong>：确保已安装 Node.js，在终端运行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> uipro-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>在项目中初始化</strong>：进入你的项目根目录，执行对应命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 为 Cursor 初始化</span>
+uipro init <span class="token parameter variable">--ai</span> cursor
+
+<span class="token comment"># 为 Claude Code 初始化</span>
+uipro init <span class="token parameter variable">--ai</span> claude<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>确认安装</strong>：命令执行后，会在你的项目中生成对应的配置文件（如 <code>.cursor/commands/ui-ux-pro-max.md</code>），之后即可在 AI 助手中调用该技能。</p>
+</li>
+</ol>
+<h2 id="💡-如何使用：从需求到代码"><a href="#💡-如何使用：从需求到代码" class="headerlink" title="💡 如何使用：从需求到代码"></a>💡 如何使用：从需求到代码</h2><p>使用方式符合直觉，与你平时使用 AI 编程助手无异：</p>
+<ol>
+<li><p><strong>在 AI 助手中触发技能</strong>：在 Cursor 或 Windsurf 的命令面板中输入 <code>/ui-ux-pro-max</code>，或在 Claude Code 中直接描述需求。</p>
+</li>
+<li><p><strong>提供清晰的需求描述</strong>：最好的实践是给 AI 一份简明的”设计需求文档”。例如：</p>
+<blockquote>
+<p>“帮我设计一个 B2B SaaS 产品的官网首页，要求风格现代简洁，强调转化率，技术栈用 React + Tailwind。请先推荐配色和字体，再输出包含 Hero、Features、Testimonials 模块的完整代码。”</p>
+</blockquote>
+</li>
+<li><p><strong>获得并应用设计方案</strong>：AI 会基于 UI UX Pro Max 的规则，输出包括风格说明、配色方案（含 Tailwind 颜色类名）、字体层级、布局草图以及最终可运行的组件代码在内的完整方案。你可以直接将代码复制到项目中，并在此基础上进行迭代优化。</p>
+</li>
+</ol>
+<h2 id="✨-核心价值与适用人群"><a href="#✨-核心价值与适用人群" class="headerlink" title="✨ 核心价值与适用人群"></a>✨ 核心价值与适用人群</h2><ul>
+<li><strong>对开发者而言</strong>：它极大地降低了 UI 设计的门槛，让不擅长设计的工程师也能产出专业、统一的界面，将精力更专注于业务逻辑。</li>
+<li><strong>对团队而言</strong>：通过锁定 UI UX Pro Max 的版本（<code>uipro init --ai all --version v1.2.0</code>），可以确保团队成员生成的 UI 风格一致，维护设计统一性。</li>
+<li><strong>特别适合</strong>：独立开发者、缺少专职设计师的小团队、前端初学者以及希望提升界面审美和效率的所有程序员。</li>
+</ul>
+<hr>
+<blockquote>
+<p>🔗 <strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill">ui-ux-pro-max-skill</a></p>
 </blockquote>
 
             </div>

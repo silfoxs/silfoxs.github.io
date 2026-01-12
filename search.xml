@@ -51,85 +51,6 @@
       </tags>
   </entry>
   <entry>
-    <title>github + drone自动化部署</title>
-    <url>/2020/04/18/golang/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
-<h2 id="申请oauth"><a href="#申请oauth" class="headerlink" title="申请oauth"></a>申请oauth</h2><p>因为我们需要依赖github的oauth服务,先申请一个Client Id和Client Secret:<br>申请页面位于github-&gt;setting-&gt;Developer settings-&gt;OAuth Apps<br><img src="https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请oauth页面"><br>提交完毕,我们就可以得到Client Id和Client Secret:<br><img src="https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请结果页"></p>
-<h2 id="编写docker-compose"><a href="#编写docker-compose" class="headerlink" title="编写docker-compose"></a>编写docker-compose</h2><p>接下来创建一个docker-compose.yml文件内容如下:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  drone<span class="token punctuation">-</span><span class="token key atrule">server</span><span class="token punctuation">:</span>
-    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">:</span><span class="token number">1</span>
-    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>server
-    ports<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> '10081<span class="token punctuation">:</span>80'      <span class="token comment"># Web管理面板的入口 PROTO=http  时使用该端口</span>
-    volumes<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock   <span class="token comment"># docker.sock [1]</span>
-      <span class="token punctuation">-</span> /var/data/drone/<span class="token punctuation">:</span>/var/lib/drone             <span class="token comment"># drone数据存放路径</span>
-    environment<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_ID=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_ID<span class="token punctuation">&#125;</span>  <span class="token comment">#上面申请的github CLIENT_ID</span>
-      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_SECRET=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_SECRET<span class="token punctuation">&#125;</span><span class="token comment">#上面申请的github CLIENT_SECRET</span>
-      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span>   <span class="token comment">#你的密钥MD5值即可</span>
-      <span class="token punctuation">-</span> DRONE_SERVER_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
-      <span class="token punctuation">-</span> DRONE_SERVER_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https  </span>
-      <span class="token punctuation">-</span> TZ=Asia/Shanghai
-    restart<span class="token punctuation">:</span> always
-  drone<span class="token punctuation">-</span><span class="token key atrule">agent</span><span class="token punctuation">:</span>
-    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">-</span>runner<span class="token punctuation">-</span>docker<span class="token punctuation">:</span><span class="token number">1</span>
-    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>runner
-    depends_on<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> drone<span class="token punctuation">-</span>server
-    volumes<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock <span class="token comment"># docker.sock [1]</span>
-    environment<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> DRONE_RPC_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https</span>
-      <span class="token punctuation">-</span> DRONE_RPC_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
-      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span> <span class="token comment">#你的密钥MD5值即可,跟上面的保持一致</span>
-      <span class="token punctuation">-</span> DRONE_RUNNER_CAPACITY=2 <span class="token comment">#最多同时运行几个</span>
-      <span class="token punctuation">-</span> DRONE_RUNNER_NAME=你的IP
-      <span class="token punctuation">-</span> TZ=Asia/Shanghai
-    restart<span class="token punctuation">:</span> always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>当前目录下执行docker-compose up -d就可以启动了.<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动docker-compose"><br>访问我们的主页你的ip:10081,效果如图<br><img src="https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目列表"><br><img src="https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置信息"></p>
-<h2 id="编写-drone-yml"><a href="#编写-drone-yml" class="headerlink" title="编写.drone.yml"></a>编写.drone.yml</h2><p>上图可以看到需要开启自动集成的项目还需要编写.drone.yml文件</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> pipeline
-<span class="token key atrule">type</span><span class="token punctuation">:</span> docker
-<span class="token key atrule">name</span><span class="token punctuation">:</span> api<span class="token punctuation">-</span>ui
-<span class="token key atrule">workspace</span><span class="token punctuation">:</span>
-  base<span class="token punctuation">:</span> /data/service
-  path<span class="token punctuation">:</span> .
-<span class="token key atrule">steps</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> name<span class="token punctuation">:</span> 部署api<span class="token punctuation">-</span>ui项目
-  image<span class="token punctuation">:</span> appleboy/drone<span class="token punctuation">-</span>ssh
-  settings<span class="token punctuation">:</span>
-    host<span class="token punctuation">:</span>
-      from_secret<span class="token punctuation">:</span> host
-    port<span class="token punctuation">:</span> <span class="token number">22</span>
-    username<span class="token punctuation">:</span>
-      from_secret<span class="token punctuation">:</span> ssh_name
-    password<span class="token punctuation">:</span>
-      from_secret<span class="token punctuation">:</span> ssh_passwd
-    script<span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> cd /home/xxxxxx/www/api<span class="token punctuation">-</span>ui/
-      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
-      <span class="token punctuation">-</span> git pull origin master
-      <span class="token punctuation">-</span> rm <span class="token punctuation">-</span>rf dist/*
-      <span class="token punctuation">-</span> cnpm run build
-      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
-      <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span>t api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1 .
-      <span class="token punctuation">-</span> docker rm <span class="token punctuation">-</span>f api<span class="token punctuation">-</span>ui <span class="token punctuation">|</span><span class="token punctuation">|</span> true
-      <span class="token punctuation">-</span> docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>rm <span class="token punctuation">-</span><span class="token punctuation">-</span>name api<span class="token punctuation">-</span>ui <span class="token punctuation">-</span>p 80<span class="token punctuation">:</span>80 api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上面的from_secret后面的值可以在我们的setting页面添加<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加密内容"><br>设置完毕,我们后续提交代码的时候就会自动同步到我们的服务器了,是不是很方便呢<br><img src="https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>drone</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>golang实现一个简单的webserver</title>
     <url>/2020/04/21/golang-web-server/</url>
     <content><![CDATA[<h2 id="官网DEMO"><a href="#官网DEMO" class="headerlink" title="官网DEMO"></a>官网DEMO</h2><blockquote>
@@ -265,6 +186,85 @@
       </tags>
   </entry>
   <entry>
+    <title>github + drone自动化部署</title>
+    <url>/2020/04/18/golang/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
+<h2 id="申请oauth"><a href="#申请oauth" class="headerlink" title="申请oauth"></a>申请oauth</h2><p>因为我们需要依赖github的oauth服务,先申请一个Client Id和Client Secret:<br>申请页面位于github-&gt;setting-&gt;Developer settings-&gt;OAuth Apps<br><img src="https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请oauth页面"><br>提交完毕,我们就可以得到Client Id和Client Secret:<br><img src="https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请结果页"></p>
+<h2 id="编写docker-compose"><a href="#编写docker-compose" class="headerlink" title="编写docker-compose"></a>编写docker-compose</h2><p>接下来创建一个docker-compose.yml文件内容如下:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  drone<span class="token punctuation">-</span><span class="token key atrule">server</span><span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">:</span><span class="token number">1</span>
+    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>server
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> '10081<span class="token punctuation">:</span>80'      <span class="token comment"># Web管理面板的入口 PROTO=http  时使用该端口</span>
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock   <span class="token comment"># docker.sock [1]</span>
+      <span class="token punctuation">-</span> /var/data/drone/<span class="token punctuation">:</span>/var/lib/drone             <span class="token comment"># drone数据存放路径</span>
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_ID=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_ID<span class="token punctuation">&#125;</span>  <span class="token comment">#上面申请的github CLIENT_ID</span>
+      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_SECRET=$<span class="token punctuation">&#123;</span>DRONE_GITHUB_CLIENT_SECRET<span class="token punctuation">&#125;</span><span class="token comment">#上面申请的github CLIENT_SECRET</span>
+      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span>   <span class="token comment">#你的密钥MD5值即可</span>
+      <span class="token punctuation">-</span> DRONE_SERVER_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
+      <span class="token punctuation">-</span> DRONE_SERVER_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https  </span>
+      <span class="token punctuation">-</span> TZ=Asia/Shanghai
+    restart<span class="token punctuation">:</span> always
+  drone<span class="token punctuation">-</span><span class="token key atrule">agent</span><span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> drone/drone<span class="token punctuation">-</span>runner<span class="token punctuation">-</span>docker<span class="token punctuation">:</span><span class="token number">1</span>
+    container_name<span class="token punctuation">:</span> drone<span class="token punctuation">-</span>runner
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> drone<span class="token punctuation">-</span>server
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock <span class="token comment"># docker.sock [1]</span>
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DRONE_RPC_PROTO=$<span class="token punctuation">&#123;</span>DRONE_SERVER_PROTO<span class="token punctuation">&#125;</span> <span class="token comment">#http 或 https</span>
+      <span class="token punctuation">-</span> DRONE_RPC_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
+      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">&#123;</span>DRONE_RPC_SECRET<span class="token punctuation">&#125;</span> <span class="token comment">#你的密钥MD5值即可,跟上面的保持一致</span>
+      <span class="token punctuation">-</span> DRONE_RUNNER_CAPACITY=2 <span class="token comment">#最多同时运行几个</span>
+      <span class="token punctuation">-</span> DRONE_RUNNER_NAME=你的IP
+      <span class="token punctuation">-</span> TZ=Asia/Shanghai
+    restart<span class="token punctuation">:</span> always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当前目录下执行docker-compose up -d就可以启动了.<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动docker-compose"><br>访问我们的主页你的ip:10081,效果如图<br><img src="https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目列表"><br><img src="https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置信息"></p>
+<h2 id="编写-drone-yml"><a href="#编写-drone-yml" class="headerlink" title="编写.drone.yml"></a>编写.drone.yml</h2><p>上图可以看到需要开启自动集成的项目还需要编写.drone.yml文件</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> pipeline
+<span class="token key atrule">type</span><span class="token punctuation">:</span> docker
+<span class="token key atrule">name</span><span class="token punctuation">:</span> api<span class="token punctuation">-</span>ui
+<span class="token key atrule">workspace</span><span class="token punctuation">:</span>
+  base<span class="token punctuation">:</span> /data/service
+  path<span class="token punctuation">:</span> .
+<span class="token key atrule">steps</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> name<span class="token punctuation">:</span> 部署api<span class="token punctuation">-</span>ui项目
+  image<span class="token punctuation">:</span> appleboy/drone<span class="token punctuation">-</span>ssh
+  settings<span class="token punctuation">:</span>
+    host<span class="token punctuation">:</span>
+      from_secret<span class="token punctuation">:</span> host
+    port<span class="token punctuation">:</span> <span class="token number">22</span>
+    username<span class="token punctuation">:</span>
+      from_secret<span class="token punctuation">:</span> ssh_name
+    password<span class="token punctuation">:</span>
+      from_secret<span class="token punctuation">:</span> ssh_passwd
+    script<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> cd /home/xxxxxx/www/api<span class="token punctuation">-</span>ui/
+      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
+      <span class="token punctuation">-</span> git pull origin master
+      <span class="token punctuation">-</span> rm <span class="token punctuation">-</span>rf dist/*
+      <span class="token punctuation">-</span> cnpm run build
+      <span class="token punctuation">-</span> pwd <span class="token important">&amp;&amp;</span> ls <span class="token punctuation">-</span>l
+      <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span>t api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1 .
+      <span class="token punctuation">-</span> docker rm <span class="token punctuation">-</span>f api<span class="token punctuation">-</span>ui <span class="token punctuation">|</span><span class="token punctuation">|</span> true
+      <span class="token punctuation">-</span> docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>rm <span class="token punctuation">-</span><span class="token punctuation">-</span>name api<span class="token punctuation">-</span>ui <span class="token punctuation">-</span>p 80<span class="token punctuation">:</span>80 api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的from_secret后面的值可以在我们的setting页面添加<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加密内容"><br>设置完毕,我们后续提交代码的时候就会自动同步到我们的服务器了,是不是很方便呢<br><img src="https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>drone</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>老项目加入golang mod模式</title>
     <url>/2020/04/18/old-add-golang-mod/</url>
     <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
@@ -329,29 +329,6 @@ Package operations: 1 install, 0 updates, 0 removals
       </tags>
   </entry>
   <entry>
-    <title>vscode必备扩展介绍</title>
-    <url>/2020/04/19/vscode-ext-info/</url>
-    <content><![CDATA[<h2 id="Chinese-Simplified-Language-Pack-for-Visual-Studio-Code"><a href="#Chinese-Simplified-Language-Pack-for-Visual-Studio-Code" class="headerlink" title="Chinese (Simplified) Language Pack for Visual Studio Code"></a>Chinese (Simplified) Language Pack for Visual Studio Code</h2><p>中文语言菜单，不多说，你懂的</p>
-<h2 id="GitLens-—-Git-supercharged"><a href="#GitLens-—-Git-supercharged" class="headerlink" title="GitLens — Git supercharged"></a>GitLens — Git supercharged</h2><p>git工具</p>
-<h2 id="remote-Develop"><a href="#remote-Develop" class="headerlink" title="remote Develop"></a>remote Develop</h2><p>微软出品，远程开发利器</p>
-<h2 id="Settings-Sync"><a href="#Settings-Sync" class="headerlink" title="Settings Sync"></a>Settings Sync</h2><p>同步vscode设置到远程，一键同步远程设置</p>
-<h2 id="Better-Align"><a href="#Better-Align" class="headerlink" title="Better Align"></a>Better Align</h2><p>格式化代码神器</p>
-<h2 id="vscode-icons"><a href="#vscode-icons" class="headerlink" title="vscode-icons"></a>vscode-icons</h2><p>个性化图标</p>
-<h2 id="Markdown-Preview"><a href="#Markdown-Preview" class="headerlink" title="Markdown Preview"></a>Markdown Preview</h2><p>写Markdown神器，所见即所得</p>
-<h2 id="Sftp"><a href="#Sftp" class="headerlink" title="Sftp"></a>Sftp</h2><p>Sftp工具，喜欢ftp的同学有福了</p>
-<h2 id="PHP-DocBlocker"><a href="#PHP-DocBlocker" class="headerlink" title="PHP DocBlocker"></a>PHP DocBlocker</h2><p>一键生成注释，注释党必备</p>
-<blockquote>
-<p>其他<br>…后续再补</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>pre-commit 使用备忘</title>
     <url>/2021/01/08/pre-commit-mark/</url>
     <content><![CDATA[<h1 id="php篇"><a href="#php篇" class="headerlink" title="php篇"></a>php篇</h1><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><table>
@@ -399,6 +376,44 @@ pre
       </categories>
       <tags>
         <tag>pre-commit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UI UX Pro Max</title>
+    <url>/2026/01/12/ui-ux-pro-max/</url>
+    <content><![CDATA[<blockquote>
+<p>序言<br>UI UX Pro Max 是一个面向AI编程助手（如 Claude Code、Cursor、Windsurf 等）的设计智能数据库与技能，它将这些助手转变为具备专业UI&#x2F;UX设计能力的“设计搭档”，帮助开发者快速生成美观、统一且符合行业最佳实践的用户界面。<br>🎯 核心定位：AI的“设计系统”<br>它本质上是一个可搜索的“设计智库”，将系统化的设计知识（如风格、配色、字体、UX准则）封装起来，供AI助手在生成代码时调用。这意味着你无需手动查阅设计规范，只需用自然语言描述需求，AI就能基于这套知识库输出专业的设计方案和对应代码。<br>📦 核心功能与数据<br>UI UX Pro Max 内置了丰富的设计资源，确保输出的界面具有专业水准：<br>57种UI风格：包括 Glassmorphism（毛玻璃）、Claymorphism（粘土风）、Minimalism（极简主义）、Brutalism（粗野主义）、Neumorphism（新拟态）、Bento Grid（便当网格）等，一句话即可切换。<br>95套行业配色方案：针对SaaS、电商、金融、医疗、美妆等不同行业，提供成体系的主色、辅色、强调色组合。<br>56组字体搭配：基于 Google Fonts 等资源，为不同气质的项目推荐标题与正文字体组合。<br>24种图表类型建议：为仪表盘和数据可视化场景提供图表选型指导。<br>98条UX指南：涵盖表单设计、按钮状态、错误提示、可访问性等最佳实践与反模式，确保界面不仅好看而且好用。<br>⚙️ 支持的技术栈<br>它支持将同一套设计策略转化为多种主流前端与移动端框架的代码，包括：<br>Web端：HTML + Tailwind、React、Next.js、Vue、Nuxt UI、Svelte。<br>移动端：SwiftUI、React Native、Flutter。<br>🚀 安装与集成（以Cursor&#x2F;Claude Code为例）<br>安装过程非常简单，主要通过官方CLI工具完成：<br>安装CLI：确保已安装Node.js，在终端运行  npm install -g uipro-cli 。<br>在项目中初始化：进入你的项目根目录，执行对应命令。例如，为Cursor初始化： uipro init –ai cursor ；为Claude Code初始化： uipro init –ai claude 。<br>确认安装：命令执行后，会在你的项目中生成对应的配置文件（如  .cursor&#x2F;commands&#x2F;ui-ux-pro-max.md ），之后即可在AI助手中调用该技能。<br>💡 如何使用：从需求到代码<br>使用方式符合直觉，与你平时使用AI编程助手无异：<br>在AI助手中触发技能：在Cursor或Windsurf的命令面板中输入  &#x2F;ui-ux-pro-max ，或在Claude Code中直接描述需求。<br>提供清晰的需求描述：最好的实践是给AI一份简明的“设计需求文档”。例如：<br>“帮我设计一个B2B SaaS产品的官网首页，要求风格现代简洁，强调转化率，技术栈用React + Tailwind。请先推荐配色和字体，再输出包含Hero、Features、Testimonials模块的完整代码。”<br>获得并应用设计方案：AI会基于UI UX Pro Max的规则，输出包括风格说明、配色方案（含Tailwind颜色类名）、字体层级、布局草图以及最终可运行的组件代码在内的完整方案。你可以直接将代码复制到项目中，并在此基础上进行迭代优化。<br>✨ 核心价值与适用人群<br>对开发者而言：它极大地降低了UI设计的门槛，让不擅长设计的工程师也能产出专业、统一的界面，将精力更专注于业务逻辑。<br>对团队而言：通过锁定UI UX Pro Max的版本（ uipro init –ai all –version v1.2.0 ），可以确保团队成员生成的UI风格一致，维护设计统一性。<br>特别适合：独立开发者、缺少专职设计师的小团队、前端初学者以及希望提升界面审美和效率的所有程序员。<br>项目地址：<a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill">https://github.com/nextlevelbuilder/ui-ux-pro-max-skill</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>SKILL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode必备扩展介绍</title>
+    <url>/2020/04/19/vscode-ext-info/</url>
+    <content><![CDATA[<h2 id="Chinese-Simplified-Language-Pack-for-Visual-Studio-Code"><a href="#Chinese-Simplified-Language-Pack-for-Visual-Studio-Code" class="headerlink" title="Chinese (Simplified) Language Pack for Visual Studio Code"></a>Chinese (Simplified) Language Pack for Visual Studio Code</h2><p>中文语言菜单，不多说，你懂的</p>
+<h2 id="GitLens-—-Git-supercharged"><a href="#GitLens-—-Git-supercharged" class="headerlink" title="GitLens — Git supercharged"></a>GitLens — Git supercharged</h2><p>git工具</p>
+<h2 id="remote-Develop"><a href="#remote-Develop" class="headerlink" title="remote Develop"></a>remote Develop</h2><p>微软出品，远程开发利器</p>
+<h2 id="Settings-Sync"><a href="#Settings-Sync" class="headerlink" title="Settings Sync"></a>Settings Sync</h2><p>同步vscode设置到远程，一键同步远程设置</p>
+<h2 id="Better-Align"><a href="#Better-Align" class="headerlink" title="Better Align"></a>Better Align</h2><p>格式化代码神器</p>
+<h2 id="vscode-icons"><a href="#vscode-icons" class="headerlink" title="vscode-icons"></a>vscode-icons</h2><p>个性化图标</p>
+<h2 id="Markdown-Preview"><a href="#Markdown-Preview" class="headerlink" title="Markdown Preview"></a>Markdown Preview</h2><p>写Markdown神器，所见即所得</p>
+<h2 id="Sftp"><a href="#Sftp" class="headerlink" title="Sftp"></a>Sftp</h2><p>Sftp工具，喜欢ftp的同学有福了</p>
+<h2 id="PHP-DocBlocker"><a href="#PHP-DocBlocker" class="headerlink" title="PHP DocBlocker"></a>PHP DocBlocker</h2><p>一键生成注释，注释党必备</p>
+<blockquote>
+<p>其他<br>…后续再补</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
       </tags>
   </entry>
 </search>

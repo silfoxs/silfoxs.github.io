@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <!-- <meta name="referrer" content="no-referrer"> -->
-        <meta name="keywords" content="php项目中使用composer, silver fox">
+        <meta name="keywords" content="AI Skills,Agentic AI,Function Calling,Semantic Kernel,插件系统">
         <meta name="description" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                php项目中使用composer | silver fox
+                深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力 | silver fox
             </title>
             <link rel="icon" type="image/png"
                 href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/favicon.png">
@@ -290,13 +290,13 @@
 
         
 
-    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/7.jpg')">
+    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/23.jpg')">
         <div class="container" style="right: 0px;left: 0px;">
             <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="brand">
                         <h1 class="description center-align post-title">
-                            php项目中使用composer
+                            深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力
                         </h1>
                     </div>
                 </div>
@@ -414,8 +414,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/php/">
-                                <span class="chip bg-color">php</span>
+                            <a href="/tags/AI/">
+                                <span class="chip bg-color">AI</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                                <span class="chip bg-color">架构设计</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                <span class="chip bg-color">大模型</span>
                             </a>
                         
                     </div>
@@ -426,8 +434,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="post-category">
-                                技术文章
+                            <a href="/categories/AI/" class="post-category">
+                                AI
                             </a>
                         
                     </div>
@@ -439,21 +447,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-30
+                    2026-01-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-10-11
+                    2026-01-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    195
+                    1.1k
                 </div>
                 
 
@@ -470,44 +478,83 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
-<p>需已安装composer,未安装的请自行百度</p>
+                <blockquote>
+<p><strong>序言</strong></p>
+<p>随着大语言模型（LLM）的迅速发展，我们正在从 “Chatbot”（聊天机器人）时代迈向 “Agent”（智能体）时代。单纯的文本生成已无法满足复杂的业务需求，我们需要 AI 能够”做事”。而 <strong>Skill（技能）</strong>，正是赋予 AI 这种行动能力的关键组件。</p>
 </blockquote>
-<h2 id="编写composer"><a href="#编写composer" class="headerlink" title="编写composer"></a>编写composer</h2><blockquote>
-<p>编写composer.json 引入monolog处理日志<br>这里由于我使用的php7.0x,所以引用的monolog-1.x版本的,版本2.x需要php7.2,按需选择即可</p>
-</blockquote>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-    <span class="token property">"require"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"monolog/monolog"</span><span class="token operator">:</span> <span class="token string">"1.*"</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token property">"repositories"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>保存composer.json文件<br>执行composer install<br>结果如下</p>
-</blockquote>
-<pre class="line-numbers language-none"><code class="language-none">Loading composer repositories with package information
-Updating dependencies (including require-dev)
-Package operations: 1 install, 0 updates, 0 removals
-  - Installing monolog&#x2F;monolog (1.25.3): Downloading (100%)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
-<p>编写index.php</p>
-</blockquote>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">require</span> <span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../vendor/autoload.php'</span><span class="token punctuation">;</span>
+<h2 id="🎯-什么是-AI-Skill？"><a href="#🎯-什么是-AI-Skill？" class="headerlink" title="🎯 什么是 AI Skill？"></a>🎯 什么是 AI Skill？</h2><p>在 AI Agent 的语境下，<strong>Skill</strong>（也被称为 Tool、Plugin 或 Function）是指一段封装好的、可供 LLM 调用的逻辑单元。它本质上是<strong>代码能力</strong>与<strong>语义描述</strong>的结合体。</p>
+<p>一个标准的 Skill 通常包含三个要素：</p>
+<ol>
+<li><strong>能力实现（Implementation）</strong>：实际执行任务的代码（如查询数据库、调用 API、计算公式）。</li>
+<li><strong>语义描述（Schema&#x2F;Description）</strong>：告诉 LLM <strong>“我是什么”</strong>、<strong>“我能做什么”</strong> 以及 <strong>“怎么使用我”</strong>。</li>
+<li><strong>参数定义（Parameters）</strong>：明确输入输出的数据格式。</li>
+</ol>
+<p>简而言之，Skill 让大模型拥有了”手”和”眼”，打破了模型训练数据的时效性限制和纯文本交互的边界。</p>
+<h2 id="💡-核心使用场景"><a href="#💡-核心使用场景" class="headerlink" title="💡 核心使用场景"></a>💡 核心使用场景</h2><p>Skill 的引入极大地扩展了 AI 的应用边界，以下是几个典型的核心场景：</p>
+<h3 id="1-知识增强与实时信息获取-RAG-Web-Search"><a href="#1-知识增强与实时信息获取-RAG-Web-Search" class="headerlink" title="1. 知识增强与实时信息获取 (RAG &amp; Web Search)"></a>1. 知识增强与实时信息获取 (RAG &amp; Web Search)</h3><p>大模型的知识是静态的，而 Skill 可以连接外部动态数据源。</p>
+<ul>
+<li><strong>场景</strong>：用户问”今天上海的天气怎么样？”</li>
+<li><strong>Skill</strong>：<code>get_weather(city: str)</code></li>
+<li><strong>流程</strong>：LLM 识别意图 -&gt; 调用天气 API -&gt; 获取数据 -&gt; LLM 组织语言回答。</li>
+</ul>
+<h3 id="2-办公自动化与工作流-Workflow-Automation"><a href="#2-办公自动化与工作流-Workflow-Automation" class="headerlink" title="2. 办公自动化与工作流 (Workflow Automation)"></a>2. 办公自动化与工作流 (Workflow Automation)</h3><p>将复杂的业务流程拆解为多个 Skill，由 AI 编排执行。</p>
+<ul>
+<li><strong>场景</strong>：自动处理周报并发送邮件。</li>
+<li><strong>Skills</strong>：<ul>
+<li><code>fetch_jira_issues(sprint_id: str)</code></li>
+<li><code>summarize_text(content: str)</code></li>
+<li><code>send_email(to: str, subject: str, body: str)</code></li>
+</ul>
+</li>
+<li><strong>价值</strong>：实现跨应用（Jira -&gt; LLM -&gt; Outlook）的自动化。</li>
+</ul>
+<h3 id="3-系统交互与控制-System-Control"><a href="#3-系统交互与控制-System-Control" class="headerlink" title="3. 系统交互与控制 (System Control)"></a>3. 系统交互与控制 (System Control)</h3><p>让 AI 成为系统的自然语言接口。</p>
+<ul>
+<li><strong>场景</strong>：通过对话查询运维日志或重启服务。</li>
+<li><strong>Skill</strong>：<code>query_logs(service: str, time_range: str)</code>、<code>restart_container(container_id: str)</code></li>
+<li><strong>价值</strong>：降低普通用户使用复杂系统的门槛（DevOps Copilot）。</li>
+</ul>
+<h3 id="4-数据分析与计算-Code-Interpreter"><a href="#4-数据分析与计算-Code-Interpreter" class="headerlink" title="4. 数据分析与计算 (Code Interpreter)"></a>4. 数据分析与计算 (Code Interpreter)</h3><p>弥补 LLM 数学计算和逻辑推理不严谨的短板。</p>
+<ul>
+<li><strong>场景</strong>：分析 Excel 表格并画图。</li>
+<li><strong>Skill</strong>：<code>execute_python_code(code: str)</code></li>
+<li><strong>价值</strong>：AI 编写 Python 代码处理数据，准确率远超直接生成结果。</li>
+</ul>
+<h2 id="🛠-实现方式与技术架构"><a href="#🛠-实现方式与技术架构" class="headerlink" title="🛠 实现方式与技术架构"></a>🛠 实现方式与技术架构</h2><p>目前主流的 AI 开发框架（如 Semantic Kernel, LangChain, OpenAI Assistant）对 Skill 的实现逻辑大同小异，核心机制主要基于 <strong>Function Calling</strong>。</p>
+<h3 id="1-架构流程"><a href="#1-架构流程" class="headerlink" title="1. 架构流程"></a>1. 架构流程</h3><ol>
+<li><strong>注册 (Registration)</strong>：开发者将 Skill（函数定义 + 描述）注入到 AI 上下文中。</li>
+<li><strong>感知 (Reasoning)</strong>：用户提问，LLM 判断是否需要使用 Skill，如果需要，输出要调用的函数名和参数（JSON 格式）。</li>
+<li><strong>执行 (Execution)</strong>：宿主程序（Host）捕获 LLM 的请求，在本地或远程执行对应的代码。</li>
+<li><strong>反馈 (Response)</strong>：将执行结果作为新的上下文（Context）回传给 LLM。</li>
+<li><strong>生成 (Generation)</strong>：LLM 根据执行结果生成最终回复。</li>
+</ol>
+<h3 id="2-代码示例-伪代码"><a href="#2-代码示例-伪代码" class="headerlink" title="2. 代码示例 (伪代码)"></a>2. 代码示例 (伪代码)</h3><p>以 Semantic Kernel 风格为例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个 Skill</span>
+<span class="token keyword">class</span> <span class="token class-name">MathSkill</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@kernel_function</span><span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"Add two numbers"</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> a <span class="token operator">+</span> b
 
+<span class="token comment"># 注册 Skill</span>
+kernel<span class="token punctuation">.</span>import_plugin_from_object<span class="token punctuation">(</span>MathSkill<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Math"</span><span class="token punctuation">)</span>
 
-<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Logger</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Handler<span class="token punctuation">\</span>StreamHandler</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Handler<span class="token punctuation">\</span>FirePHPHandler</span><span class="token punctuation">;</span>
+<span class="token comment"># 调用</span>
+result <span class="token operator">=</span> <span class="token keyword">await</span> kernel<span class="token punctuation">.</span>invoke_prompt<span class="token punctuation">(</span><span class="token string">"What is 5 plus 3?"</span><span class="token punctuation">)</span>
+<span class="token comment"># LLM 内部会自动决定调用 Math.add(5, 3)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token variable">$logger</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Logger</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'test_logger'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token variable">$logger</span><span class="token operator">-></span><span class="token function">pushHandler</span><span class="token punctuation">(</span>
-    <span class="token keyword">new</span> <span class="token class-name">StreamHandler</span><span class="token punctuation">(</span><span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../log/test.log'</span><span class="token punctuation">,</span> <span class="token class-name static-context">Logger</span><span class="token operator">::</span><span class="token constant">DEBUG</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$logger</span><span class="token operator">-></span><span class="token function">pushHandler</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FirePHPHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$logger</span><span class="token operator">-></span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hello log!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
-<p>大家可以看一看自己的日志是不是记下来了呢<br>有其他问题记得联系我</p>
+<h3 id="3-不同的命名体系"><a href="#3-不同的命名体系" class="headerlink" title="3. 不同的命名体系"></a>3. 不同的命名体系</h3><p>虽然概念一致，但各家术语略有不同，开发时需注意：</p>
+<ul>
+<li><strong>OpenAI</strong>: Function Calling &#x2F; Tools</li>
+<li><strong>Semantic Kernel</strong>: Skills (旧版) &#x2F; Plugins (新版)</li>
+<li><strong>LangChain</strong>: Tools</li>
+<li><strong>Anthropic</strong>: Tool Use</li>
+</ul>
+<h2 id="🔮-未来展望：MCP-Model-Context-Protocol"><a href="#🔮-未来展望：MCP-Model-Context-Protocol" class="headerlink" title="🔮 未来展望：MCP (Model Context Protocol)"></a>🔮 未来展望：MCP (Model Context Protocol)</h2><p>当前的痛点是 Skill 生态割裂，为一个模型写的 Tool 很难直接复用到另一个系统。</p>
+<p>Anthropic 最近提出的 <strong>MCP (Model Context Protocol)</strong> 试图解决这个问题。它定义了一种标准协议，让数据源和工具能够以统一的方式暴露给 AI。如果 MCP 成为行业标准，未来我们只需开发一次 Skill，就能在 Claude、ChatGPT 或本地 LLM 中从容使用，这将是 AI Skills 生态的一次巨大爆发。</p>
+<hr>
+<blockquote>
+<p><strong>总结</strong></p>
+<p>掌握 Skill 的设计与实现，是开发者构建原生 AI 应用（AI Native Apps）的必修课。它让 AI 落地从”聊聊而已”变成了”真抓实干”。</p>
 </blockquote>
 
             </div>
@@ -534,7 +581,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://silfoxs.github.io/2020/04/30/php-use-composer/">https://silfoxs.github.io/2020/04/30/php-use-composer/</a>
+                    <a href="https://silfoxs.github.io/2026/01/12/ai-skills/">https://silfoxs.github.io/2026/01/12/ai-skills/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,8 +619,16 @@ Package operations: 1 install, 0 updates, 0 removals
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/php/">
-                                    <span class="chip bg-color">php</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                                    <span class="chip bg-color">架构设计</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">大模型</span>
                                 </a>
                             
                         </div>
@@ -644,30 +699,31 @@ Package operations: 1 install, 0 updates, 0 removals
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/08/pre-commit-mark/">
+                <a href="/2026/01/12/ai-skills/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/15.jpg" class="responsive-img" alt="pre-commit 使用备忘">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/23.jpg" class="responsive-img" alt="深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力">
                         
-                        <span class="card-title">pre-commit 使用备忘</span>
+                        <span class="card-title">深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/15.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/23.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    技术文章
+                                    AI
                                 </a>
                             
                         </div>
@@ -676,7 +732,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            pre-commit 使用备忘
+                            在 AI Agent 时代，Skill（技能）是链接大模型与数字世界的桥梁。本文深入探讨 AI Skills 的概念、核心场景以及实现方式，揭示大模型如何从"对话者"进化为"行动者"。
                         
                     </div>
 
@@ -684,7 +740,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2021-01-08
+                            2026-01-12
                         </span>
                     </div>
 
@@ -692,8 +748,16 @@ Package operations: 1 install, 0 updates, 0 removals
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/pre-commit/">
-                                    <span class="chip bg-color">pre-commit</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                                    <span class="chip bg-color">架构设计</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">大模型</span>
                                 </a>
                             
                         </div>
@@ -708,26 +772,26 @@ Package operations: 1 install, 0 updates, 0 removals
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/21/golang-web-server/">
+                <a href="/2026/01/12/claude-code/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/14.jpg" class="responsive-img" alt="golang实现一个简单的webserver">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/21.jpg" class="responsive-img" alt="Claude Code - 重新定义 AI 编程助手">
                         
-                        <span class="card-title">golang实现一个简单的webserver</span>
+                        <span class="card-title">Claude Code - 重新定义 AI 编程助手</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/14.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/21.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    技术文章
+                                    AI
                                 </a>
                             
                         </div>
@@ -736,7 +800,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            介绍怎么用golang开发一个webserver服务
+                            Claude Code 是 Anthropic 推出的 AI 编程助手，它不仅仅是一个代码补全工具，更是一个能够理解整个代码库、自主规划和执行复杂任务的智能编程搭档。
                         
                     </div>
 
@@ -744,7 +808,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2020-04-21
+                            2026-01-12
                         </span>
                     </div>
 
@@ -752,8 +816,12 @@ Package operations: 1 install, 0 updates, 0 removals
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">开发工具</span>
                                 </a>
                             
                         </div>

@@ -6,7 +6,7 @@
   <link href="https://silfoxs.github.io/atom.xml" rel="self"/>
   
   <link href="https://silfoxs.github.io/"/>
-  <updated>2026-01-12T10:41:26.488Z</updated>
+  <updated>2026-01-12T10:53:22.049Z</updated>
   <id>https://silfoxs.github.io/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深入理解 AI Skills：赋予大模型&quot;行动&quot;的能力</title>
+    <link href="https://silfoxs.github.io/2026/01/12/ai-skills/"/>
+    <id>https://silfoxs.github.io/2026/01/12/ai-skills/</id>
+    <published>2026-01-12T10:55:00.000Z</published>
+    <updated>2026-01-12T10:53:22.049Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;序言&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;随着大语言模型（LLM）的迅速发展，我们正在从 “Chatbot”（聊天机器人）时代迈向 “Agent”（智能体）时代。单纯的文本生成已无法满足复杂的业务需求，我们需要 AI 能够”做事”。而</summary>
+        
+      
+    
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/tags/AI/"/>
+    
+    <category term="架构设计" scheme="https://silfoxs.github.io/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+    <category term="大模型" scheme="https://silfoxs.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Claude Code - 重新定义 AI 编程助手</title>
+    <link href="https://silfoxs.github.io/2026/01/12/claude-code/"/>
+    <id>https://silfoxs.github.io/2026/01/12/claude-code/</id>
+    <published>2026-01-12T10:44:00.000Z</published>
+    <updated>2026-01-12T10:45:40.377Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;序言&lt;/strong&gt;&lt;br&gt;Claude Code 是 Anthropic 推出的革命性 AI</summary>
+        
+      
+    
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/tags/AI/"/>
+    
+    <category term="开发工具" scheme="https://silfoxs.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>UI UX Pro Max</title>

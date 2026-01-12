@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Claude Code - 重新定义 AI 编程助手</title>
+    <url>/2026/01/12/claude-code/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>序言</strong><br>Claude Code 是 Anthropic 推出的革命性 AI 编程助手。它超越了传统的代码补全工具，成为一个能够理解整个代码库、自主规划和执行复杂任务的智能编程搭档。无论你是独立开发者还是团队成员，Claude Code 都能显著提升你的开发效率。</p>
+</blockquote>
+<h2 id="🎯-什么是-Claude-Code？"><a href="#🎯-什么是-Claude-Code？" class="headerlink" title="🎯 什么是 Claude Code？"></a>🎯 什么是 Claude Code？</h2><p>Claude Code 于 2025 年 2 月首次发布，作为 Claude 3.7 Sonnet 的配套工具推出。它最初是一个基于终端的 AI 编程助手，但随着时间推移，它已经进化成为一个功能强大的多智能体开发平台。</p>
+<p>与传统的代码补全工具不同，Claude Code 具备 <strong>“智能搜索”(Agentic Search)</strong> 能力，能够理解和映射整个代码库，而不仅仅局限于单个文件的上下文。这意味着它可以：</p>
+<ul>
+<li>深入理解项目的整体架构</li>
+<li>跨文件进行代码分析和修改</li>
+<li>识别依赖关系和潜在问题</li>
+<li>提供更有针对性的建议和解决方案</li>
+</ul>
+<h2 id="📦-核心功能特性"><a href="#📦-核心功能特性" class="headerlink" title="📦 核心功能特性"></a>📦 核心功能特性</h2><h3 id="🤖-智能体能力-Agentic-Capabilities"><a href="#🤖-智能体能力-Agentic-Capabilities" class="headerlink" title="🤖 智能体能力 (Agentic Capabilities)"></a>🤖 智能体能力 (Agentic Capabilities)</h3><p>Claude Code 具备高度的自主性，能够以最少的人工干预完成复杂任务：</p>
+<ul>
+<li><strong>自主规划与执行</strong>：能够独立规划、执行和优化代码</li>
+<li><strong>多步骤流程管理</strong>：自动处理版本控制、API 集成等多步骤任务</li>
+<li><strong>架构改进建议</strong>：主动提出项目架构的优化方案</li>
+</ul>
+<h3 id="🧑‍🤝‍🧑-子智能体-Subagents"><a href="#🧑‍🤝‍🧑-子智能体-Subagents" class="headerlink" title="🧑‍🤝‍🧑 子智能体 (Subagents)"></a>🧑‍🤝‍🧑 子智能体 (Subagents)</h3><p>2025 年 7 月推出的子智能体功能，让你可以创建专门处理特定任务的 AI 代理：</p>
+<ul>
+<li>每个子智能体拥有独立的指令、上下文和工具权限</li>
+<li>相当于组建了一个 AI 编程团队</li>
+<li>可以并行处理不同类型的开发任务</li>
+</ul>
+<h3 id="🔌-Hooks-与插件系统"><a href="#🔌-Hooks-与插件系统" class="headerlink" title="🔌 Hooks 与插件系统"></a>🔌 Hooks 与插件系统</h3><p>Hooks 允许在预定义的时间点执行 shell 命令，实现工作流程自动化：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 示例：在提交代码前自动运行测试</span>
+claude hook <span class="token function">add</span> <span class="token parameter variable">--event</span> before_commit <span class="token parameter variable">--command</span> <span class="token string">"npm test"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>插件系统则使功能可以在不同项目间共享复用。</p>
+<h3 id="🧠-扩展思考模式-Extended-Thinking-Mode"><a href="#🧠-扩展思考模式-Extended-Thinking-Mode" class="headerlink" title="🧠 扩展思考模式 (Extended Thinking Mode)"></a>🧠 扩展思考模式 (Extended Thinking Mode)</h3><p>对于复杂问题，Claude Code 可以分配更多计算资源进行深度推理：</p>
+<ul>
+<li>逐步分析问题</li>
+<li>权衡速度与准确性</li>
+<li>产出更高质量的解决方案</li>
+</ul>
+<h3 id="📚-超大上下文窗口"><a href="#📚-超大上下文窗口" class="headerlink" title="📚 超大上下文窗口"></a>📚 超大上下文窗口</h3><p>Claude Sonnet 4 支持高达 <strong>100 万 tokens</strong> 的上下文窗口：</p>
+<ul>
+<li>能够分析整个大型代码库</li>
+<li>支持大规模重构</li>
+<li>进行全面的代码审计</li>
+</ul>
+<h2 id="⚙️-系统要求与安装"><a href="#⚙️-系统要求与安装" class="headerlink" title="⚙️ 系统要求与安装"></a>⚙️ 系统要求与安装</h2><h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><ul>
+<li><strong>操作系统</strong>：macOS、Ubuntu&#x2F;Debian、Windows (通过 WSL)</li>
+<li><strong>内存</strong>：至少 4GB RAM</li>
+<li><strong>网络</strong>：需要稳定的互联网连接</li>
+</ul>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
+<li><p><strong>通过 npm 安装</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> @anthropic-ai/claude-code<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>验证安装</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">claude <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>初始化项目</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> your-project
+claude init<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<h2 id="🚀-IDE-集成"><a href="#🚀-IDE-集成" class="headerlink" title="🚀 IDE 集成"></a>🚀 IDE 集成</h2><p>Claude Code 与主流 IDE 无缝集成：</p>
+<ul>
+<li><strong>VS Code</strong>：通过官方扩展直接在编辑器中使用</li>
+<li><strong>JetBrains 全家桶</strong>：支持 IntelliJ IDEA、PyCharm、WebStorm 等</li>
+<li><strong>终端</strong>：原生终端体验，适合命令行爱好者</li>
+<li><strong>Web 版</strong>：2025 年 10 月推出的浏览器版本，随时随地编程</li>
+</ul>
+<h2 id="📝-CLAUDE-md-项目配置"><a href="#📝-CLAUDE-md-项目配置" class="headerlink" title="📝 CLAUDE.md 项目配置"></a>📝 CLAUDE.md 项目配置</h2><p>通过在项目根目录创建 <code>CLAUDE.md</code> 文件，可以为 Claude Code 提供项目特定的上下文：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 项目概述</span>
+这是一个基于 React 的电商平台前端项目。
+
+<span class="token title important"><span class="token punctuation">##</span> 常用命令</span>
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`npm run dev`</span> - 启动开发服务器
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`npm run test`</span> - 运行测试
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`npm run build`</span> - 构建生产版本
+
+<span class="token title important"><span class="token punctuation">##</span> 代码规范</span>
+<span class="token list punctuation">-</span> 使用 TypeScript 编写所有新代码
+<span class="token list punctuation">-</span> 组件使用函数式写法配合 Hooks
+<span class="token list punctuation">-</span> 样式使用 Tailwind CSS
+
+<span class="token title important"><span class="token punctuation">##</span> 核心文件</span>
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`src/components/`</span> - UI 组件
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`src/hooks/`</span> - 自定义 Hooks
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`src/api/`</span> - API 接口层<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="🔗-GitHub-深度集成"><a href="#🔗-GitHub-深度集成" class="headerlink" title="🔗 GitHub 深度集成"></a>🔗 GitHub 深度集成</h2><p>Claude Code 提供强大的 GitHub 工作流支持：</p>
+<ul>
+<li><strong>自动创建 Pull Request</strong></li>
+<li><strong>修复代码审查意见</strong></li>
+<li><strong>Issue 分类与处理</strong></li>
+<li><strong>提交代码并附带智能 commit message</strong></li>
+</ul>
+<h2 id="💡-实际使用场景"><a href="#💡-实际使用场景" class="headerlink" title="💡 实际使用场景"></a>💡 实际使用场景</h2><h3 id="场景一：代码重构"><a href="#场景一：代码重构" class="headerlink" title="场景一：代码重构"></a>场景一：代码重构</h3><pre class="line-numbers language-none"><code class="language-none">&gt; 帮我将 src&#x2F;utils&#x2F;helpers.js 中的函数拆分到独立模块，
+&gt; 并更新所有引用这些函数的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Claude Code 会自动：</p>
+<ol>
+<li>分析函数依赖关系</li>
+<li>创建新的模块文件</li>
+<li>移动相关代码</li>
+<li>更新所有导入语句</li>
+<li>验证修改后的代码可以正常运行</li>
+</ol>
+<h3 id="场景二：测试驱动开发"><a href="#场景二：测试驱动开发" class="headerlink" title="场景二：测试驱动开发"></a>场景二：测试驱动开发</h3><pre class="line-numbers language-none"><code class="language-none">&gt; 为 UserService 类编写单元测试，覆盖所有边界情况<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Claude Code 会分析类的方法签名和业务逻辑，生成全面的测试用例。</p>
+<h3 id="场景三：代码审查"><a href="#场景三：代码审查" class="headerlink" title="场景三：代码审查"></a>场景三：代码审查</h3><pre class="line-numbers language-none"><code class="language-none">&gt; 审查最近 5 次提交，找出潜在的安全问题和性能瓶颈<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="✨-核心价值"><a href="#✨-核心价值" class="headerlink" title="✨ 核心价值"></a>✨ 核心价值</h2><ul>
+<li><strong>效率提升</strong>：减少重复性工作，让开发者专注于创造性任务</li>
+<li><strong>质量保障</strong>：AI 辅助的代码审查和测试生成</li>
+<li><strong>知识共享</strong>：新团队成员可以通过 Claude Code 快速理解项目</li>
+<li><strong>持续学习</strong>：在工作中学习最佳实践和新技术</li>
+</ul>
+<hr>
+<blockquote>
+<p>🔗 <strong>官方文档</strong>：<a href="https://docs.anthropic.com/claude-code">docs.anthropic.com&#x2F;claude-code</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>开发工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>golang实现一个冒泡算法</title>
     <url>/2020/04/20/golang-bubbling/</url>
     <content><![CDATA[<blockquote>
@@ -32,6 +159,113 @@
       <tags>
         <tag>golang</tag>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深入理解 AI Skills：赋予大模型&quot;行动&quot;的能力</title>
+    <url>/2026/01/12/ai-skills/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>序言</strong></p>
+<p>随着大语言模型（LLM）的迅速发展，我们正在从 “Chatbot”（聊天机器人）时代迈向 “Agent”（智能体）时代。单纯的文本生成已无法满足复杂的业务需求，我们需要 AI 能够”做事”。而 <strong>Skill（技能）</strong>，正是赋予 AI 这种行动能力的关键组件。</p>
+</blockquote>
+<h2 id="🎯-什么是-AI-Skill？"><a href="#🎯-什么是-AI-Skill？" class="headerlink" title="🎯 什么是 AI Skill？"></a>🎯 什么是 AI Skill？</h2><p>在 AI Agent 的语境下，<strong>Skill</strong>（也被称为 Tool、Plugin 或 Function）是指一段封装好的、可供 LLM 调用的逻辑单元。它本质上是<strong>代码能力</strong>与<strong>语义描述</strong>的结合体。</p>
+<p>一个标准的 Skill 通常包含三个要素：</p>
+<ol>
+<li><strong>能力实现（Implementation）</strong>：实际执行任务的代码（如查询数据库、调用 API、计算公式）。</li>
+<li><strong>语义描述（Schema&#x2F;Description）</strong>：告诉 LLM <strong>“我是什么”</strong>、<strong>“我能做什么”</strong> 以及 <strong>“怎么使用我”</strong>。</li>
+<li><strong>参数定义（Parameters）</strong>：明确输入输出的数据格式。</li>
+</ol>
+<p>简而言之，Skill 让大模型拥有了”手”和”眼”，打破了模型训练数据的时效性限制和纯文本交互的边界。</p>
+<h2 id="💡-核心使用场景"><a href="#💡-核心使用场景" class="headerlink" title="💡 核心使用场景"></a>💡 核心使用场景</h2><p>Skill 的引入极大地扩展了 AI 的应用边界，以下是几个典型的核心场景：</p>
+<h3 id="1-知识增强与实时信息获取-RAG-Web-Search"><a href="#1-知识增强与实时信息获取-RAG-Web-Search" class="headerlink" title="1. 知识增强与实时信息获取 (RAG &amp; Web Search)"></a>1. 知识增强与实时信息获取 (RAG &amp; Web Search)</h3><p>大模型的知识是静态的，而 Skill 可以连接外部动态数据源。</p>
+<ul>
+<li><strong>场景</strong>：用户问”今天上海的天气怎么样？”</li>
+<li><strong>Skill</strong>：<code>get_weather(city: str)</code></li>
+<li><strong>流程</strong>：LLM 识别意图 -&gt; 调用天气 API -&gt; 获取数据 -&gt; LLM 组织语言回答。</li>
+</ul>
+<h3 id="2-办公自动化与工作流-Workflow-Automation"><a href="#2-办公自动化与工作流-Workflow-Automation" class="headerlink" title="2. 办公自动化与工作流 (Workflow Automation)"></a>2. 办公自动化与工作流 (Workflow Automation)</h3><p>将复杂的业务流程拆解为多个 Skill，由 AI 编排执行。</p>
+<ul>
+<li><strong>场景</strong>：自动处理周报并发送邮件。</li>
+<li><strong>Skills</strong>：<ul>
+<li><code>fetch_jira_issues(sprint_id: str)</code></li>
+<li><code>summarize_text(content: str)</code></li>
+<li><code>send_email(to: str, subject: str, body: str)</code></li>
+</ul>
+</li>
+<li><strong>价值</strong>：实现跨应用（Jira -&gt; LLM -&gt; Outlook）的自动化。</li>
+</ul>
+<h3 id="3-系统交互与控制-System-Control"><a href="#3-系统交互与控制-System-Control" class="headerlink" title="3. 系统交互与控制 (System Control)"></a>3. 系统交互与控制 (System Control)</h3><p>让 AI 成为系统的自然语言接口。</p>
+<ul>
+<li><strong>场景</strong>：通过对话查询运维日志或重启服务。</li>
+<li><strong>Skill</strong>：<code>query_logs(service: str, time_range: str)</code>、<code>restart_container(container_id: str)</code></li>
+<li><strong>价值</strong>：降低普通用户使用复杂系统的门槛（DevOps Copilot）。</li>
+</ul>
+<h3 id="4-数据分析与计算-Code-Interpreter"><a href="#4-数据分析与计算-Code-Interpreter" class="headerlink" title="4. 数据分析与计算 (Code Interpreter)"></a>4. 数据分析与计算 (Code Interpreter)</h3><p>弥补 LLM 数学计算和逻辑推理不严谨的短板。</p>
+<ul>
+<li><strong>场景</strong>：分析 Excel 表格并画图。</li>
+<li><strong>Skill</strong>：<code>execute_python_code(code: str)</code></li>
+<li><strong>价值</strong>：AI 编写 Python 代码处理数据，准确率远超直接生成结果。</li>
+</ul>
+<h2 id="🛠-实现方式与技术架构"><a href="#🛠-实现方式与技术架构" class="headerlink" title="🛠 实现方式与技术架构"></a>🛠 实现方式与技术架构</h2><p>目前主流的 AI 开发框架（如 Semantic Kernel, LangChain, OpenAI Assistant）对 Skill 的实现逻辑大同小异，核心机制主要基于 <strong>Function Calling</strong>。</p>
+<h3 id="1-架构流程"><a href="#1-架构流程" class="headerlink" title="1. 架构流程"></a>1. 架构流程</h3><ol>
+<li><strong>注册 (Registration)</strong>：开发者将 Skill（函数定义 + 描述）注入到 AI 上下文中。</li>
+<li><strong>感知 (Reasoning)</strong>：用户提问，LLM 判断是否需要使用 Skill，如果需要，输出要调用的函数名和参数（JSON 格式）。</li>
+<li><strong>执行 (Execution)</strong>：宿主程序（Host）捕获 LLM 的请求，在本地或远程执行对应的代码。</li>
+<li><strong>反馈 (Response)</strong>：将执行结果作为新的上下文（Context）回传给 LLM。</li>
+<li><strong>生成 (Generation)</strong>：LLM 根据执行结果生成最终回复。</li>
+</ol>
+<h3 id="2-代码示例-伪代码"><a href="#2-代码示例-伪代码" class="headerlink" title="2. 代码示例 (伪代码)"></a>2. 代码示例 (伪代码)</h3><p>以 Semantic Kernel 风格为例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个 Skill</span>
+<span class="token keyword">class</span> <span class="token class-name">MathSkill</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@kernel_function</span><span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"Add two numbers"</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> a <span class="token operator">+</span> b
+
+<span class="token comment"># 注册 Skill</span>
+kernel<span class="token punctuation">.</span>import_plugin_from_object<span class="token punctuation">(</span>MathSkill<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Math"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 调用</span>
+result <span class="token operator">=</span> <span class="token keyword">await</span> kernel<span class="token punctuation">.</span>invoke_prompt<span class="token punctuation">(</span><span class="token string">"What is 5 plus 3?"</span><span class="token punctuation">)</span>
+<span class="token comment"># LLM 内部会自动决定调用 Math.add(5, 3)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-不同的命名体系"><a href="#3-不同的命名体系" class="headerlink" title="3. 不同的命名体系"></a>3. 不同的命名体系</h3><p>虽然概念一致，但各家术语略有不同，开发时需注意：</p>
+<ul>
+<li><strong>OpenAI</strong>: Function Calling &#x2F; Tools</li>
+<li><strong>Semantic Kernel</strong>: Skills (旧版) &#x2F; Plugins (新版)</li>
+<li><strong>LangChain</strong>: Tools</li>
+<li><strong>Anthropic</strong>: Tool Use</li>
+</ul>
+<h2 id="🔮-未来展望：MCP-Model-Context-Protocol"><a href="#🔮-未来展望：MCP-Model-Context-Protocol" class="headerlink" title="🔮 未来展望：MCP (Model Context Protocol)"></a>🔮 未来展望：MCP (Model Context Protocol)</h2><p>当前的痛点是 Skill 生态割裂，为一个模型写的 Tool 很难直接复用到另一个系统。</p>
+<p>Anthropic 最近提出的 <strong>MCP (Model Context Protocol)</strong> 试图解决这个问题。它定义了一种标准协议，让数据源和工具能够以统一的方式暴露给 AI。如果 MCP 成为行业标准，未来我们只需开发一次 Skill，就能在 Claude、ChatGPT 或本地 LLM 中从容使用，这将是 AI Skills 生态的一次巨大爆发。</p>
+<hr>
+<blockquote>
+<p><strong>总结</strong></p>
+<p>掌握 Skill 的设计与实现，是开发者构建原生 AI 应用（AI Native Apps）的必修课。它让 AI 落地从”聊聊而已”变成了”真抓实干”。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>架构设计</tag>
+        <tag>大模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>golang vender的使用</title>
+    <url>/2020/04/18/golang-vender/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们有个项目引入了各种包,每次部署的时候是不是都很烦<br>新人独白:天哪!这么多包下载到什么时候!要炸了~~~<br>别怕go自带的vendor帮你解决这个问题</p>
+<h2 id="老项目引入mod-vendor"><a href="#老项目引入mod-vendor" class="headerlink" title="老项目引入mod vendor"></a>老项目引入mod vendor</h2><p>还是我们的test项目<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ffe8d57c6ce1384e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>在我们的main.go文件引入gin框架的包<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9297aef34622dfa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引入gin包"><br>上面我只是做演示所以并没有真正去使用这个包<br>在项目test目录下执行go mod vendor<br><img src="https://upload-images.jianshu.io/upload_images/22774927-7ca86977e4d44621.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>现在我们的目录下就多了vendor目录及go.sum文件</p>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>vendor下面是我们依赖的包,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-00e353aa80206a99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vendor目录结构"><br>go.sum是导入包的信息<br><img src="https://upload-images.jianshu.io/upload_images/22774927-02ef6ee2d50467b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go sum内容"><br>这里我只截取了部分演示</p>
+<h2 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h2><p>好了,后面我们就可以把vendor和go.sum都添加进我们的代码仓库里面,再也不用担心每次都下载一大堆包了</p>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>vender</tag>
       </tags>
   </entry>
   <entry>
@@ -249,19 +483,17 @@
       </tags>
   </entry>
   <entry>
-    <title>golang vender的使用</title>
-    <url>/2020/04/18/golang-vender/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们有个项目引入了各种包,每次部署的时候是不是都很烦<br>新人独白:天哪!这么多包下载到什么时候!要炸了~~~<br>别怕go自带的vendor帮你解决这个问题</p>
-<h2 id="老项目引入mod-vendor"><a href="#老项目引入mod-vendor" class="headerlink" title="老项目引入mod vendor"></a>老项目引入mod vendor</h2><p>还是我们的test项目<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ffe8d57c6ce1384e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>在我们的main.go文件引入gin框架的包<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9297aef34622dfa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引入gin包"><br>上面我只是做演示所以并没有真正去使用这个包<br>在项目test目录下执行go mod vendor<br><img src="https://upload-images.jianshu.io/upload_images/22774927-7ca86977e4d44621.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>现在我们的目录下就多了vendor目录及go.sum文件</p>
-<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>vendor下面是我们依赖的包,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-00e353aa80206a99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vendor目录结构"><br>go.sum是导入包的信息<br><img src="https://upload-images.jianshu.io/upload_images/22774927-02ef6ee2d50467b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go sum内容"><br>这里我只截取了部分演示</p>
-<h2 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h2><p>好了,后面我们就可以把vendor和go.sum都添加进我们的代码仓库里面,再也不用担心每次都下载一大堆包了</p>
+    <title>老项目加入golang mod模式</title>
+    <url>/2020/04/18/old-add-golang-mod/</url>
+    <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
+<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
 ]]></content>
       <categories>
         <category>技术文章</category>
       </categories>
       <tags>
         <tag>golang</tag>
-        <tag>vender</tag>
       </tags>
   </entry>
   <entry>
@@ -427,20 +659,6 @@ uipro init <span class="token parameter variable">--ai</span> claude<span aria-h
       <tags>
         <tag>AI</tag>
         <tag>SKILL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>老项目加入golang mod模式</title>
-    <url>/2020/04/18/old-add-golang-mod/</url>
-    <content><![CDATA[<h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
-<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
       </tags>
   </entry>
   <entry>

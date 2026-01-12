@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <!-- <meta name="referrer" content="no-referrer"> -->
-        <meta name="keywords" content="php项目中使用composer, silver fox">
+        <meta name="keywords" content="AI,Claude Code,Anthropic,编程助手">
         <meta name="description" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                php项目中使用composer | silver fox
+                Claude Code - 重新定义 AI 编程助手 | silver fox
             </title>
             <link rel="icon" type="image/png"
                 href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/favicon.png">
@@ -290,13 +290,13 @@
 
         
 
-    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/7.jpg')">
+    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/21.jpg')">
         <div class="container" style="right: 0px;left: 0px;">
             <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="brand">
                         <h1 class="description center-align post-title">
-                            php项目中使用composer
+                            Claude Code - 重新定义 AI 编程助手
                         </h1>
                     </div>
                 </div>
@@ -414,8 +414,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/php/">
-                                <span class="chip bg-color">php</span>
+                            <a href="/tags/AI/">
+                                <span class="chip bg-color">AI</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                <span class="chip bg-color">开发工具</span>
                             </a>
                         
                     </div>
@@ -426,8 +430,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="post-category">
-                                技术文章
+                            <a href="/categories/AI/" class="post-category">
+                                AI
                             </a>
                         
                     </div>
@@ -439,21 +443,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-30
+                    2026-01-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-10-11
+                    2026-01-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    195
+                    1.2k
                 </div>
                 
 
@@ -470,44 +474,120 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
-<p>需已安装composer,未安装的请自行百度</p>
+                <blockquote>
+<p><strong>序言</strong><br>Claude Code 是 Anthropic 推出的革命性 AI 编程助手。它超越了传统的代码补全工具，成为一个能够理解整个代码库、自主规划和执行复杂任务的智能编程搭档。无论你是独立开发者还是团队成员，Claude Code 都能显著提升你的开发效率。</p>
 </blockquote>
-<h2 id="编写composer"><a href="#编写composer" class="headerlink" title="编写composer"></a>编写composer</h2><blockquote>
-<p>编写composer.json 引入monolog处理日志<br>这里由于我使用的php7.0x,所以引用的monolog-1.x版本的,版本2.x需要php7.2,按需选择即可</p>
-</blockquote>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-    <span class="token property">"require"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"monolog/monolog"</span><span class="token operator">:</span> <span class="token string">"1.*"</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token property">"repositories"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>保存composer.json文件<br>执行composer install<br>结果如下</p>
-</blockquote>
-<pre class="line-numbers language-none"><code class="language-none">Loading composer repositories with package information
-Updating dependencies (including require-dev)
-Package operations: 1 install, 0 updates, 0 removals
-  - Installing monolog&#x2F;monolog (1.25.3): Downloading (100%)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
-<p>编写index.php</p>
-</blockquote>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">require</span> <span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../vendor/autoload.php'</span><span class="token punctuation">;</span>
+<h2 id="🎯-什么是-Claude-Code？"><a href="#🎯-什么是-Claude-Code？" class="headerlink" title="🎯 什么是 Claude Code？"></a>🎯 什么是 Claude Code？</h2><p>Claude Code 于 2025 年 2 月首次发布，作为 Claude 3.7 Sonnet 的配套工具推出。它最初是一个基于终端的 AI 编程助手，但随着时间推移，它已经进化成为一个功能强大的多智能体开发平台。</p>
+<p>与传统的代码补全工具不同，Claude Code 具备 <strong>“智能搜索”(Agentic Search)</strong> 能力，能够理解和映射整个代码库，而不仅仅局限于单个文件的上下文。这意味着它可以：</p>
+<ul>
+<li>深入理解项目的整体架构</li>
+<li>跨文件进行代码分析和修改</li>
+<li>识别依赖关系和潜在问题</li>
+<li>提供更有针对性的建议和解决方案</li>
+</ul>
+<h2 id="📦-核心功能特性"><a href="#📦-核心功能特性" class="headerlink" title="📦 核心功能特性"></a>📦 核心功能特性</h2><h3 id="🤖-智能体能力-Agentic-Capabilities"><a href="#🤖-智能体能力-Agentic-Capabilities" class="headerlink" title="🤖 智能体能力 (Agentic Capabilities)"></a>🤖 智能体能力 (Agentic Capabilities)</h3><p>Claude Code 具备高度的自主性，能够以最少的人工干预完成复杂任务：</p>
+<ul>
+<li><strong>自主规划与执行</strong>：能够独立规划、执行和优化代码</li>
+<li><strong>多步骤流程管理</strong>：自动处理版本控制、API 集成等多步骤任务</li>
+<li><strong>架构改进建议</strong>：主动提出项目架构的优化方案</li>
+</ul>
+<h3 id="🧑‍🤝‍🧑-子智能体-Subagents"><a href="#🧑‍🤝‍🧑-子智能体-Subagents" class="headerlink" title="🧑‍🤝‍🧑 子智能体 (Subagents)"></a>🧑‍🤝‍🧑 子智能体 (Subagents)</h3><p>2025 年 7 月推出的子智能体功能，让你可以创建专门处理特定任务的 AI 代理：</p>
+<ul>
+<li>每个子智能体拥有独立的指令、上下文和工具权限</li>
+<li>相当于组建了一个 AI 编程团队</li>
+<li>可以并行处理不同类型的开发任务</li>
+</ul>
+<h3 id="🔌-Hooks-与插件系统"><a href="#🔌-Hooks-与插件系统" class="headerlink" title="🔌 Hooks 与插件系统"></a>🔌 Hooks 与插件系统</h3><p>Hooks 允许在预定义的时间点执行 shell 命令，实现工作流程自动化：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 示例：在提交代码前自动运行测试</span>
+claude hook <span class="token function">add</span> <span class="token parameter variable">--event</span> before_commit <span class="token parameter variable">--command</span> <span class="token string">"npm test"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<p>插件系统则使功能可以在不同项目间共享复用。</p>
+<h3 id="🧠-扩展思考模式-Extended-Thinking-Mode"><a href="#🧠-扩展思考模式-Extended-Thinking-Mode" class="headerlink" title="🧠 扩展思考模式 (Extended Thinking Mode)"></a>🧠 扩展思考模式 (Extended Thinking Mode)</h3><p>对于复杂问题，Claude Code 可以分配更多计算资源进行深度推理：</p>
+<ul>
+<li>逐步分析问题</li>
+<li>权衡速度与准确性</li>
+<li>产出更高质量的解决方案</li>
+</ul>
+<h3 id="📚-超大上下文窗口"><a href="#📚-超大上下文窗口" class="headerlink" title="📚 超大上下文窗口"></a>📚 超大上下文窗口</h3><p>Claude Sonnet 4 支持高达 <strong>100 万 tokens</strong> 的上下文窗口：</p>
+<ul>
+<li>能够分析整个大型代码库</li>
+<li>支持大规模重构</li>
+<li>进行全面的代码审计</li>
+</ul>
+<h2 id="⚙️-系统要求与安装"><a href="#⚙️-系统要求与安装" class="headerlink" title="⚙️ 系统要求与安装"></a>⚙️ 系统要求与安装</h2><h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><ul>
+<li><strong>操作系统</strong>：macOS、Ubuntu&#x2F;Debian、Windows (通过 WSL)</li>
+<li><strong>内存</strong>：至少 4GB RAM</li>
+<li><strong>网络</strong>：需要稳定的互联网连接</li>
+</ul>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
+<li><p><strong>通过 npm 安装</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> @anthropic-ai/claude-code<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>验证安装</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">claude <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>初始化项目</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> your-project
+claude init<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<h2 id="🚀-IDE-集成"><a href="#🚀-IDE-集成" class="headerlink" title="🚀 IDE 集成"></a>🚀 IDE 集成</h2><p>Claude Code 与主流 IDE 无缝集成：</p>
+<ul>
+<li><strong>VS Code</strong>：通过官方扩展直接在编辑器中使用</li>
+<li><strong>JetBrains 全家桶</strong>：支持 IntelliJ IDEA、PyCharm、WebStorm 等</li>
+<li><strong>终端</strong>：原生终端体验，适合命令行爱好者</li>
+<li><strong>Web 版</strong>：2025 年 10 月推出的浏览器版本，随时随地编程</li>
+</ul>
+<h2 id="📝-CLAUDE-md-项目配置"><a href="#📝-CLAUDE-md-项目配置" class="headerlink" title="📝 CLAUDE.md 项目配置"></a>📝 CLAUDE.md 项目配置</h2><p>通过在项目根目录创建 <code>CLAUDE.md</code> 文件，可以为 Claude Code 提供项目特定的上下文：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 项目概述</span>
+这是一个基于 React 的电商平台前端项目。
 
-<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Logger</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Handler<span class="token punctuation">\</span>StreamHandler</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Handler<span class="token punctuation">\</span>FirePHPHandler</span><span class="token punctuation">;</span>
+<span class="token title important"><span class="token punctuation">##</span> 常用命令</span>
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`npm run dev`</span> - 启动开发服务器
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`npm run test`</span> - 运行测试
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`npm run build`</span> - 构建生产版本
 
-<span class="token variable">$logger</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Logger</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'test_logger'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token title important"><span class="token punctuation">##</span> 代码规范</span>
+<span class="token list punctuation">-</span> 使用 TypeScript 编写所有新代码
+<span class="token list punctuation">-</span> 组件使用函数式写法配合 Hooks
+<span class="token list punctuation">-</span> 样式使用 Tailwind CSS
 
-<span class="token variable">$logger</span><span class="token operator">-></span><span class="token function">pushHandler</span><span class="token punctuation">(</span>
-    <span class="token keyword">new</span> <span class="token class-name">StreamHandler</span><span class="token punctuation">(</span><span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../log/test.log'</span><span class="token punctuation">,</span> <span class="token class-name static-context">Logger</span><span class="token operator">::</span><span class="token constant">DEBUG</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$logger</span><span class="token operator">-></span><span class="token function">pushHandler</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FirePHPHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$logger</span><span class="token operator">-></span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hello log!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
-<p>大家可以看一看自己的日志是不是记下来了呢<br>有其他问题记得联系我</p>
+<span class="token title important"><span class="token punctuation">##</span> 核心文件</span>
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`src/components/`</span> - UI 组件
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`src/hooks/`</span> - 自定义 Hooks
+<span class="token list punctuation">-</span> <span class="token code-snippet code keyword">`src/api/`</span> - API 接口层<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="🔗-GitHub-深度集成"><a href="#🔗-GitHub-深度集成" class="headerlink" title="🔗 GitHub 深度集成"></a>🔗 GitHub 深度集成</h2><p>Claude Code 提供强大的 GitHub 工作流支持：</p>
+<ul>
+<li><strong>自动创建 Pull Request</strong></li>
+<li><strong>修复代码审查意见</strong></li>
+<li><strong>Issue 分类与处理</strong></li>
+<li><strong>提交代码并附带智能 commit message</strong></li>
+</ul>
+<h2 id="💡-实际使用场景"><a href="#💡-实际使用场景" class="headerlink" title="💡 实际使用场景"></a>💡 实际使用场景</h2><h3 id="场景一：代码重构"><a href="#场景一：代码重构" class="headerlink" title="场景一：代码重构"></a>场景一：代码重构</h3><pre class="line-numbers language-none"><code class="language-none">&gt; 帮我将 src&#x2F;utils&#x2F;helpers.js 中的函数拆分到独立模块，
+&gt; 并更新所有引用这些函数的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Claude Code 会自动：</p>
+<ol>
+<li>分析函数依赖关系</li>
+<li>创建新的模块文件</li>
+<li>移动相关代码</li>
+<li>更新所有导入语句</li>
+<li>验证修改后的代码可以正常运行</li>
+</ol>
+<h3 id="场景二：测试驱动开发"><a href="#场景二：测试驱动开发" class="headerlink" title="场景二：测试驱动开发"></a>场景二：测试驱动开发</h3><pre class="line-numbers language-none"><code class="language-none">&gt; 为 UserService 类编写单元测试，覆盖所有边界情况<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Claude Code 会分析类的方法签名和业务逻辑，生成全面的测试用例。</p>
+<h3 id="场景三：代码审查"><a href="#场景三：代码审查" class="headerlink" title="场景三：代码审查"></a>场景三：代码审查</h3><pre class="line-numbers language-none"><code class="language-none">&gt; 审查最近 5 次提交，找出潜在的安全问题和性能瓶颈<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="✨-核心价值"><a href="#✨-核心价值" class="headerlink" title="✨ 核心价值"></a>✨ 核心价值</h2><ul>
+<li><strong>效率提升</strong>：减少重复性工作，让开发者专注于创造性任务</li>
+<li><strong>质量保障</strong>：AI 辅助的代码审查和测试生成</li>
+<li><strong>知识共享</strong>：新团队成员可以通过 Claude Code 快速理解项目</li>
+<li><strong>持续学习</strong>：在工作中学习最佳实践和新技术</li>
+</ul>
+<hr>
+<blockquote>
+<p>🔗 <strong>官方文档</strong>：<a target="_blank" rel="noopener" href="https://docs.anthropic.com/claude-code">docs.anthropic.com&#x2F;claude-code</a></p>
 </blockquote>
 
             </div>
@@ -534,7 +614,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://silfoxs.github.io/2020/04/30/php-use-composer/">https://silfoxs.github.io/2020/04/30/php-use-composer/</a>
+                    <a href="https://silfoxs.github.io/2026/01/12/claude-code/">https://silfoxs.github.io/2026/01/12/claude-code/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,8 +652,12 @@ Package operations: 1 install, 0 updates, 0 removals
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/php/">
-                                    <span class="chip bg-color">php</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">开发工具</span>
                                 </a>
                             
                         </div>
@@ -648,26 +732,26 @@ Package operations: 1 install, 0 updates, 0 removals
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/08/pre-commit-mark/">
+                <a href="/2026/01/12/ai-skills/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/15.jpg" class="responsive-img" alt="pre-commit 使用备忘">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/23.jpg" class="responsive-img" alt="深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力">
                         
-                        <span class="card-title">pre-commit 使用备忘</span>
+                        <span class="card-title">深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/15.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/23.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    技术文章
+                                    AI
                                 </a>
                             
                         </div>
@@ -676,7 +760,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            pre-commit 使用备忘
+                            在 AI Agent 时代，Skill（技能）是链接大模型与数字世界的桥梁。本文深入探讨 AI Skills 的概念、核心场景以及实现方式，揭示大模型如何从"对话者"进化为"行动者"。
                         
                     </div>
 
@@ -684,7 +768,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2021-01-08
+                            2026-01-12
                         </span>
                     </div>
 
@@ -692,8 +776,16 @@ Package operations: 1 install, 0 updates, 0 removals
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/pre-commit/">
-                                    <span class="chip bg-color">pre-commit</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                                    <span class="chip bg-color">架构设计</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">大模型</span>
                                 </a>
                             
                         </div>
@@ -708,26 +800,26 @@ Package operations: 1 install, 0 updates, 0 removals
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/21/golang-web-server/">
+                <a href="/2026/01/12/ui-ux-pro-max/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/14.jpg" class="responsive-img" alt="golang实现一个简单的webserver">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/8.jpg" class="responsive-img" alt="UI UX Pro Max">
                         
-                        <span class="card-title">golang实现一个简单的webserver</span>
+                        <span class="card-title">UI UX Pro Max</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/14.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.9/medias/featureimages/8.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    技术文章
+                                    AI
                                 </a>
                             
                         </div>
@@ -736,7 +828,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            介绍怎么用golang开发一个webserver服务
+                            UI UX Pro Max 是一个面向AI编程助手（如 Claude Code、Cursor、Windsurf 等）的设计智能数据库与技能，它将这些助手转变为具备专业UI/UX设计能力的“设计搭档”，帮助开发者快速生成美观、统一且符合行业最佳实践的用户界面。
                         
                     </div>
 
@@ -744,7 +836,7 @@ Package operations: 1 install, 0 updates, 0 removals
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2020-04-21
+                            2026-01-12
                         </span>
                     </div>
 
@@ -752,8 +844,12 @@ Package operations: 1 install, 0 updates, 0 removals
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/SKILL/">
+                                    <span class="chip bg-color">SKILL</span>
                                 </a>
                             
                         </div>

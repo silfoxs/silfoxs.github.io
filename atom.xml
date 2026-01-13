@@ -1,20 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>silver fox</title>
+  <title>silfoxs</title>
   
   <subtitle>刀斩肉身，心斩灵魂，剑是不会迟疑的</subtitle>
   <link href="https://silfoxs.github.io/atom.xml" rel="self"/>
   
   <link href="https://silfoxs.github.io/"/>
-  <updated>2026-01-12T10:53:22.049Z</updated>
+  <updated>2026-01-13T04:03:48.474Z</updated>
   <id>https://silfoxs.github.io/</id>
   
   <author>
-    <name>silver fox</name>
+    <name>silfoxs</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SkillsMP：AI Agent 技能市场介绍与使用指南</title>
+    <link href="https://silfoxs.github.io/2026/01/13/skillsmp-guide/"/>
+    <id>https://silfoxs.github.io/2026/01/13/skillsmp-guide/</id>
+    <published>2026-01-13T04:05:00.000Z</published>
+    <updated>2026-01-13T04:03:48.474Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;🚀-核心定位：AI-时代的“技能应用商店”&quot;&gt;&lt;a href=&quot;#🚀-核心定位：AI-时代的“技能应用商店”&quot; class=&quot;headerlink&quot; title=&quot;🚀 核心定位：AI 时代的“技能应用商店”&quot;&gt;&lt;/a&gt;🚀 核心定位：AI</summary>
+        
+      
+    
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/categories/AI/"/>
+    
+    <category term="Tools" scheme="https://silfoxs.github.io/categories/AI/Tools/"/>
+    
+    
+    <category term="Agent Skills" scheme="https://silfoxs.github.io/tags/Agent-Skills/"/>
+    
+    <category term="SkillsMP" scheme="https://silfoxs.github.io/tags/SkillsMP/"/>
+    
+    <category term="MCP" scheme="https://silfoxs.github.io/tags/MCP/"/>
+    
+    <category term="Claude" scheme="https://silfoxs.github.io/tags/Claude/"/>
+    
+  </entry>
   
   <entry>
     <title>深入理解 AI Skills：赋予大模型&quot;行动&quot;的能力</title>

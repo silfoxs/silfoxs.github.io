@@ -5,8 +5,8 @@
     <head>
         <meta charset="utf-8">
         <!-- <meta name="referrer" content="no-referrer"> -->
-        <meta name="keywords" content="老项目加入golang mod模式, 编程, 技术, AI, Web, 前端, 后端, hexo, blog">
-        <meta name="description" content="golang module介绍">
+        <meta name="keywords" content="SkillsMP：AI Agent 技能市场介绍与使用指南, 编程, 技术, AI, Web, 前端, 后端, hexo, blog">
+        <meta name="description" content="SkillsMP 是一个专门聚合 AI Agent 技能的&#34;应用商店&#34;，本文为您详细介绍它的核心定位、功能优势及使用指南，助您快速掌握这一高效工具。">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
 
 
             <title>
-                老项目加入golang mod模式 | silfoxs
+                SkillsMP：AI Agent 技能市场介绍与使用指南 | silfoxs
             </title>
             <link rel="icon" type="image/png"
                 href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/favicon.png">
@@ -290,13 +290,13 @@
 
         
 
-    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/23.jpg')">
+    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/6.jpg')">
         <div class="container" style="right: 0px;left: 0px;">
             <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="brand">
                         <h1 class="description center-align post-title">
-                            老项目加入golang mod模式
+                            SkillsMP：AI Agent 技能市场介绍与使用指南
                         </h1>
                     </div>
                 </div>
@@ -414,8 +414,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/golang/">
-                                <span class="chip bg-color">golang</span>
+                            <a href="/tags/Agent-Skills/">
+                                <span class="chip bg-color">Agent Skills</span>
+                            </a>
+                        
+                            <a href="/tags/SkillsMP/">
+                                <span class="chip bg-color">SkillsMP</span>
+                            </a>
+                        
+                            <a href="/tags/MCP/">
+                                <span class="chip bg-color">MCP</span>
+                            </a>
+                        
+                            <a href="/tags/Claude/">
+                                <span class="chip bg-color">Claude</span>
                             </a>
                         
                     </div>
@@ -426,8 +438,12 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="post-category">
-                                技术文章
+                            <a href="/categories/AI/" class="post-category">
+                                AI
+                            </a>
+                        
+                            <a href="/categories/AI/Tools/" class="post-category">
+                                Tools
                             </a>
                         
                     </div>
@@ -439,21 +455,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-18
+                    2026-01-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-10-11
+                    2026-01-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    120
+                    1.3k
                 </div>
                 
 
@@ -470,9 +486,62 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="老项目如何迁移至mod"><a href="#老项目如何迁移至mod" class="headerlink" title="老项目如何迁移至mod"></a>老项目如何迁移至mod</h2><p>现在我们有一个老项目test,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-c978a805c84d703e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>很显然这不是一个mod项目,下面我们将演示如何将它转变为mod</p>
-<h2 id="初始化mod"><a href="#初始化mod" class="headerlink" title="初始化mod"></a>初始化mod</h2><p>在我的项目test目录下执行go mod init test (注意:test改成你自己的项目名称即可)<br><img src="https://upload-images.jianshu.io/upload_images/22774927-037a99896a1277e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化mod"><br>如上图,我们的项目目录下就会生成go.mod文件,内容如下</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/22774927-1ced8fa28b5e52e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go mod内容"><br>现在我们就将项目加入mod模式了</p>
+                <h2 id="🚀-核心定位：AI-时代的“技能应用商店”"><a href="#🚀-核心定位：AI-时代的“技能应用商店”" class="headerlink" title="🚀 核心定位：AI 时代的“技能应用商店”"></a>🚀 核心定位：AI 时代的“技能应用商店”</h2><p><strong>SkillsMP</strong> 是一个专门聚合、索引和展示 AI Agent（智能体）技能的第三方市场平台。</p>
+<p>其<strong>核心价值</strong>在于，它解决了开发者从海量 GitHub 仓库中手动寻找、筛选合适技能的难题，将这些分散的、基于 <code>SKILL.md</code> 开放标准的技能集中起来，提供了一个可搜索、可分类、可一键安装的入口。</p>
+<p>截至 2026 年 1 月，该平台已收录了来自开源社区的超过 <strong>58,925</strong> 个技能，覆盖开发、数据分析、商业、内容创作等数十个类别。</p>
+<h2 id="🧩-什么是-Agent-Skills？"><a href="#🧩-什么是-Agent-Skills？" class="headerlink" title="🧩 什么是 Agent Skills？"></a>🧩 什么是 Agent Skills？</h2><p><strong>Agent Skills</strong> 是一种由 Anthropic 推出的模块化能力封装系统。它将特定的工作流程、专业知识和操作指令封装成一个可重用的“技能包”，使得 Claude 等 AI 助手能够以标准化、可重复的方式执行复杂任务。其核心是一个遵循特定结构的 <code>SKILL.md</code> 文件，并可包含脚本、模板等资源。</p>
+<blockquote>
+<p><strong>💡 里程碑</strong></p>
+<p>在 2025 年 12 月，Agent Skills 已被推行为开放标准，并被 <strong>Claude Code</strong>、<strong>OpenAI Codex CLI</strong> 等多种工具链采纳，这意味着其生态正在迅速统一和扩大。</p>
+</blockquote>
+<p>Skills 的价值在于将“一次性的提示词”转化为“可复用、可验证的工作流资产”，极大地提升了 AI 编程的落地效率和可控性。</p>
+<h2 id="🌟-SkillsMP-主要功能与优势"><a href="#🌟-SkillsMP-主要功能与优势" class="headerlink" title="🌟 SkillsMP 主要功能与优势"></a>🌟 SkillsMP 主要功能与优势</h2><h3 id="1-智能分类与海量技能库"><a href="#1-智能分类与海量技能库" class="headerlink" title="1. 智能分类与海量技能库"></a>1. 智能分类与海量技能库</h3><p>网站将技能按用途分为工具、开发、数据与 AI、商业、DevOps 等十几个大类，方便用户按领域浏览。</p>
+<h3 id="2-AI-语义搜索"><a href="#2-AI-语义搜索" class="headerlink" title="2. AI 语义搜索"></a>2. AI 语义搜索</h3><p>用户不仅可以使用关键词，还可以用自然语言描述需求（例如“帮我做渗透测试的技能”）进行搜索，系统能进行智能匹配。</p>
+<h3 id="3-技能质量筛选"><a href="#3-技能质量筛选" class="headerlink" title="3. 技能质量筛选"></a>3. 技能质量筛选</h3><p>平台会展示每个技能的 GitHub Star 数、最后更新时间等信息，帮助用户判断技能的活跃度和质量。平台本身也会过滤掉质量过低（如少于 2 星）的仓库。</p>
+<h3 id="4-一键安装与开放标准"><a href="#4-一键安装与开放标准" class="headerlink" title="4. 一键安装与开放标准"></a>4. 一键安装与开放标准</h3><p>所有技能均遵循开源的 <code>SKILL.md</code> 标准。</p>
+<ul>
+<li>对于提供了 <code>marketplace.json</code> 文件的技能，用户可以在 Claude Code 等支持的工具中通过一条命令（如 <code>/plugin install</code>）直接安装，极大简化了集成步骤。</li>
+<li>同时也支持下载技能 ZIP 包进行手动安装。</li>
+</ul>
+<h3 id="5-动态加载，节省上下文"><a href="#5-动态加载，节省上下文" class="headerlink" title="5. 动态加载，节省上下文"></a>5. 动态加载，节省上下文</h3><p>与将长篇指令塞入系统提示不同，Skills 采用“按需加载”模式。AI 只在检测到相关任务时，才调用对应技能的详细指令，这能有效节省宝贵的上下文窗口（Context Window）。</p>
+<h2 id="📖-如何使用-SkillsMP？"><a href="#📖-如何使用-SkillsMP？" class="headerlink" title="📖 如何使用 SkillsMP？"></a>📖 如何使用 SkillsMP？</h2><p>使用流程可以概括为“探索、安装、调用”三步。</p>
+<h3 id="第一步：探索与发现技能"><a href="#第一步：探索与发现技能" class="headerlink" title="第一步：探索与发现技能"></a>第一步：探索与发现技能</h3><ol>
+<li>访问官网：<strong><a target="_blank" rel="noopener" href="https://skillsmp.com/">https://skillsmp.com</a></strong></li>
+<li>通过首页的分类导航或顶部的搜索框（支持 AI 语义搜索）寻找你需要的技能。<ul>
+<li><em>例如：搜索“前端设计”、“PDF 转 Markdown”、“YouTube 字幕转写”等。</em></li>
+</ul>
+</li>
+<li>点击进入技能详情页，查看其描述、作者、更新时间、所需工具等信息。</li>
+</ol>
+<h3 id="第二步：安装技能"><a href="#第二步：安装技能" class="headerlink" title="第二步：安装技能"></a>第二步：安装技能</h3><p>SkillsMP 上的技能主要兼容 <strong>Claude Code</strong> 和 <strong>OpenAI Codex CLI</strong>。不管是哪种工具，通常都有两种安装方式：</p>
+<ul>
+<li><p><strong>一键安装（推荐）</strong>：<br>如果技能卡片上标有“Marketplace”标识，意味着它包含 <code>marketplace.json</code>。你可以在 Claude Code 中直接运行类似以下命令进行安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/plugin marketplace <span class="token function">add</span> <span class="token punctuation">[</span>作者名/技能名<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><em>(具体命令以工具最新文档为准)</em></p>
+</li>
+<li><p><strong>手动安装</strong>：</p>
+<ol>
+<li>在技能详情页点击“Download”或类似按钮，下载技能 ZIP 包。</li>
+<li>解压并放入指定目录：<ul>
+<li><strong>Claude Code</strong>：放入 <code>~/.claude/skills/</code>（用户级）或项目目录下的 <code>.claude/skills/</code> 文件夹中。</li>
+<li><strong>OpenAI Codex CLI</strong>：放入 <code>~/.codex/skills/</code> 目录。</li>
+</ul>
+</li>
+</ol>
+<p>安装后，AI 助手会自动发现并加载这些技能。</p>
+</li>
+</ul>
+<h3 id="第三步：调用技能"><a href="#第三步：调用技能" class="headerlink" title="第三步：调用技能"></a>第三步：调用技能</h3><p>安装完成后，<strong>无需特殊命令激活</strong>。</p>
+<p>当你与 Claude Code 等助手对话时，如果描述的任务与某个已安装技能匹配，AI 会自动识别并调用该技能来执行任务。</p>
+<blockquote>
+<p><em>示例：安装“youtube-transcribe-skill”后，直接对 AI 说“用这个技能转写某个视频的字幕”，AI 就会运用该技能的工作流来处理。</em></p>
+</blockquote>
+<h2 id="🛡️-注意事项与最佳实践"><a href="#🛡️-注意事项与最佳实践" class="headerlink" title="🛡️ 注意事项与最佳实践"></a>🛡️ 注意事项与最佳实践</h2><ul>
+<li><strong>审查技能代码</strong>：SkillsMP 是一个聚合平台，技能来源于公开的 GitHub 仓库。虽然平台有基础过滤，但使用前建议用户自行审查代码，确保安全性和有效性，这如同使用任何开源软件一样。</li>
+<li><strong>关注技能状态</strong>：优先选择 Star 数较多、最近有更新的技能，这类技能通常更可靠、维护得更好。</li>
+<li><strong>技能是互补的</strong>：你可以同时安装多个技能，AI 会智能地组合使用它们。例如，可以结合代码审查技能和 Git 自动化技能来构建完整的工作流。</li>
+<li><strong>创建自己的技能</strong>：如果你有成熟的工作流，可以参考官方 <code>skill-creator</code> 技能来创建和分享自己的技能到 GitHub，从而丰富整个生态。</li>
+</ul>
 
             </div>
             <hr/>
@@ -498,7 +567,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://silfoxs.github.io/2020/04/18/old-add-golang-mod/">https://silfoxs.github.io/2020/04/18/old-add-golang-mod/</a>
+                    <a href="https://silfoxs.github.io/2026/01/13/skillsmp-guide/">https://silfoxs.github.io/2026/01/13/skillsmp-guide/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,8 +605,20 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/Agent-Skills/">
+                                    <span class="chip bg-color">Agent Skills</span>
+                                </a>
+                            
+                                <a href="/tags/SkillsMP/">
+                                    <span class="chip bg-color">SkillsMP</span>
+                                </a>
+                            
+                                <a href="/tags/MCP/">
+                                    <span class="chip bg-color">MCP</span>
+                                </a>
+                            
+                                <a href="/tags/Claude/">
+                                    <span class="chip bg-color">Claude</span>
                                 </a>
                             
                         </div>
@@ -608,30 +689,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/04/19/vscode-ext-info/">
+                <a href="/2026/01/13/skillsmp-guide/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/18.jpg" class="responsive-img" alt="vscode必备扩展介绍">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/6.jpg" class="responsive-img" alt="SkillsMP：AI Agent 技能市场介绍与使用指南">
                         
-                        <span class="card-title">vscode必备扩展介绍</span>
+                        <span class="card-title">SkillsMP：AI Agent 技能市场介绍与使用指南</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/18.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/6.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    开发工具
+                                    AI
+                                </a>
+                            
+                                <a href="/categories/AI/Tools/" class="category-badge">
+                                    <i class="fas fa-bookmark fa-fw"></i>
+                                    Tools
                                 </a>
                             
                         </div>
@@ -640,7 +727,7 @@
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            vscode必备扩展介绍
+                            SkillsMP 是一个专门聚合 AI Agent 技能的"应用商店"，本文为您详细介绍它的核心定位、功能优势及使用指南，助您快速掌握这一高效工具。
                         
                     </div>
 
@@ -648,7 +735,7 @@
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2020-04-19
+                            2026-01-13
                         </span>
                     </div>
 
@@ -656,8 +743,20 @@
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/vscode/">
-                                    <span class="chip bg-color">vscode</span>
+                                <a href="/tags/Agent-Skills/">
+                                    <span class="chip bg-color">Agent Skills</span>
+                                </a>
+                            
+                                <a href="/tags/SkillsMP/">
+                                    <span class="chip bg-color">SkillsMP</span>
+                                </a>
+                            
+                                <a href="/tags/MCP/">
+                                    <span class="chip bg-color">MCP</span>
+                                </a>
+                            
+                                <a href="/tags/Claude/">
+                                    <span class="chip bg-color">Claude</span>
                                 </a>
                             
                         </div>
@@ -672,26 +771,26 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/18/golang-vender/">
+                <a href="/2026/01/12/ai-skills/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/15.jpg" class="responsive-img" alt="golang vender的使用">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/23.jpg" class="responsive-img" alt="深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力">
                         
-                        <span class="card-title">golang vender的使用</span>
+                        <span class="card-title">深入理解 AI Skills：赋予大模型&#34;行动&#34;的能力</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/15.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.10/medias/featureimages/23.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    技术文章
+                                    AI
                                 </a>
                             
                         </div>
@@ -700,7 +799,7 @@
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            go自带的vendor使用教程
+                            在 AI Agent 时代，Skill（技能）是链接大模型与数字世界的桥梁。本文深入探讨 AI Skills 的概念、核心场景以及实现方式，揭示大模型如何从"对话者"进化为"行动者"。
                         
                     </div>
 
@@ -708,7 +807,7 @@
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2020-04-18
+                            2026-01-12
                         </span>
                     </div>
 
@@ -716,12 +815,16 @@
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
                                 </a>
                             
-                                <a href="/tags/vender/">
-                                    <span class="chip bg-color">vender</span>
+                                <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                                    <span class="chip bg-color">架构设计</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">大模型</span>
                                 </a>
                             
                         </div>

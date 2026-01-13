@@ -5,8 +5,8 @@
     <head>
         <meta charset="utf-8">
         <!-- <meta name="referrer" content="no-referrer"> -->
-        <meta name="keywords" content="golang,冒泡,算法">
-        <meta name="description" content="闲来无聊手撸一个冒泡玩玩">
+        <meta name="keywords" content="Maple Mono,编程字体,等宽字体,Nerd Font">
+        <meta name="description" content="Maple Mono 是一款开源等宽字体，专为代码编辑和终端设计，支持连字、多种字重以及 Nerd Font 图标和中文字符，是开发者的理想选择。">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
 
 
             <title>
-                golang实现一个冒泡算法 | silfoxs
+                Maple Mono - 开源等宽编程字体的最佳选择 | silfoxs
             </title>
             <link rel="icon" type="image/png"
                 href="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/favicon.png">
@@ -290,13 +290,13 @@
 
         
 
-    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/23.jpg')">
+    <div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/11.jpg')">
         <div class="container" style="right: 0px;left: 0px;">
             <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="brand">
                         <h1 class="description center-align post-title">
-                            golang实现一个冒泡算法
+                            Maple Mono - 开源等宽编程字体的最佳选择
                         </h1>
                     </div>
                 </div>
@@ -414,12 +414,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/golang/">
-                                <span class="chip bg-color">golang</span>
+                            <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                <span class="chip bg-color">开发工具</span>
                             </a>
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/%E5%AD%97%E4%BD%93/">
+                                <span class="chip bg-color">字体</span>
                             </a>
                         
                     </div>
@@ -430,8 +430,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="post-category">
-                                技术文章
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                工具
                             </a>
                         
                     </div>
@@ -443,21 +443,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-20
+                    2026-01-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-10-11
+                    2026-01-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    74
+                    647
                 </div>
                 
 
@@ -475,27 +475,100 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>序言<br>闲来无聊手撸一个冒泡玩玩</p>
+<p><strong>序言</strong><br>Maple Mono 是一款开源的等宽字体，专为代码编辑和终端设计。它支持连字（Ligatures）、多种字重以及丰富的字符集（包括 Nerd Font 图标和中文字符），是开发者和技术爱好者的理想选择。</p>
 </blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+<h2 id="🎨-在线自定义构建（推荐尝鲜）"><a href="#🎨-在线自定义构建（推荐尝鲜）" class="headerlink" title="🎨 在线自定义构建（推荐尝鲜）"></a>🎨 在线自定义构建（推荐尝鲜）</h2><p>如果你想快速体验并自定义字体特性（如连字、字重等），可以直接在浏览器中构建：</p>
+<ol>
+<li>访问 <a target="_blank" rel="noopener" href="https://font.subframe.com/maple-mono">特性测试页面</a></li>
+<li>选择所需特性（如连字、图标集等）</li>
+<li>点击页面左下角的 <strong>构建按钮</strong> 生成字体文件</li>
+</ol>
+<h2 id="📦-各系统安装方法"><a href="#📦-各系统安装方法" class="headerlink" title="📦 各系统安装方法"></a>📦 各系统安装方法</h2><h3 id="Windows（通过-Scoop）"><a href="#Windows（通过-Scoop）" class="headerlink" title="Windows（通过 Scoop）"></a>Windows（通过 Scoop）</h3><p>首先添加 Nerd Fonts 仓库：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scoop bucket <span class="token function">add</span> nerd-fonts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+<p>然后安装字体（可选以下版本）：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 基础版（TTF）</span>
+scoop <span class="token function">install</span> Maple-Mono
 
-<span class="token keyword">var</span> arr  <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">&#123;</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">78</span><span class="token punctuation">,</span><span class="token number">56</span><span class="token punctuation">,</span><span class="token number">98</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">&#125;</span>
+<span class="token comment"># Nerd Font 版（含图标）</span>
+scoop <span class="token function">install</span> Maple-Mono-NF
 
-<span class="token comment">//冒泡</span>
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">&#123;</span>
-	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">&#123;</span>
-		<span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">&#123;</span>
-			<span class="token keyword">if</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
-				tmp <span class="token operator">:=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-				arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-				arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
-			<span class="token punctuation">&#125;</span>
-		<span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># Nerd Font 中文版</span>
+scoop <span class="token function">install</span> Maple-Mono-NF-CN<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="macOS-Linux（通过-Homebrew）"><a href="#macOS-Linux（通过-Homebrew）" class="headerlink" title="macOS &#x2F; Linux（通过 Homebrew）"></a>macOS &#x2F; Linux（通过 Homebrew）</h3><p>使用 <code>--cask</code> 参数安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 基础版</span>
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> font-maple-mono
+
+<span class="token comment"># Nerd Font 版</span>
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> font-maple-mono-nf
+
+<span class="token comment"># 中文版（带连字）</span>
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> font-maple-mono-nf-cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><strong>💡 提示</strong>：Homebrew 还提供其他变体（如常规字重、无连字版本），可在官方文档中查看。</p>
+</blockquote>
+<h3 id="Arch-Linux（通过-ArchLinuxCN-仓库）"><a href="#Arch-Linux（通过-ArchLinuxCN-仓库）" class="headerlink" title="Arch Linux（通过 ArchLinuxCN 仓库）"></a>Arch Linux（通过 ArchLinuxCN 仓库）</h3><p>推荐使用 ArchLinuxCN 仓库（可单独下载包）：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 基础连字版（无微调）</span>
+paru <span class="token parameter variable">-S</span> ttf-maplemono
+
+<span class="token comment"># Nerd Font 版（无微调）</span>
+paru <span class="token parameter variable">-S</span> ttf-maplemono-nf-unhinted
+
+<span class="token comment"># Nerd Font 中文版（无微调）</span>
+paru <span class="token parameter variable">-S</span> ttf-maplemono-nf-cn-unhinted<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><strong>⚠️ 注意</strong>：AUR 源需下载完整包组，包名以 <code>maplemono-</code> 开头，不推荐使用。</p>
+</blockquote>
+<h3 id="NixOS-Nixpkgs（Linux-或-macOS）"><a href="#NixOS-Nixpkgs（Linux-或-macOS）" class="headerlink" title="NixOS &#x2F; Nixpkgs（Linux 或 macOS）"></a>NixOS &#x2F; Nixpkgs（Linux 或 macOS）</h3><p>在系统配置中添加字体包：</p>
+<pre class="line-numbers language-nix" data-language="nix"><code class="language-nix">fonts<span class="token punctuation">.</span>packages <span class="token operator">=</span> <span class="token keyword">with</span> pkgs<span class="token punctuation">;</span> <span class="token punctuation">[</span>
+  maple<span class="token operator">-</span>mono<span class="token punctuation">.</span>truetype       <span class="token comment"># 连字版（TTF，无微调）</span>
+  maple<span class="token operator">-</span>mono<span class="token punctuation">.</span>NF<span class="token operator">-</span>unhinted    <span class="token comment"># Nerd Font 版</span>
+  maple<span class="token operator">-</span>mono<span class="token punctuation">.</span>NF<span class="token operator">-</span>CN<span class="token operator">-</span>unhinted <span class="token comment"># Nerd Font 中文版</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>更多变体（如无连字版、可变字重版）可在官方文档中查看。</p>
+<h2 id="📋-字体版本说明"><a href="#📋-字体版本说明" class="headerlink" title="📋 字体版本说明"></a>📋 字体版本说明</h2><table>
+<thead>
+<tr>
+<th>版本标识</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Ligature（连字）</strong></td>
+<td>将代码符号（如 <code>=&gt;</code> 、<code>!=</code>）转换为更美观的合字</td>
+</tr>
+<tr>
+<td><strong>NF（Nerd Font）</strong></td>
+<td>集成常用图标（如文件夹、Git 分支等），适合终端和编辑器</td>
+</tr>
+<tr>
+<td><strong>CN（中文）</strong></td>
+<td>包含中文字符支持</td>
+</tr>
+<tr>
+<td><strong>hinted&#x2F;unhinted</strong></td>
+<td>微调版优化小字号显示，无微调版保持原样</td>
+</tr>
+<tr>
+<td><strong>OTF&#x2F;TTF&#x2F;WOFF2</strong></td>
+<td>不同字体格式，TTF 最通用</td>
+</tr>
+</tbody></table>
+<h2 id="✨-小结"><a href="#✨-小结" class="headerlink" title="✨ 小结"></a>✨ 小结</h2><p>Maple Mono 提供了灵活的自定义选项和多平台安装支持，无论是通过包管理器一键安装，还是在线定制构建，都能满足个性化需求。</p>
+<p><strong>推荐安装方式</strong>：</p>
+<ul>
+<li><strong>Arch 用户</strong>：优先使用 ArchLinuxCN 仓库</li>
+<li><strong>Windows 用户</strong>：使用 Scoop</li>
+<li><strong>macOS&#x2F;Linux 用户</strong>：使用 Homebrew</li>
+</ul>
+<hr>
+<blockquote>
+<p>🔗 <strong>官方仓库</strong>：<a target="_blank" rel="noopener" href="https://github.com/subframe7536/maple-font">GitHub - subframe7536&#x2F;maple-font</a><br>📅 <strong>更新日期</strong>：2026-01-13</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -521,7 +594,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://silfoxs.github.io/2020/04/20/golang-bubbling/">https://silfoxs.github.io/2020/04/20/golang-bubbling/</a>
+                    <a href="https://silfoxs.github.io/2026/01/13/maple-mono-font/">https://silfoxs.github.io/2026/01/13/maple-mono-font/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,12 +632,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">开发工具</span>
                                 </a>
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/%E5%AD%97%E4%BD%93/">
+                                    <span class="chip bg-color">字体</span>
                                 </a>
                             
                         </div>
@@ -635,30 +708,31 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/04/21/golang-web-server/">
+                <a href="/2026/01/13/maple-mono-font/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/14.jpg" class="responsive-img" alt="golang实现一个简单的webserver">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/11.jpg" class="responsive-img" alt="Maple Mono - 开源等宽编程字体的最佳选择">
                         
-                        <span class="card-title">golang实现一个简单的webserver</span>
+                        <span class="card-title">Maple Mono - 开源等宽编程字体的最佳选择</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/14.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/11.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" class="category-badge">
+                                <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    技术文章
+                                    工具
                                 </a>
                             
                         </div>
@@ -667,7 +741,7 @@
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            介绍怎么用golang开发一个webserver服务
+                            Maple Mono 是一款开源等宽字体，专为代码编辑和终端设计，支持连字、多种字重以及 Nerd Font 图标和中文字符，是开发者的理想选择。
                         
                     </div>
 
@@ -675,7 +749,7 @@
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2020-04-21
+                            2026-01-13
                         </span>
                     </div>
 
@@ -683,8 +757,12 @@
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">开发工具</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AD%97%E4%BD%93/">
+                                    <span class="chip bg-color">字体</span>
                                 </a>
                             
                         </div>
@@ -699,26 +777,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/19/vscode-ext-info/">
+                <a href="/2026/01/13/skillsmp-guide/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/18.jpg" class="responsive-img" alt="vscode必备扩展介绍">
+                        <img src="https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/6.jpg" class="responsive-img" alt="SkillsMP：AI Agent 技能市场介绍与使用指南">
                         
-                        <span class="card-title">vscode必备扩展介绍</span>
+                        <span class="card-title">SkillsMP：AI Agent 技能市场介绍与使用指南</span>
                     </div>
                 </a>
                 <div class="article-info-wrapper">
                     
-                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/18.jpg')"></div>
+                    <div class="article-bg" style="background-image: url('https://cdn.jsdelivr.net/gh/silfoxs/silfoxs.github.io@v0.0.13/medias/featureimages/6.jpg')"></div>
                     
                     <!-- 右上角分类 -->
                     
                         <div class="article-category-top">
                             
-                                <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="category-badge">
+                                <a href="/categories/AI/" class="category-badge">
                                     <i class="fas fa-bookmark fa-fw"></i>
-                                    开发工具
+                                    AI
+                                </a>
+                            
+                                <a href="/categories/AI/Tools/" class="category-badge">
+                                    <i class="fas fa-bookmark fa-fw"></i>
+                                    Tools
                                 </a>
                             
                         </div>
@@ -727,7 +810,7 @@
                     <!-- 简介 -->
                     <div class="article-summary">
                         
-                            vscode必备扩展介绍
+                            SkillsMP 是一个专门聚合 AI Agent 技能的"应用商店"，本文为您详细介绍它的核心定位、功能优势及使用指南，助您快速掌握这一高效工具。
                         
                     </div>
 
@@ -735,7 +818,7 @@
                     <div class="article-meta">
                         <span class="article-date">
                             <i class="far fa-clock fa-fw"></i>
-                            2020-04-19
+                            2026-01-13
                         </span>
                     </div>
 
@@ -743,8 +826,20 @@
                     
                         <div class="article-tags-inline">
                             
-                                <a href="/tags/vscode/">
-                                    <span class="chip bg-color">vscode</span>
+                                <a href="/tags/Agent-Skills/">
+                                    <span class="chip bg-color">Agent Skills</span>
+                                </a>
+                            
+                                <a href="/tags/SkillsMP/">
+                                    <span class="chip bg-color">SkillsMP</span>
+                                </a>
+                            
+                                <a href="/tags/MCP/">
+                                    <span class="chip bg-color">MCP</span>
+                                </a>
+                            
+                                <a href="/tags/Claude/">
+                                    <span class="chip bg-color">Claude</span>
                                 </a>
                             
                         </div>

@@ -6,7 +6,7 @@
   <link href="https://silfoxs.github.io/atom.xml" rel="self"/>
   
   <link href="https://silfoxs.github.io/"/>
-  <updated>2026-01-13T04:03:48.474Z</updated>
+  <updated>2026-01-13T11:54:05.788Z</updated>
   <id>https://silfoxs.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Maple Mono - 开源等宽编程字体的最佳选择</title>
+    <link href="https://silfoxs.github.io/2026/01/13/maple-mono-font/"/>
+    <id>https://silfoxs.github.io/2026/01/13/maple-mono-font/</id>
+    <published>2026-01-13T11:53:00.000Z</published>
+    <updated>2026-01-13T11:54:05.788Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;序言&lt;/strong&gt;&lt;br&gt;Maple Mono 是一款开源的等宽字体，专为代码编辑和终端设计。它支持连字（Ligatures）、多种字重以及丰富的字符集（包括 Nerd Font</summary>
+        
+      
+    
+    
+    
+    <category term="工具" scheme="https://silfoxs.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="开发工具" scheme="https://silfoxs.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="字体" scheme="https://silfoxs.github.io/tags/%E5%AD%97%E4%BD%93/"/>
+    
+  </entry>
   
   <entry>
     <title>SkillsMP：AI Agent 技能市场介绍与使用指南</title>

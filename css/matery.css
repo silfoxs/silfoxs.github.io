@@ -1499,7 +1499,7 @@ thead {
 }
 
 .chip-container .chip-default {
-    color: #fff !important;
+    color: #999 !important;
     background: rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -1541,7 +1541,16 @@ thead {
 }
 
 .chip-default .tag-length {
-    color: rgba(255, 255, 255, 0.9);
+    color: #999 !important;
+    margin-top: 1px;
+}
+
+.chip-container .chip-default:hover {
+    color: #fff !important;
+}
+
+.chip-container .chip-default:hover .tag-length {
+    color: #fff !important;
 }
 
 .chip-active .tag-length {
@@ -1896,8 +1905,7 @@ thead {
     margin-bottom: 0.1rem;
     font-size: 1.8rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #34495e;
 }
 
 .profile .author .career {
@@ -1914,10 +1922,9 @@ thead {
 #aboutme .introduction {
     margin: 1.5rem auto 3rem;
     max-width: 600px;
-    color: rgba(255, 255, 255, 0.85);
+    color: #34495e;
     font-size: 1rem;
     line-height: 1.8;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .post-charts,
@@ -2701,4 +2708,14 @@ footer .copy-right {
     .tool-arrow {
         display: none; 
     }
+}
+
+/* Custom styles for About page components */
+.my-skills .title,
+.other-skills .sub-title,
+.my-gallery .title,
+.my-projects .title {
+    color: #34495e;
+    text-shadow: none;
+    font-weight: 700;
 }

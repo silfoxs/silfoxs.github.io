@@ -562,10 +562,32 @@ header .side-nav .menu-list a:hover {
 
 #searchResult {
     color: #fff !important;
+    max-height: calc(80vh - 150px);
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 10px 0 !important;
+    padding: 0 10px !important;
+}
+
+#searchResult .search-result-list {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+#searchResult::-webkit-scrollbar {
+    display: none;
 }
 
 #searchResult a {
     color: #42b983 !important;
+}
+
+/* Mobile Search Result Height Fix */
+@media only screen and (max-width: 601px) {
+    #searchResult {
+        max-height: 55vh !important;
+    }
 }
 
 #searchResult .search-result-list li {

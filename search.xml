@@ -253,22 +253,6 @@ claude init<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </tags>
   </entry>
   <entry>
-    <title>golang vender的使用</title>
-    <url>/2020/04/18/golang-vender/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们有个项目引入了各种包,每次部署的时候是不是都很烦<br>新人独白:天哪!这么多包下载到什么时候!要炸了~~~<br>别怕go自带的vendor帮你解决这个问题</p>
-<h2 id="老项目引入mod-vendor"><a href="#老项目引入mod-vendor" class="headerlink" title="老项目引入mod vendor"></a>老项目引入mod vendor</h2><p>还是我们的test项目<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ffe8d57c6ce1384e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>在我们的main.go文件引入gin框架的包<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9297aef34622dfa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引入gin包"><br>上面我只是做演示所以并没有真正去使用这个包<br>在项目test目录下执行go mod vendor<br><img src="https://upload-images.jianshu.io/upload_images/22774927-7ca86977e4d44621.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>现在我们的目录下就多了vendor目录及go.sum文件</p>
-<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>vendor下面是我们依赖的包,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-00e353aa80206a99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vendor目录结构"><br>go.sum是导入包的信息<br><img src="https://upload-images.jianshu.io/upload_images/22774927-02ef6ee2d50467b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go sum内容"><br>这里我只截取了部分演示</p>
-<h2 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h2><p>好了,后面我们就可以把vendor和go.sum都添加进我们的代码仓库里面,再也不用担心每次都下载一大堆包了</p>
-]]></content>
-      <categories>
-        <category>技术文章</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>vender</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>golang实现一个简单的webserver</title>
     <url>/2020/04/21/golang-web-server/</url>
     <content><![CDATA[<h2 id="官网DEMO"><a href="#官网DEMO" class="headerlink" title="官网DEMO"></a>官网DEMO</h2><blockquote>
@@ -401,6 +385,22 @@ claude init<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </categories>
       <tags>
         <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>golang vender的使用</title>
+    <url>/2020/04/18/golang-vender/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们有个项目引入了各种包,每次部署的时候是不是都很烦<br>新人独白:天哪!这么多包下载到什么时候!要炸了~~~<br>别怕go自带的vendor帮你解决这个问题</p>
+<h2 id="老项目引入mod-vendor"><a href="#老项目引入mod-vendor" class="headerlink" title="老项目引入mod vendor"></a>老项目引入mod vendor</h2><p>还是我们的test项目<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ffe8d57c6ce1384e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>在我们的main.go文件引入gin框架的包<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9297aef34622dfa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引入gin包"><br>上面我只是做演示所以并没有真正去使用这个包<br>在项目test目录下执行go mod vendor<br><img src="https://upload-images.jianshu.io/upload_images/22774927-7ca86977e4d44621.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"><br>现在我们的目录下就多了vendor目录及go.sum文件</p>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>vendor下面是我们依赖的包,结构如下<br><img src="https://upload-images.jianshu.io/upload_images/22774927-00e353aa80206a99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vendor目录结构"><br>go.sum是导入包的信息<br><img src="https://upload-images.jianshu.io/upload_images/22774927-02ef6ee2d50467b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="go sum内容"><br>这里我只截取了部分演示</p>
+<h2 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h2><p>好了,后面我们就可以把vendor和go.sum都添加进我们的代码仓库里面,再也不用担心每次都下载一大堆包了</p>
+]]></content>
+      <categories>
+        <category>技术文章</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>vender</tag>
       </tags>
   </entry>
   <entry>

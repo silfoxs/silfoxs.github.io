@@ -6,7 +6,7 @@
   <link href="https://silfoxs.github.io/atom.xml" rel="self"/>
   
   <link href="https://silfoxs.github.io/"/>
-  <updated>2026-01-13T11:54:05.788Z</updated>
+  <updated>2026-03-30T07:11:44.639Z</updated>
   <id>https://silfoxs.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Laravel 中进行 AI 编程：把 AGENTS、Skill 与模块化架构真正落地</title>
+    <link href="https://silfoxs.github.io/2026/03/30/laravel-ai-agents-architecture/"/>
+    <id>https://silfoxs.github.io/2026/03/30/laravel-ai-agents-architecture/</id>
+    <published>2026-03-30T02:30:00.000Z</published>
+    <updated>2026-03-30T07:11:44.639Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 Laravel 项目里使用 AI 编程，真正重要的不是“让 AI 多写一点代码”，而是让 AI 在明确、稳定、可约束的工程体系里工作。&lt;/p&gt;
+&lt;p&gt;如果项目没有清晰规则，AI 很容易出现这些问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把业务逻辑堆进</summary>
+        
+      
+    
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://silfoxs.github.io/tags/AI/"/>
+    
+    <category term="架构设计" scheme="https://silfoxs.github.io/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+    <category term="Laravel" scheme="https://silfoxs.github.io/tags/Laravel/"/>
+    
+  </entry>
   
   <entry>
     <title>Maple Mono - 开源等宽编程字体的最佳选择</title>

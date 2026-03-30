@@ -862,4 +862,624 @@ uipro init <span class="token parameter variable">--ai</span> claude<span aria-h
         <tag>vscode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在 Laravel 中进行 AI 编程：把 AGENTS、Skill 与模块化架构真正落地</title>
+    <url>/2026/03/30/laravel-ai-agents-architecture/</url>
+    <content><![CDATA[<p>在 Laravel 项目里使用 AI 编程，真正重要的不是“让 AI 多写一点代码”，而是让 AI 在明确、稳定、可约束的工程体系里工作。</p>
+<p>如果项目没有清晰规则，AI 很容易出现这些问题：</p>
+<ul>
+<li>把业务逻辑堆进 Controller</li>
+<li>为简单 CRUD 硬抽 Repository 和 Interface</li>
+<li>随意改 API 响应结构</li>
+<li>修一个 bug 顺手重构一大片</li>
+<li>不补测试直接改行为</li>
+</ul>
+<p>所以，要让 AI 在 Laravel 项目中真正可用，最好同时具备两样东西：</p>
+<ul>
+<li>一份清晰的 <code>AGENTS.md</code></li>
+<li>一套适合 API 服务的模块化架构</li>
+</ul>
+<p>这篇文章给出一套适合 Laravel API 项目的实践方案，并把 <code>AGENTS</code> 规则、Skill 设计和技术架构都用可复制的代码块展示出来，方便团队直接落地。</p>
+<h2 id="为什么-Laravel-适合-AI-编程"><a href="#为什么-Laravel-适合-AI-编程" class="headerlink" title="为什么 Laravel 适合 AI 编程"></a>为什么 Laravel 适合 AI 编程</h2><p>Laravel 很适合作为 AI 协作开发框架，原因很简单：</p>
+<ul>
+<li>框架约定成熟，边界天然清晰</li>
+<li><code>Request</code>、<code>Controller</code>、<code>Resource</code>、<code>Policy</code>、<code>Job</code>、<code>Service</code> 都有明确职责</li>
+<li>测试体系完整，适合做回归保护</li>
+<li>API 项目中的输入、流程、输出路径相对稳定</li>
+</ul>
+<p>但要让 AI 写得稳，不能只依赖 Laravel 本身，还需要把项目规则写清楚。</p>
+<h2 id="先给-AI-一份明确的-AGENTS-规范"><a href="#先给-AI-一份明确的-AGENTS-规范" class="headerlink" title="先给 AI 一份明确的 AGENTS 规范"></a>先给 AI 一份明确的 AGENTS 规范</h2><p>在 Laravel API 项目中，建议把 AI 的工作约束沉淀到 <code>AGENTS.md</code>。这份文件不是装饰，而是直接告诉 AI：</p>
+<ul>
+<li>这是个什么项目</li>
+<li>默认应该如何实现</li>
+<li>哪些行为允许</li>
+<li>哪些做法不推荐</li>
+</ul>
+<p>下面是一份适合 Laravel API 项目的 <code>AGENTS.md</code> 示例。</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> AGENTS.md</span>
+
+<span class="token title important"><span class="token punctuation">##</span> Goal</span>
+Act like a high-performing senior Laravel API engineer. Be concise, direct, and execution-focused.
+
+Build maintainable, production-friendly API code. Prefer simple solutions, explicit behavior, and low-complexity designs.
+
+Do not overengineer. Avoid unnecessary abstractions, heavy dependency additions, or framework gymnastics for small features.
+
+<span class="token title important"><span class="token punctuation">##</span> Project Type</span>
+This project is a Laravel API service.
+
+Default assumptions:
+<span class="token list punctuation">-</span> The main output is JSON APIs, not server-rendered pages.
+<span class="token list punctuation">-</span> Preserve existing API conventions unless explicitly asked to change them.
+<span class="token list punctuation">-</span> Prefer Laravel-native solutions when they are sufficient.
+<span class="token list punctuation">-</span> Optimize for clarity, testability, and backward compatibility.
+
+<span class="token title important"><span class="token punctuation">##</span> Primary Architecture</span>
+Use this responsibility split unless the repository already has a clear, stable pattern:
+
+<span class="token list punctuation">-</span> routes/api.php
+  API route registration only.
+<span class="token list punctuation">-</span> app/Http/Controllers/Api
+  HTTP entrypoints only: parse request, call application service, return response.
+<span class="token list punctuation">-</span> app/Http/Requests
+  Validation and request authorization.
+<span class="token list punctuation">-</span> app/Http/Resources
+  API output shaping.
+<span class="token list punctuation">-</span> app/Services
+  Business workflows and application use cases.
+<span class="token list punctuation">-</span> app/Repositories
+  Complex queries and data access logic when needed.
+<span class="token list punctuation">-</span> app/Models
+  Persistence models, relationships, scopes, casts, and small local behavior.
+<span class="token list punctuation">-</span> app/Jobs
+  Async or retryable work only.
+<span class="token list punctuation">-</span> app/Policies
+  Authorization rules.
+<span class="token list punctuation">-</span> app/Exceptions
+  Domain or API exception definitions when the project uses them.
+<span class="token list punctuation">-</span> tests/Feature/Api
+  Endpoint and workflow tests.
+<span class="token list punctuation">-</span> tests/Unit
+  Isolated pure logic tests.
+
+<span class="token title important"><span class="token punctuation">##</span> API Design Rules</span>
+<span class="token list punctuation">-</span> Keep API responses consistent with existing project conventions.
+<span class="token list punctuation">-</span> Do not invent a new response envelope if one already exists.
+<span class="token list punctuation">-</span> Use correct HTTP status codes.
+<span class="token list punctuation">-</span> Preserve public API compatibility unless the task explicitly allows a breaking change.
+<span class="token list punctuation">-</span> Validate all external input.
+<span class="token list punctuation">-</span> Keep error behavior explicit and stable.
+
+<span class="token title important"><span class="token punctuation">##</span> Controller Rules</span>
+Controllers must stay thin.
+
+Controller responsibilities:
+<span class="token list punctuation">-</span> receive request input
+<span class="token list punctuation">-</span> authorize if needed
+<span class="token list punctuation">-</span> call a service or query layer
+<span class="token list punctuation">-</span> return a resource or JSON response
+
+Controllers must not:
+<span class="token list punctuation">-</span> contain complex business rules
+<span class="token list punctuation">-</span> build large query chains directly
+<span class="token list punctuation">-</span> manage transactions
+<span class="token list punctuation">-</span> call third-party SDKs directly
+<span class="token list punctuation">-</span> perform heavy data transformation inline
+
+<span class="token title important"><span class="token punctuation">##</span> Request Validation Rules</span>
+<span class="token list punctuation">-</span> Use Form Request classes for non-trivial validation.
+<span class="token list punctuation">-</span> Keep validation rules explicit.
+<span class="token list punctuation">-</span> Do not hide business logic inside validation rules.
+
+<span class="token title important"><span class="token punctuation">##</span> Resource Rules</span>
+<span class="token list punctuation">-</span> Use API Resources for non-trivial response shaping.
+<span class="token list punctuation">-</span> Do not query the database inside Resources.
+<span class="token list punctuation">-</span> Do not place business logic in Resources.
+<span class="token list punctuation">-</span> Keep fields explicit.
+
+<span class="token title important"><span class="token punctuation">##</span> Service Layer Rules</span>
+Use Services as the main place for business workflows.
+
+Service responsibilities:
+<span class="token list punctuation">-</span> orchestrate domain behavior
+<span class="token list punctuation">-</span> coordinate repositories/models/jobs/events
+<span class="token list punctuation">-</span> define transaction boundaries
+<span class="token list punctuation">-</span> apply business rules
+<span class="token list punctuation">-</span> call external integrations through dedicated adapters
+
+<span class="token title important"><span class="token punctuation">##</span> Repository Rules</span>
+If the project already uses repositories, follow that pattern.
+If not, do not introduce repositories for trivial CRUD.
+
+Use a repository when:
+<span class="token list punctuation">-</span> query conditions are complex
+<span class="token list punctuation">-</span> logic is reused across services
+<span class="token list punctuation">-</span> reporting or aggregation queries are non-trivial
+<span class="token list punctuation">-</span> multi-table joins become hard to read inline
+
+<span class="token title important"><span class="token punctuation">##</span> Model Rules</span>
+Allowed in models:
+<span class="token list punctuation">-</span> relationships
+<span class="token list punctuation">-</span> casts
+<span class="token list punctuation">-</span> scopes
+<span class="token list punctuation">-</span> small local invariants
+<span class="token list punctuation">-</span> convenience methods tightly related to the entity
+
+Avoid in models:
+<span class="token list punctuation">-</span> large workflow logic
+<span class="token list punctuation">-</span> third-party API calls
+<span class="token list punctuation">-</span> hidden writes during reads
+<span class="token list punctuation">-</span> business processes spanning multiple entities
+
+<span class="token title important"><span class="token punctuation">##</span> Transaction Rules</span>
+Use transactions for:
+<span class="token list punctuation">-</span> multi-step writes
+<span class="token list punctuation">-</span> state transitions
+<span class="token list punctuation">-</span> reward, coupon, balance, or inventory changes
+<span class="token list punctuation">-</span> anything that must remain consistent under concurrency
+
+<span class="token title important"><span class="token punctuation">##</span> Testing Expectations</span>
+Every behavior change should be protected by tests when practical.
+
+Prioritize:
+<span class="token list punctuation">-</span> Feature tests for endpoint behavior
+<span class="token list punctuation">-</span> Unit tests for isolated pure logic
+
+For API endpoints, test:
+<span class="token list punctuation">-</span> happy path
+<span class="token list punctuation">-</span> validation failure
+<span class="token list punctuation">-</span> auth failure if relevant
+<span class="token list punctuation">-</span> key business edge case
+<span class="token list punctuation">-</span> response structure
+
+<span class="token title important"><span class="token punctuation">##</span> Change Workflow</span>
+When working on a task:
+<span class="token list punctuation">1.</span> Read the local module and surrounding code first.
+<span class="token list punctuation">2.</span> Follow the project's established API and naming conventions.
+<span class="token list punctuation">3.</span> Make the smallest reasonable change that fully solves the problem.
+<span class="token list punctuation">4.</span> Add or update tests for changed behavior.
+<span class="token list punctuation">5.</span> Run the narrowest useful checks first, then broader checks if needed.
+<span class="token list punctuation">6.</span> Summarize behavior changes, risks, and follow-up items.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这份规范的价值在于，它把 AI 的工程行为限定在稳定范围内。AI 不是“想到什么写什么”，而是按项目规则工作。</p>
+<h2 id="推荐的-Laravel-AI-编程架构"><a href="#推荐的-Laravel-AI-编程架构" class="headerlink" title="推荐的 Laravel AI 编程架构"></a>推荐的 Laravel AI 编程架构</h2><p>如果只有规范，没有结构，AI 依然容易迷失上下文。因此，更推荐在 Laravel API 项目里使用按业务模块组织的方式，而不是传统的全局目录平铺。</p>
+<p>下面是一套很适合 AI 协作的目录结构：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">app/
+  Modules/
+    Auth/
+      Controllers/
+        AuthController.php
+      Requests/
+        LoginRequest.php
+        RefreshTokenRequest.php
+      Resources/
+        TokenResource.php
+        MeResource.php
+      Services/
+        AuthService.php
+      Repositories/
+        AuthRepository.php
+      Models/
+      Policies/
+      DTOs/
+        LoginData.php
+      Exceptions/
+        InvalidCredentialsException.php
+
+    User/
+      Controllers/
+        UserController.php
+      Requests/
+        UpdateProfileRequest.php
+        ListUserRequest.php
+      Resources/
+        UserResource.php
+        UserCollection.php
+      Services/
+        UserService.php
+      Repositories/
+        UserRepository.php
+      Models/
+        User.php
+      Policies/
+        UserPolicy.php
+      DTOs/
+        UpdateProfileData.php
+      Exceptions/
+
+    Campaign/
+      Controllers/
+        CampaignController.php
+      Requests/
+        CreateCampaignRequest.php
+        UpdateCampaignRequest.php
+        ListCampaignRequest.php
+      Resources/
+        CampaignResource.php
+        CampaignCollection.php
+      Services/
+        CampaignService.php
+      Repositories/
+        CampaignRepository.php
+      Models/
+        Campaign.php
+      Policies/
+        CampaignPolicy.php
+      DTOs/
+        CreateCampaignData.php
+        UpdateCampaignData.php
+      Exceptions/
+        CampaignNotFoundException.php
+        CampaignStatusException.php
+
+    Quest/
+      Controllers/
+        QuestController.php
+      Requests/
+        CreateQuestRequest.php
+        CompleteQuestRequest.php
+        ListQuestRequest.php
+      Resources/
+        QuestResource.php
+        QuestCollection.php
+      Services/
+        QuestService.php
+      Repositories/
+        QuestRepository.php
+      Models/
+        Quest.php
+      Policies/
+        QuestPolicy.php
+      DTOs/
+        CreateQuestData.php
+        CompleteQuestData.php
+      Exceptions/
+        QuestNotFoundException.php
+        QuestStatusException.php
+
+    Reward/
+      Controllers/
+        RewardController.php
+        RewardCouponController.php
+      Requests/
+        CreateRewardRequest.php
+        IssueRewardRequest.php
+        ListRewardRequest.php
+      Resources/
+        RewardResource.php
+        RewardCouponResource.php
+      Services/
+        RewardService.php
+        RewardCouponService.php
+      Repositories/
+        RewardRepository.php
+        RewardCouponRepository.php
+      Models/
+        Reward.php
+        RewardCoupon.php
+      Policies/
+        RewardPolicy.php
+      DTOs/
+        CreateRewardData.php
+        IssueRewardData.php
+      Exceptions/
+        RewardNotFoundException.php
+        RewardIssueException.php
+
+    Common/
+      Controllers/
+      Requests/
+      Resources/
+      Services/
+      Repositories/
+      Models/
+      Policies/
+      DTOs/
+      Exceptions/
+
+  Http/
+    Middleware/
+      Authenticate.php
+      RequestIdMiddleware.php
+      AccessLogMiddleware.php
+
+  Exceptions/
+    Handler.php
+
+  Providers/
+    AppServiceProvider.php
+    AuthServiceProvider.php
+    RouteServiceProvider.php
+
+  Jobs/
+    Reward/
+      IssueRewardJob.php
+      RetryWebhookJob.php
+    Notification/
+      SendEmailJob.php
+
+  Support/
+    Api/
+      ApiResponse.php
+      ApiErrorCode.php
+    Auth/
+      JwtService.php
+    Pagination/
+      Paginator.php
+    Exceptions/
+      BusinessException.php
+      UnauthorizedException.php
+      ForbiddenException.php
+      NotFoundException.php
+      ConflictException.php
+      ValidationException.php
+    Database/
+      Transaction.php
+    Helpers/
+      DateHelper.php
+      JsonHelper.php
+
+database/
+  factories/
+  migrations/
+  seeders/
+
+routes/
+  api.php
+
+tests/
+  Feature/
+    Modules/
+      Auth/
+      User/
+      Campaign/
+      Quest/
+      Reward/
+  Unit/
+    Modules/
+      Campaign/
+      Quest/
+      Reward/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这套结构的核心优势很明确：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">- Modules/* 把一个业务需要的代码放在一起
+- 查看某个业务时，不需要在全局 Controllers/Services/Models 来回跳
+- 更适合 AI 和人一起改代码，因为上下文边界更清晰
+- 更适合做小范围、低风险、可验证的修改<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="每一层的职责边界"><a href="#每一层的职责边界" class="headerlink" title="每一层的职责边界"></a>每一层的职责边界</h2><p>仅有目录还不够，还需要告诉 AI 每一层到底做什么。下面这段可以直接作为团队规范的一部分使用。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">routes/api.php
+  - 只做 API 路由注册
+  - 不写业务逻辑
+
+Controllers
+  - 只做 HTTP 入口层
+  - 接收请求
+  - 调用授权
+  - 调用 Service
+  - 返回 Resource / JSON
+
+Requests
+  - 负责参数校验
+  - 负责请求授权
+  - 负责必要的输入规范化
+  - 不承载业务流程
+
+Resources
+  - 负责 API 输出整形
+  - 字段显式定义
+  - 不查数据库
+  - 不放业务逻辑
+
+Services
+  - 负责业务流程编排
+  - 负责事务边界
+  - 负责业务规则
+  - 协调 Model / Repository / Job / Event
+
+Repositories
+  - 只承接复杂查询
+  - 用于复用查询逻辑、聚合、join、多条件筛选
+  - 简单 CRUD 不强行抽象
+
+Models
+  - 负责持久化语义
+  - relationships / casts / scopes / 小范围实体行为
+  - 不承载跨实体流程
+
+Policies
+  - 负责资源级授权判断
+
+Jobs
+  - 只做异步、长耗时、可重试工作
+
+tests/Feature
+  - 测端点行为、认证、验证、工作流
+
+tests/Unit
+  - 测纯逻辑、轻依赖的规则判断<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Skill-体系也要明确拆分"><a href="#Skill-体系也要明确拆分" class="headerlink" title="Skill 体系也要明确拆分"></a>Skill 体系也要明确拆分</h2><p>如果不拆 skill，AI 往往会把多个层次混在一起处理，最后写出“能跑但边界混乱”的代码。更好的方式是，按职责给 AI 明确的技能分工。</p>
+<p>下面是一套适合 Laravel API 项目的 Skill 设计。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">API Scaffold Skill
+  - 新增 API 骨架
+  - 生成 route / controller / request / service / resource / test
+
+Validation Skill
+  - 处理 Form Request
+  - 设计显式参数规则
+  - 规范输入边界
+
+Service Workflow Skill
+  - 编排业务流程
+  - 处理状态流转
+  - 管理事务
+  - 协调仓储、任务、事件
+
+Query Skill
+  - 处理复杂查询
+  - 条件筛选、排序、分页、聚合、join
+  - 避免 N+1
+
+Resource Transform Skill
+  - 设计 API 输出结构
+  - 保持字段白名单
+  - 保持响应契约稳定
+
+Auth &amp; Policy Skill
+  - 处理认证、授权、Policy
+  - 对接现有 Sanctum / JWT / Passport 机制
+
+Test Generation Skill
+  - 生成 Feature / Unit 测试
+  - 补回归测试
+  - 覆盖 happy path 和关键失败路径
+
+Refactor Safety Skill
+  - 做小范围重构
+  - 把业务逻辑从 Controller 收回 Service
+  - 把复杂查询收回 Repository
+  - 不破坏 API 契约
+
+Review Skill
+  - 做代码审查
+  - 检查职责是否越界
+  - 检查事务、N+1、测试覆盖、响应格式<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Skill-和架构层的映射关系"><a href="#Skill-和架构层的映射关系" class="headerlink" title="Skill 和架构层的映射关系"></a>Skill 和架构层的映射关系</h2><p>为了让读者更容易直接套用，最好再给出一张映射表。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">API Scaffold Skill
+  -> Route / Controller / Request / Service / Resource / Test
+
+Validation Skill
+  -> Request
+
+Service Workflow Skill
+  -> Service
+
+Query Skill
+  -> Repository / Query Layer
+
+Resource Transform Skill
+  -> Resource
+
+Auth &amp; Policy Skill
+  -> Policy / Auth Flow
+
+Test Generation Skill
+  -> Feature Test / Unit Test
+
+Refactor Safety Skill
+  -> Controller / Service / Repository
+
+Review Skill
+  -> 全链路审查<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这张映射的意义在于，AI 不是无边界工作，而是在既定层次中执行明确任务。</p>
+<h2 id="最值得固定下来的三条规则"><a href="#最值得固定下来的三条规则" class="headerlink" title="最值得固定下来的三条规则"></a>最值得固定下来的三条规则</h2><p>如果只保留最关键的规则，我建议把这三条固定下来。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">规则 1：Controllers 只做 HTTP 协议层
+- 不写复杂业务逻辑
+- 不开事务
+- 不做复杂查询
+- 不直接调第三方 SDK
+
+规则 2：Services 负责业务流程和事务
+- 业务规则收口到 Service
+- 多步写操作和状态流转在这里处理
+- 事务边界也在这里定义
+
+规则 3：Repositories 只收复杂查询，简单 CRUD 不硬抽象
+- 不为了“分层完整”制造样板代码
+- 抽象只服务复杂度，不服务形式主义<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这三条规则，对 AI 编程尤其重要。它们能显著降低“AI 写出过度设计代码”的概率。</p>
+<h2 id="一个适合-AI-的-Laravel-开发工作流"><a href="#一个适合-AI-的-Laravel-开发工作流" class="headerlink" title="一个适合 AI 的 Laravel 开发工作流"></a>一个适合 AI 的 Laravel 开发工作流</h2><p>除了规范和架构，还需要一个稳定流程。下面这段也很适合直接放进团队文档。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">1. 先读当前模块和周边代码
+   - 先看已有 Controller / Request / Service / Resource / Repository / Test
+   - 先理解现有命名和响应格式
+
+2. 判断问题属于哪一层
+   - 是验证问题、授权问题、服务逻辑问题、查询问题，还是输出问题
+   - 不要默认去改 Controller
+
+3. 做最小必要改动
+   - 只改正确层
+   - 不顺手做无关重构
+   - 保持 API 契约稳定
+
+4. 为行为变化补测试
+   - 新功能补 Feature Test
+   - 修 bug 优先补回归测试
+
+5. 先跑最小必要检查
+   - 先跑窄范围测试
+   - 再决定是否跑更大范围检查
+
+6. 最后复核
+   - controller 是否仍然薄
+   - service 是否承接了业务逻辑
+   - response 是否保持一致
+   - 是否引入 N+1 或事务问题<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="示例：新增一个-Quest-完成接口时，AI-应该怎么做"><a href="#示例：新增一个-Quest-完成接口时，AI-应该怎么做" class="headerlink" title="示例：新增一个 Quest 完成接口时，AI 应该怎么做"></a>示例：新增一个 Quest 完成接口时，AI 应该怎么做</h2><p>把前面的规则落到具体例子里，会更容易理解。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">需求：新增 “完成任务” 接口
+
+推荐落点：
+
+1. routes/api.php
+   - 注册 POST /quests/&#123;quest&#125;/complete
+
+2. app/Modules/Quest/Requests/CompleteQuestRequest.php
+   - 校验外部输入
+   - 保持验证规则显式
+
+3. app/Modules/Quest/Controllers/QuestController.php
+   - 接收请求
+   - 调用授权
+   - 调用 QuestService::completeQuest()
+   - 返回 QuestResource
+
+4. app/Modules/Quest/Services/QuestService.php
+   - 判断 quest 是否存在
+   - 判断状态是否允许完成
+   - 处理重复完成
+   - 必要时触发奖励发放
+   - 处理事务边界
+
+5. app/Modules/Quest/Repositories/QuestRepository.php
+   - 只在存在复杂查询时承接查询逻辑
+
+6. app/Modules/Quest/Resources/QuestResource.php
+   - 返回统一结构
+   - 不查数据库
+
+7. tests/Feature/Modules/Quest/CompleteQuestTest.php
+   - happy path
+   - validation failure
+   - auth failure
+   - 状态非法
+   - 重复完成<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个例子说明了一件事：当 <code>AGENTS</code>、Skill 和架构都明确时，AI 的开发路径会非常稳定。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>在 Laravel 中做 AI 编程，最有效的方式不是让 AI 自由发挥，而是建立一套明确的工程约束：</p>
+<ul>
+<li>用 <code>AGENTS.md</code> 规定 AI 的行为方式</li>
+<li>用模块化架构明确业务边界</li>
+<li>用职责分层确定代码应该落在哪</li>
+<li>用 Skill 体系限制 AI 的任务范围</li>
+<li>用测试和最小改动原则控制风险</li>
+</ul>
+<p>如果你希望 AI 真正参与 Laravel API 开发，而不是只做“代码补全”，那么下面这套组合非常值得直接采用：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">AGENTS 规则 + 模块化目录 + 薄 Controller + Service 收口业务 + Repository 只做复杂查询 + 测试驱动变更<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这套方法的重点不是“让 AI 写更多代码”，而是“让 AI 更稳定地写对代码”。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>架构设计</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
 </search>
